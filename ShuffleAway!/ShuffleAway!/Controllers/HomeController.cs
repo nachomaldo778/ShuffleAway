@@ -15,7 +15,7 @@ namespace ShuffleAway_.Controllers
 
 		public ActionResult About()
 		{
-			ViewBag.Message = "Your application description page.";
+			ViewBag.Message = "ASD.";
 
 			return View();
 		}
