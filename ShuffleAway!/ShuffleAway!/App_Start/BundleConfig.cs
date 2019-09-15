@@ -30,9 +30,10 @@ namespace ShuffleAway_
 
 			string mdb = @"~/Content/mdb.css";
 			string bootstrapLib = @"~/Content/bootstrap.css";
+			string siteCss = @"~/Content/site.css";
 
 			//bundles.Add(new StyleBundle("~/Content/MdBootstrap").Include(mdb));
-			bundles.Add(new StyleBundle("~/Content/bootstrapCore").Include(bootstrapLib));
+			bundles.Add(new StyleBundle("~/Content/bootstrapCore").Include(bootstrapLib, siteCss));
 		}
 	}
 }

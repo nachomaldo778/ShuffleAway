@@ -3,6 +3,13 @@
     padding-bottom: 20px;
 }
 
+html,
+body,
+header,
+.view {
+	height: 100%;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -21,4 +28,33 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/*Estilos propios*/
+
+.view {
+	background: url(../Recursos/img/bg.jpg)no-repeat center center;
+	background-size: cover;
+}
+
+.navbar {
+	background-color: transparent;
+}
+
+.top-nav-collapse {
+	background-color: #4285F4;
+}
+
+@media only screen and (max-width: 768px) {
+	.navbar {
+		background-color: #4285F4;
+	}
+}
+
+.botones-nav .nav-link {
+	color: #000000 !important;
+}
+
+.top-nav-collapse .botones-nav .nav-link {
+	color: #fff;
 }

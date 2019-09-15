@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html class="full-height">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta charset="utf-8" />
@@ -13,28 +13,28 @@
 </head>
 <body>
 	@* Navegador FUll width *@
-	<nav class="navbar navbar-expand-lg navbar-dark primary-color">
-		<a class="navbar-brand" href="#">Navbar</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+		<a class="navbar-brand" href="#"><strong>Navbar</strong></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
+		<div class="collapse navbar-collapse botones-nav" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
 					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Features</a>
+					<a class="nav-link" href="#">Link</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Pricing</a>
+					<a class="nav-link" href="#">Login</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
 	@* Termina Navegador *@
-	<div class="container body-content">
+	<div class="container-fluid body-content view">
 		@RenderBody()
 		<hr />
 		<footer>
