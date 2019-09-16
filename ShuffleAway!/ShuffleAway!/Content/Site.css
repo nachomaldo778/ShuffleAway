@@ -1,14 +1,14 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
 }
 
-html,
+/*html,
 body,
 header,
 .view {
 	height: 100%;
-}
+}*/
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -37,9 +37,9 @@ textarea {
 	background-size: cover;
 }
 
-.navbar {
+/*.navbar {
 	background-color: transparent;
-}
+}*/
 
 .top-nav-collapse {
 	background-color: #4285F4;
@@ -57,4 +57,12 @@ textarea {
 
 .top-nav-collapse .botones-nav .nav-link {
 	color: #fff;
+}
+
+.navbar-brand {
+	width: 40px
+}
+
+.modal-dialog.cascading-modal.login {
+	margin-top: 5%;
 }

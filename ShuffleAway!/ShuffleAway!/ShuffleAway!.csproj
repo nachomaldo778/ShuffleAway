@@ -159,6 +159,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Recursos\img\bg.jpg" />
+    <Content Include="Recursos\img\logos\brand.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\Roboto-Bold.eot" />
