@@ -1,6 +1,8 @@
 ﻿body {
-    /*padding-top: 50px;
+	/*padding-top: 50px;
     padding-bottom: 20px;*/
+	font-family: 'Varela Round', sans-serif !important;
+	font-weight: 400 !important;
 }
 
 /*html,
@@ -12,22 +14,22 @@ header,
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+	white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
-    max-width: 280px;
+	max-width: 280px;
 }
 
 /*Estilos propios*/
@@ -45,18 +47,27 @@ textarea {
 	background-color: #4285F4;
 }
 
+.navbar {
+	box-shadow: none !important
+}
+
 @media only screen and (max-width: 768px) {
 	.navbar {
 		background-color: #4285F4;
 	}
 }
 
-.botones-nav .nav-link {
+/*.botones-nav .nav-link {
 	color: #000000 !important;
+}*/
+
+.navbar-principal .nav-link {
+	color: #000000 !important;
+	font-size: 14px
 }
 
-.top-nav-collapse .botones-nav .nav-link {
-	color: #fff;
+.dropdown-item {
+	font-size: 14px !important
 }
 
 .navbar-brand {
@@ -66,3 +77,38 @@ textarea {
 .modal-dialog.cascading-modal.login {
 	margin-top: 5%;
 }
+
+
+/*Section para agregar contenido*/
+section {
+	width: 100%;
+	display: table;
+	margin: 0;
+	max-width: none;
+	height: 100vh;
+}
+
+.section-contenido {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.section-main {
+	height: 100vh;
+	z-index: 2000;
+}
+
+.nav-item {
+	margin: 0 5%;
+	transition: 0.3s all;
+	border: 1px solid transparent !important;
+	
+}
+
+	.nav-item:hover {
+		border: 1px solid !important;
+		border-radius: 12px !important;
+		/*border-color: #23074d;*/
+		border-image: linear-gradient(to right, #cc5333, #23074d);
+		;
+	}

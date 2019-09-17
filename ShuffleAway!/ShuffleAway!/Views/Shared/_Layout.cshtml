@@ -10,50 +10,66 @@
 	<link href="~/Content/mdb.css" rel="stylesheet" />
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
 </head>
 <body>
-	@* Navegador FUll width *@
-	<nav class="navbar navbar-expand-lg navbar-dark primary-color fixed-top navbar-principal ">
-		<a class="navbar-brand" href="#"><img class="img-fluid" src="~/Recursos/img/logos/brand.png" alt="Shuffle Away!" /></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
-				aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="#">
-						Home
-						<span class="sr-only">(current)</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">
-						Información
-						<span class="sr-only">(current)</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">
-						Contacto
-						<span class="sr-only">(current)</span>
-					</a>
-				</li>
-			</ul>
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-					   aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-user"></i> Perfil
-					</a>
-					<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-						<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLogin">Sign in</a>
-						<a class="dropdown-item" href="#">Log out</a>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				@* Navegador FUll width *@
+				<nav class="navbar navbar-expand-lg navbar-dark navbar-principal ">
+					<a class="navbar-brand" href="#"><img class="img-fluid" src="~/Recursos/img/logos/brand.png" alt="Shuffle Away!" /></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+							aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+						<ul class="navbar-nav">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+								   aria-haspopup="true" aria-expanded="false">Sorteos</a>
+								<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="#">Cómo crear</a>
+									<a class="dropdown-item" href="#">Cómo participar</a>
+								</div>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Demostración
+									<span class="sr-only">(current)</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Planes
+									<span class="sr-only">(current)</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									FAQ
+									<span class="sr-only">(current)</span>
+								</a>
+							</li>
+						</ul>
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+								   aria-haspopup="true" aria-expanded="false">
+									<i class="fas fa-user"></i> Perfil
+								</a>
+								<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLogin">Sign in</a>
+									<a class="dropdown-item" href="#">Log out</a>
+								</div>
+							</li>
+						</ul>
 					</div>
-				</li>
-			</ul>
+				</nav>
+			</div>
 		</div>
-	</nav>
+	</div>
+
 	@* Modal *@
 
 	<!--Modal: Login / Register Form-->
@@ -155,8 +171,6 @@
 		</div>
 	</div>
 	<!--Modal: Login / Register Form-->
-
-
 	@* Cierra Modal *@
 	@* Termina Navegador *@
 	<div class="container-fluid body-content ">
