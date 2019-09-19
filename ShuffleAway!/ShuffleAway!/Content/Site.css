@@ -109,7 +109,7 @@ textarea {
      transition: color 200ms linear;
 }
 
-li a:hover {
+a:hover {
     background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 50%, #0052D4 100%) !important;
     -webkit-background-clip: text;
     background-clip: text;
