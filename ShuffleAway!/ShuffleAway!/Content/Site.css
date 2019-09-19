@@ -1,16 +1,7 @@
 ﻿body {
-	/*padding-top: 50px;
-    padding-bottom: 20px;*/
 	font-family: 'Varela Round', sans-serif !important;
 	font-weight: 400 !important;
 }
-
-/*html,
-body,
-header,
-.view {
-	height: 100%;
-}*/
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -39,10 +30,6 @@ textarea {
 	background-size: cover;
 }
 
-/*.navbar {
-	background-color: transparent;
-}*/
-
 .top-nav-collapse {
 	background-color: #4285F4;
 }
@@ -57,17 +44,17 @@ textarea {
 	}
 }
 
-/*.botones-nav .nav-link {
-	color: #000000 !important;
-}*/
-
 .navbar-principal .nav-link {
 	color: #000000 !important;
 	font-size: 18px
 }
 
-.dropdown-item {
-	font-size: 18px !important
+.dropdown-item:hover {
+    background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 50%, #0052D4 100%) !important;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: color 200ms linear;
 }
 
 .navbar-brand {
@@ -98,32 +85,22 @@ section {
 	z-index: 2000;
 }
 
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
 .nav-item {
 	margin: 0 5%;
 	transition: 0.3s all;
 	border: 1px solid transparent !important;
-	
+    color: transparent;
 }
 
-    .nav-item:hover {
-        background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 50%, #0052D4 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-fill-color: transparent;
-        transition: color 200ms linear;
-    }
-
-/*contenido seccion principal*/
-
-.columna-izq-parrafos {
-	margin-bottom: 20%;
+.nav-item:hover {
+     background-image: linear-gradient(to right, #6dd5ed 0%, #6dd5ed 50%, #6dd5ed 100%) !important;
+     -webkit-background-clip: text;
+     background-clip: text;
+     -webkit-text-fill-color: transparent;
+     text-fill-color: transparent;
+     transition: color 200ms linear;
 }
-
-	.columna-izq-parrafos .p-uno {
-		font-size: 16px !important;
-	}
-
-	.columna-izq-parrafos .p-dos {
-		font-size: 13px !important;
-	}
