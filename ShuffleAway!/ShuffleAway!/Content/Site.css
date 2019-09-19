@@ -49,6 +49,13 @@ textarea {
 	font-size: 18px
 }
 
+.dropdown-item {
+    font-size: 16px !important;
+    color: black;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
 .dropdown-item:hover {
     background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 50%, #0052D4 100%) !important;
     -webkit-background-clip: text;
@@ -67,7 +74,7 @@ textarea {
 
 
 /*Section para agregar contenido*/
-section {
+#section-intro {
 	width: 100%;
 	display: table;
 	margin: 0;
@@ -93,14 +100,23 @@ section {
 	margin: 0 5%;
 	transition: 0.3s all;
 	border: 1px solid transparent !important;
-    color: transparent;
 }
 
 .nav-item:hover {
-     background-image: linear-gradient(to right, #6dd5ed 0%, #6dd5ed 50%, #6dd5ed 100%) !important;
+     background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 50%, #0052D4 100%) !important;
      -webkit-background-clip: text;
      background-clip: text;
-     -webkit-text-fill-color: transparent;
-     text-fill-color: transparent;
      transition: color 200ms linear;
+}
+
+li a:hover {
+    background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 50%, #0052D4 100%) !important;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: color 200ms linear;
+}
+
+li a{
+    font-size: 14px;
 }
