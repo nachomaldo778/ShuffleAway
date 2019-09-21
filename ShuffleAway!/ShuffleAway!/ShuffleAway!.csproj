@@ -146,6 +146,8 @@
     </Compile>
     <Compile Include="Models\Datos\AccesoDatos.cs" />
     <Compile Include="Models\Datos\Usuario.cs" />
+    <Compile Include="Models\TiposDeUsuarios.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
