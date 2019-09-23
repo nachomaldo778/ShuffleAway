@@ -7,6 +7,7 @@ using System.Text;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ShuffleAway_.Controllers
 {
@@ -110,5 +111,30 @@ namespace ShuffleAway_.Controllers
 
 			return View("Index", mvc);
 		}
+
+		public ActionResult Login(MvcModel mvc)
+		{
+			//objeto para traer datos de la BD
+			AccesoDatos datos = new AccesoDatos();
+			//guardo el usuario de la base de datos
+			mvc.usuario = datos.getLoginUsuario(mvc.usuario);
+			//pregunto si esta logueado para redireccionarlo a la plataforma
+			if (mvc.usuario.logueado)
+			{
+				//guardo el usuario en la sesión
+				Session["usuario"] = mvc.usuario;
+				//se guarda el usuario en las cookies
+				FormsAuthentication.SetAuthCookie(mvc.usuario.email, false);
+				return RedirectToAction("Index", "Plataforma");
+			}
+			else
+			{
+				TempData["error"] = "error";
+				return View(mvc);
+			}
+
+		}
+
+		
 	}
 }

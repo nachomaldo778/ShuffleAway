@@ -24,6 +24,7 @@ namespace ShuffleAway_.Models
         public string nombre { get; set; }
         public string apellido { get; set; }
         public DateTime fechaNacimiento { get; set; }
+		public bool logueado { get; set; }
 
     }
 }
