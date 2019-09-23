@@ -11,7 +11,8 @@ namespace ShuffleAway_
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
 						"~/Scripts/jquery-{version}.js",
 						"~/Scripts/mdb.js",
-						"~/Scripts/popper.min.js"));
+						"~/Scripts/popper.min.js," +
+						"~/Scripts/shuffleScript.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.validate*"));
@@ -28,7 +29,7 @@ namespace ShuffleAway_
 			//		  "~/Content/bootstrap.css",
 			//		  "~/Content/site.css"));
 
-			string mdb = @"~/Content/mdb.css";
+			//string mdb = @"~/Content/mdb.css";
 			string bootstrapLib = @"~/Content/bootstrap.css";
 			string siteCss = @"~/Content/site.css";
 

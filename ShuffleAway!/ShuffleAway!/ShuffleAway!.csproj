@@ -141,6 +141,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -148,7 +149,7 @@
     <Compile Include="Models\Datos\AccesoDatos.cs" />
     <Compile Include="Models\Inscripciones.cs" />
     <Compile Include="Models\InscripcionesXUsuarios.cs" />
-    <Compile Include="Models\MVC\usuarioViewModel.cs" />
+    <Compile Include="Models\MvcModel.cs" />
     <Compile Include="Models\Plataforma.cs" />
     <Compile Include="Models\Provincia.cs" />
     <Compile Include="Models\Restriccion.cs" />
@@ -204,6 +205,7 @@
     <Content Include="Scripts\mdb.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\shuffleScript.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -222,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
