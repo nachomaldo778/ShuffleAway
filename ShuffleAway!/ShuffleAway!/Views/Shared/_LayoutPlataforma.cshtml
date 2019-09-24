@@ -2,12 +2,94 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	<!--Estilos para la plataforma-->
+	<link href="~/Content/plataformaStyle.css" rel="stylesheet" />
+	@Scripts.Render("~/bundles/modernizr")
+	<link href="~/Content/bootstrap.css" rel="stylesheet" />
+	<link href="~/Content/mdb.css" rel="stylesheet" />
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<!-- Font Awesome JS -->
+	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <div>
-        @RenderBody()
-    </div>
+	<div class="wrapper">
+		<!-- Sidebar  -->
+		<nav id="sidebar">
+			<div class="sidebar-header">
+				<h3>Bootstrap Sidebar</h3>
+			</div>
+
+			<ul class="list-unstyled components">
+				<p>Titulo</p>
+				<li class="active">
+					<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+					<ul class="collapse list-unstyled" id="homeSubmenu">
+						<li>
+							<a href="#">Home 1</a>
+						</li>
+						<li>
+							<a href="#">Home 2</a>
+						</li>
+						<li>
+							<a href="#">Home 3</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">About</a>
+				</li>
+				<li>
+					<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+					<ul class="collapse list-unstyled" id="pageSubmenu">
+						<li>
+							<a href="#">Page 1</a>
+						</li>
+						<li>
+							<a href="#">Page 2</a>
+						</li>
+						<li>
+							<a href="#">Page 3</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Portfolio</a>
+				</li>
+				<li>
+					<a href="#">Contact</a>
+				</li>
+			</ul>
+
+			<ul class="list-unstyled CTAs">
+				<li>
+					<a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Cerrar sesión</a>
+				</li>
+			</ul>
+		</nav>
+
+		@* Contenido *@
+		<div class="content">
+			<div class="container-fluid">
+				@RenderBody()
+			</div>
+
+		</div>
+	</div>
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/js/mdb.min.js"></script>
+
+	<script type="text/javascript" src="~/Scripts/shuffleScript.js"></script>
 </body>
 </html>
