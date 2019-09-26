@@ -102,17 +102,30 @@
             </div>
         </div>
 
-		<div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="contact-tab">
-			panel ENTRADAS
-		</div>
+        <div class="tab-pane fade show active mr-tab-content" id="entradas" role="tabpanel" aria-labelledby="home-tab">
+            panel ENTRADAS
+        </div>
 
-		<div class="tab-pane fade" id="premio" role="tabpanel" aria-labelledby="contact-tab">
-			panel PREMIO
-		</div>
+        <div class="tab-pane fade show active mr-tab-content" id="premio" role="tabpanel" aria-labelledby="home-tab">
+            <label>Premio</label>
+            <input class="form-control">
+        </div>
+        <div>
+            <label>Edad mínima:</label>
+            <div class="def-number-input number-input safari_only">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+            </div>
+        </div>
+        <div class="md-form md-outline">
+            <textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
+            <label for="form75">Descripción del premio...</label>
+        </div>
 
-		<div class="tab-pane fade" id="confirmacion" role="tabpanel" aria-labelledby="contact-tab">
-			panel CONFIRMACION
-		</div>
+        <div class="tab-pane fade show active mr-tab-content" id="confirmacion" role="tabpanel" aria-labelledby="home-tab">
+            panel CONFIRMACION
+        </div>
 
 	</div>
 </section>
