@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutPlataforma.cshtml";
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_LayoutPlataforma.cshtml";
 }
 
 <div class="row">
@@ -13,34 +13,32 @@
 <section>
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
 		<li class="nav-item">
-			<a class="nav-link active" id="home-tab" data-toggle="tab" href="#preparacion" role="tab" aria-controls="home"
+			<a class="nav-link active" id="preparacion-tab" data-toggle="tab" href="#preparacion" role="tab" aria-controls="preparacion"
 			   aria-selected="true">1. Preparación</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" id="profile-tab" data-toggle="tab" href="#restricciones" role="tab" aria-controls="restricciones"
-			   aria-selected="false">2. Restricciones</a>
+			<a class="nav-link" id="restricciones-tab" data-toggle="tab" href="#restricciones" role="tab" aria-controls="restricciones"
+			   aria-selected="false">2. Restricción</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" id="contact-tab" data-toggle="tab" href="#entradas" role="tab" aria-controls="entradas"
+			<a class="nav-link" id="entradas-tab" data-toggle="tab" href="#entradas" role="tab" aria-controls="entradas"
 			   aria-selected="false">3. Entradas</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" id="contact-tab" data-toggle="tab" href="#premio" role="tab" aria-controls="premio"
+			<a class="nav-link" id="premio-tab" data-toggle="tab" href="#premio" role="tab" aria-controls="premio"
 			   aria-selected="false">4. Premio</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" id="contact-tab" data-toggle="tab" href="#confirmacion" role="tab" aria-controls="confirmacion"
+			<a class="nav-link" id="confirmacion-tab" data-toggle="tab" href="#confirmacion" role="tab" aria-controls="confirmacion"
 			   aria-selected="false">5. Confirmación</a>
 		</li>
-
 	</ul>
-
-	<div class="tab-content" id="myTabContent">
-
-		<div class="tab-pane fade show active mr-tab-content" id="preparacion" role="tabpanel" aria-labelledby="home-tab">
+	<div class="tab-content tab-pasos" id="myTabContent">
+		@* Empieza tab - Preparacion *@
+		<div class="tab-pane fade show active" id="preparacion" role="tabpanel" aria-labelledby="preparacion-tab">
 			<div>
 				<label>Nombre del sorteo</label>
-				<input class="form-control">
+				<input class="form-control" />
 				<small class="form-text text-muted">
 					Ejemplo: "MiEmpresa: Sorteo notebook Intel"
 				</small>
@@ -49,84 +47,91 @@
 				<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
 				<label for="form75">Términos y condiciones</label>
 			</div>
-            <div class="container">
-                <label>Fecha inicio:</label>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <div class="input-append date form_datetime">
-                            <input size="26" type="text" value="" readonly>
-                            <span class="add-on"><i class="far fa-calendar-alt"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <label>Fecha fin:</label>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <div class="input-append date form_datetime">
-                            <input size="26" type="text" value="" readonly>
-                            <span class="add-on"><i class="far fa-calendar-alt"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="btn rounded blue-gradient">Guardar</button>
+			<div class="container">
+				<label>Fecha inicio:</label>
+				<div class="col-md-5">
+					<div class="form-group">
+						<div class="input-append date form_datetime">
+							<input size="26" type="text" value="" readonly />
+							<span class="add-on"><i class="far fa-calendar-alt"></i></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<label>Fecha fin:</label>
+				<div class="col-md-5">
+					<div class="form-group">
+						<div class="input-append date form_datetime">
+							<input size="26" type="text" value="" readonly />
+							<span class="add-on"><i class="far fa-calendar-alt"></i></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button class="btn rounded blue-gradient">Guardar</button>
 		</div>
+		@* Termina tab - Preparacion *@
 
-        <div class="tab-pane fade show active mr-tab-content" id="restricciones" role="tabpanel" aria-labelledby="home-tab">
-            <label>Edad mínima:</label>
-            <div class="def-number-input number-input safari_only">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                <input class="quantity" min="0" name="quantity" value="1" type="number">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-            </div>
-            <div>
-                <label>Plataforma a utilizar:</label>
-                <select class="browser-default custom-select">
-                    <option selected>Plataforma...</option>
-                    <option value="1">Facebook</option>
-                    <option value="2">Twitter</option>
-                    <option value="3">Instagram</option>
-                    <option value="4">YouTube</option>
-                </select>
-            </div>
-            <div class="mt-5">
-                <label>Provincias autorizadas:</label>
-                <select class="custom-select" multiple>
-                    <option selected>Provincias (CTRL + CLICK)...</option>
-                    <option value="1">CBA</option>
-                    <option value="2">BSAS</option>
-                    <option value="3">TDF</option>
-                </select>
-            </div>
-        </div>
+		@* Empieza tab - Restricciones *@
+		<div class="tab-pane fade" id="restricciones" role="tabpanel" aria-labelledby="restricciones-tab">
+			<label>Edad mínima:</label>
+			<div class="def-number-input number-input safari_only">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+				<input class="quantity" min="0" name="quantity" value="1" type="number" />
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<div>
+				<label>Plataforma a utilizar:</label>
+				<select class="browser-default custom-select">
+					<option selected>Plataforma...</option>
+					<option value="1">Facebook</option>
+					<option value="2">Twitter</option>
+					<option value="3">Instagram</option>
+					<option value="4">YouTube</option>
+				</select>
+			</div>
+			<div class="mt-5">
+				<label>Provincias autorizadas:</label>
+				<select class="custom-select" multiple>
+					<option selected>Provincias (CTRL + CLICK)...</option>
+					<option value="1">CBA</option>
+					<option value="2">BSAS</option>
+					<option value="3">TDF</option>
+				</select>
+			</div>
+		</div>
+		@* Termina tab - Restricciones *@
 
-        <div class="tab-pane fade show active mr-tab-content" id="entradas" role="tabpanel" aria-labelledby="home-tab">
-            panel ENTRADAS
-        </div>
+		@* Empieza tab - Entradas *@
+		<div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
+			panel entradas
+		</div>
+		@* Termina tab - Entradas *@
 
-        <div class="tab-pane fade show active mr-tab-content" id="premio" role="tabpanel" aria-labelledby="home-tab">
-            <label>Premio</label>
-            <input class="form-control">
-        </div>
-        <div>
-            <label>Edad mínima:</label>
-            <div class="def-number-input number-input safari_only">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                <input class="quantity" min="0" name="quantity" value="1" type="number">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-            </div>
-        </div>
-        <div class="md-form md-outline">
-            <textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
-            <label for="form75">Descripción del premio...</label>
-        </div>
+		@* Empieza tab Premio *@
+		<div class="tab-pane fade" id="premio" role="tabpanel" aria-labelledby="premio-tab">
+			<div>
+				<label>Cantidad de ganadores:</label>
+				<div class="def-number-input number-input safari_only">
+					<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+					<input class="quantity" min="0" name="quantity" value="1" type="number" />
+					<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+				</div>
+			</div>
+			<div class="md-form md-outline">
+				<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
+				<label for="form75">Descripción del premio...</label>
+			</div>
+		</div>
+		@* Termina tab Premio *@
 
-        <div class="tab-pane fade show active mr-tab-content" id="confirmacion" role="tabpanel" aria-labelledby="home-tab">
-            panel CONFIRMACION
-        </div>
-
+		@* Empieza tab Confirmacion *@
+		<div class="tab-pane fade" id="confirmacion" role="tabpanel" aria-labelledby="confirmacion-tab">
+			panel CONFIRMACION
+		</div>
+		@* Termina tab Confirmacion *@
 	</div>
+	
 </section>
 
