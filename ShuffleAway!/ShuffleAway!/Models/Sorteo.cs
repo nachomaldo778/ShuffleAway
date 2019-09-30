@@ -10,29 +10,35 @@ namespace ShuffleAway_.Models
         public long idSorteo { get; set; }
         public string nombreSorteo { get; set; }
         public string terminosCondiciones { get; set; }
+        public long edadMinima { get; set; }
         public DateTime fechaInicio { get; set; }
         public DateTime fechaFin { get; set; }
         public long idEntrada { get; set; }
         public string premio { get; set; }
-        public long idRestriccion { get; set; }
+        public string descripcionPremio { get; set; }
+        public long numeroGanadores { get; set; }
         public long idProvincia { get; set; }
+        public long idPlataforma { get; set; }
 
         public Sorteo()
         {
 
         }
 
-        public Sorteo(long idSorteo, string nombreSorteo, string terminosCondiciones, DateTime fechaIncio, DateTime fechaFin, long idEntrada, string premio, long idRestriccion, long idProvincia)
+        public Sorteo(long idSorteo, string nombreSorteo, string terminosCondiciones, long edadMinima, DateTime fechaInicio, DateTime fechaFin, long idEntrada, string premio, string descripcionPremio, long numeroGanadores, long idProvincia, long idPlataforma)
         {
             this.idSorteo = idSorteo;
             this.nombreSorteo = nombreSorteo;
             this.terminosCondiciones = terminosCondiciones;
+            this.edadMinima = edadMinima;
             this.fechaInicio = fechaInicio;
             this.fechaFin = fechaFin;
             this.idEntrada = idEntrada;
             this.premio = premio;
-            this.idRestriccion = idRestriccion;
+            this.descripcionPremio = descripcionPremio;
+            this.numeroGanadores = numeroGanadores;
             this.idProvincia = idProvincia;
+            this.idPlataforma = idPlataforma;
         }
     }
 }
