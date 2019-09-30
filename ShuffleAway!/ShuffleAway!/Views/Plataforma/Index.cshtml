@@ -35,43 +35,41 @@
 	</ul>
 	<div class="tab-content tab-pasos mt-4" id="myTabContent">
 		@* Empieza tab - Preparacion *@
-        <div class="tab-pane fade show active" id="preparacion" role="tabpanel" aria-labelledby="preparacion-tab">
-            <div>
-                <label>Nombre del sorteo</label>
-                <input class="form-control" />
-                <small class="form-text text-muted">
-                    Ejemplo: "MiEmpresa: Sorteo notebook Intel"
-                </small>
-            </div>
-            <div class="md-form md-outline">
-                <textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
-                <label for="form75">Términos y condiciones</label>
-            </div>
-            <div class="container ml-0">
-                <label>Fecha inicio:</label>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <div class="input-append date form_datetime">
-                            <input size="26" type="text" value="" readonly />
-                            <span class="add-on"><i class="far fa-calendar-alt"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container ml-0">
-                <label>Fecha fin:</label>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <div class="input-append date form_datetime">
-                            <input size="26" type="text" value="" readonly />
-                            <span class="add-on"><i class="far fa-calendar-alt"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="btn rounded blue-gradient mt-5">Guardar</button>
-            <button type="button" class="btn rounded purple-gradient mt-5">Limpiar</button>
-        </div>
+		<div class="tab-pane fade show active" id="preparacion" role="tabpanel" aria-labelledby="preparacion-tab">
+			<div>
+				<label>Nombre del sorteo</label>
+				<input class="form-control" />
+				<small class="form-text text-muted">
+					Ejemplo: "MiEmpresa: Sorteo notebook Intel"
+				</small>
+			</div>
+			<div class="md-form md-outline">
+				<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
+				<label for="form75">Términos y condiciones</label>
+			</div>
+			<div class="container ml-0">
+				<label>Fecha inicio:</label>
+				<div class="col-md-5">
+					<div class="form-group">
+						<div class="input-append date form_datetime">
+							<input size="26" type="text" value="" readonly />
+							<span class="add-on"><i class="far fa-calendar-alt"></i></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container ml-0">
+				<label>Fecha fin:</label>
+				<div class="col-md-5">
+					<div class="form-group">
+						<div class="input-append date form_datetime">
+							<input size="26" type="text" value="" readonly />
+							<span class="add-on"><i class="far fa-calendar-alt"></i></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		@* Termina tab - Preparacion *@
 
 		@* Empieza tab - Restricciones *@
@@ -79,7 +77,7 @@
 			<div>
 				<label>Plataforma a utilizar:</label>
 				<select class="browser-default custom-select">
-                    <option disabled selected>Plataforma...</option>
+					<option disabled selected>Plataforma...</option>
 					<option value="1">Facebook</option>
 					<option value="2">Twitter</option>
 					<option value="3">Instagram</option>
@@ -101,8 +99,6 @@
 				<input class="quantity" min="0" name="quantity" value="1" type="number" />
 				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
 			</div>
-            <button class="btn rounded blue-gradient mt-1">Guardar</button>
-            <button type="button" class="btn rounded purple-gradient mt-1">Limpiar</button>
 		</div>
 		@* Termina tab - Restricciones *@
 
@@ -110,17 +106,7 @@
 		<div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
 			<div>
 				<label>Paso 1:</label>
-                <select class="browser-default custom-select">
-                    <option disabled selected>Seleccionar...</option>
-                    <option value="1">Like</option>
-                    <option value="2">Retweet</option>
-                    <option value="3">Follow</option>
-                    <option value="4">Suscribirse</option>
-                </select>
-			</div>
-            <div class="mt-4">
-				<label>Paso 2:</label>
-				<select class="browser-default custom-select">
+				<select class="browser-default custom-select" id="entradas-1">
 					<option disabled selected>Seleccionar...</option>
 					<option value="1">Like</option>
 					<option value="2">Retweet</option>
@@ -128,65 +114,71 @@
 					<option value="4">Suscribirse</option>
 				</select>
 			</div>
-            <div class="mt-4">
-                <label>Paso 3:</label>
-                <select class="browser-default custom-select">
-                    <option disabled selected>Seleccionar...</option>
-                    <option value="1">Like</option>
-                    <option value="2">Retweet</option>
-                    <option value="3">Follow</option>
-                    <option value="4">Suscribirse</option>
-                </select>
-            </div>
-            <div class="mt-4">
-                <label>Paso 4:</label>
-                <select class="browser-default custom-select">
-                    <option disabled selected>Seleccionar...</option>
-                    <option value="1">Like</option>
-                    <option value="2">Retweet</option>
-                    <option value="3">Follow</option>
-                    <option value="4">Suscribirse</option>
-                </select>
-            </div>
-            <div class="mt-4">
-                <label>Paso 5:</label>
-                <select class="browser-default custom-select">
-                    <option disabled selected>Seleccionar...</option>
-                    <option value="1">Like</option>
-                    <option value="2">Retweet</option>
-                    <option value="3">Follow</option>
-                    <option value="4">Suscribirse</option>
-                </select>
-            </div>
-            <button class="btn rounded blue-gradient mt-5">Guardar</button>
-            <button type="button" class="btn rounded purple-gradient mt-5">Limpiar</button>
+			<div class="mt-4">
+				<label>Paso 2:</label>
+				<select class="browser-default custom-select" id="entradas-2">
+					<option disabled selected>Seleccionar...</option>
+					<option value="1">Like</option>
+					<option value="2">Retweet</option>
+					<option value="3">Follow</option>
+					<option value="4">Suscribirse</option>
+				</select>
+			</div>
+			<div class="mt-4">
+				<label>Paso 3:</label>
+				<select class="browser-default custom-select" id="entradas-3">
+					<option disabled selected>Seleccionar...</option>
+					<option value="1">Like</option>
+					<option value="2">Retweet</option>
+					<option value="3">Follow</option>
+					<option value="4">Suscribirse</option>
+				</select>
+			</div>
+			<div class="mt-4">
+				<label>Paso 4:</label>
+				<select class="browser-default custom-select" id="entradas-4">
+					<option disabled selected>Seleccionar...</option>
+					<option value="1">Like</option>
+					<option value="2">Retweet</option>
+					<option value="3">Follow</option>
+					<option value="4">Suscribirse</option>
+				</select>
+			</div>
+			<div class="mt-4">
+				<label>Paso 5:</label>
+				<select class="browser-default custom-select" id="entradas-5">
+					<option disabled selected>Seleccionar...</option>
+					<option value="1">Like</option>
+					<option value="2">Retweet</option>
+					<option value="3">Follow</option>
+					<option value="4">Suscribirse</option>
+				</select>
+			</div>
 		</div>
 		@* Termina tab - Entradas *@
 
 		@* Empieza tab Premio *@
-    <div class="tab-pane fade" id="premio" role="tabpanel" aria-labelledby="premio-tab">
-        <div>
-            <label>Premio:</label>
-            <input class="form-control" />
-            <small class="form-text text-muted">
-                Ejemplo: "Notebook Intel modelo 0001"
-            </small>
-        </div>
-        <div class="md-form md-outline">
-            <textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
-            <label for="form75">Descripción del premio...</label>
-        </div>
-        <div>
-            <label>Cantidad de ganadores:</label>
-            <div class="def-number-input number-input safari_only">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                <input class="quantity" min="0" name="quantity" value="1" type="number" />
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-            </div>
-        </div>
-        <button class="btn rounded blue-gradient mt-1">Guardar</button>
-        <button type="button" class="btn rounded purple-gradient mt-1">Limpiar</button>
-    </div>
+		<div class="tab-pane fade" id="premio" role="tabpanel" aria-labelledby="premio-tab">
+			<div>
+				<label>Premio:</label>
+				<input class="form-control" />
+				<small class="form-text text-muted">
+					Ejemplo: "Notebook Intel modelo 0001"
+				</small>
+			</div>
+			<div class="md-form md-outline">
+				<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
+				<label for="form75">Descripción del premio...</label>
+			</div>
+			<div>
+				<label>Cantidad de ganadores:</label>
+				<div class="def-number-input number-input safari_only">
+					<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+					<input class="quantity" min="0" name="quantity" value="1" type="number" />
+					<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+				</div>
+			</div>
+		</div>
 		@* Termina tab Premio *@
 
 		@* Empieza tab Confirmacion *@
@@ -195,6 +187,59 @@
 		</div>
 		@* Termina tab Confirmacion *@
 	</div>
-	
+
+	<div class="container container-buttons">
+		<div class="row">
+			<div class="col-6">
+				<button type="button" class="btn rounded blue-gradient mt-1 btn-sm" id="btnSiguienteTab">Siguiente</button>
+				<button type="button" class="btn rounded purple-gradient mt-1 btn-sm">Limpiar</button>
+			</div>
+		</div>
+	</div>
+
 </section>
+
+@section scriptIndex{
+	<script type="text/javascript">
+
+		$('#btnSiguienteTab').click(function (e) {
+			e.preventDefault();
+			var tab = $('.nav-tabs .active').parent().next('li').find('a');
+			tab.trigger('click');
+			if (tab[0].id === 'confirmacion-tab') {
+				$(this).text('Confirmar');
+			}
+		});
+
+		$('a.nav-link').click(function () {
+			var tb = $('.nav-link').attr('id');
+			console.log(tb);
+			if (tb !== 'confirmacion-tab') {
+				$('#btnSiguienteTab').text('Siguiente');
+			} 
+			if (tb === 'confirmacion-tab') {
+				$('#btnSiguienteTab').text('Confirmar');
+			}
+		});
+
+		/**/
+
+		//var linkOrder = [
+		//	"entradas-1",
+		//	"entradas-2",
+		//	"entradas-3",
+		//	"entradas-4",
+		//	"entradas-5"
+		//];
+
+		//$('select.linked').not('#' + linkOrder[0]).attr('disabled', 'disabled');
+		//$('.linked').change(function () {
+		//	var id = $(this).attr('id');
+		//	var index = $.inArray(id, linkOrder);
+		//	$('#' + linkOrder[index + 1]).removeAttr('disabled');
+		//});
+
+
+	</script>
+}
 

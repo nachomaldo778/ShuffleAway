@@ -27,8 +27,8 @@
                 <h3>Logo ShuffleAway que lleva a la home</h3>
             </div>
 
-            <ul class="list-unstyled components">
-                <h4 class="text-center blue-gradient text-white ">Bienvenido!</h4>
+            <ul class="list-unstyled components">	
+                <h6 class="text-center blue-gradient text-white p-2">Bienvenido!</h6>
                 <li>
                     <a href="#">Crear sorteo</a>
                 </li>
@@ -40,9 +40,9 @@
                 </li>
             </ul>
 
-            <ul class="list-unstyled CTAs">
+            <ul class="list-unstyled CTAs text-center">
                 <li>
-                    <button class="btn blue-gradient waves-effect btnAnimate rounded-pill">Cerrar sesión</button>
+                    <button class="btn blue-gradient waves-effect btnAnimate rounded-pill btn-sm">Cerrar sesión</button>
                 </li>
             </ul>
         </nav>
@@ -79,6 +79,8 @@
             language: 'es'
         });
     </script>
+
+	@RenderSection("scriptIndex", false)
 
 </body>
 </html>
