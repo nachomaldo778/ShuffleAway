@@ -35,7 +35,7 @@ textarea {
 }
 
 .navbar {
-	box-shadow: none !important
+	box-shadow: none !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -46,7 +46,7 @@ textarea {
 
 .navbar-principal .nav-link {
 	color: #000000 !important;
-	font-size: 18px
+	font-size: 18px;
 }
 
 .dropdown-item {
@@ -65,7 +65,7 @@ textarea {
 }
 
 .navbar-brand {
-	width: 40px
+	width: 40px;
 }
 
 .modal-dialog.cascading-modal.login {

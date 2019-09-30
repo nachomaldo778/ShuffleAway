@@ -228,6 +228,7 @@
     <Content Include="Views\Home\PlanPrecios.cshtml" />
     <Content Include="Views\Shared\_LayoutPlataforma.cshtml" />
     <Content Include="Views\Plataforma\Index.cshtml" />
+    <Content Include="Views\Home\SorteosActivos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
