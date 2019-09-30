@@ -33,7 +33,7 @@
 			   aria-selected="false">5. Confirmación</a>
 		</li>
 	</ul>
-	<div class="tab-content tab-pasos" id="myTabContent">
+	<div class="tab-content tab-pasos mt-4" id="myTabContent">
 		@* Empieza tab - Preparacion *@
 		<div class="tab-pane fade show active" id="preparacion" role="tabpanel" aria-labelledby="preparacion-tab">
 			<div>
@@ -47,7 +47,7 @@
 				<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
 				<label for="form75">Términos y condiciones</label>
 			</div>
-			<div class="container">
+			<div class="container ml-0">
 				<label>Fecha inicio:</label>
 				<div class="col-md-5">
 					<div class="form-group">
@@ -58,7 +58,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="container">
+			<div class="container ml-0">
 				<label>Fecha fin:</label>
 				<div class="col-md-5">
 					<div class="form-group">
@@ -69,61 +69,119 @@
 					</div>
 				</div>
 			</div>
-			<button class="btn rounded blue-gradient">Guardar</button>
+			<button class="btn rounded blue-gradient mt-5">Guardar</button>
 		</div>
 		@* Termina tab - Preparacion *@
 
 		@* Empieza tab - Restricciones *@
 		<div class="tab-pane fade" id="restricciones" role="tabpanel" aria-labelledby="restricciones-tab">
-			<label>Edad mínima:</label>
-			<div class="def-number-input number-input safari_only">
-				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-				<input class="quantity" min="0" name="quantity" value="1" type="number" />
-				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-			</div>
 			<div>
 				<label>Plataforma a utilizar:</label>
 				<select class="browser-default custom-select">
-					<option selected>Plataforma...</option>
+                    <option disabled selected>Plataforma...</option>
 					<option value="1">Facebook</option>
 					<option value="2">Twitter</option>
 					<option value="3">Instagram</option>
 					<option value="4">YouTube</option>
 				</select>
 			</div>
-			<div class="mt-5">
+			<div class="mt-4">
 				<label>Provincias autorizadas:</label>
-				<select class="custom-select" multiple>
-					<option selected>Provincias (CTRL + CLICK)...</option>
+				<select class="custom-select" multiple size="5">
+					<option disabled selected>Provincias (CTRL + CLICK)...</option>
 					<option value="1">CBA</option>
 					<option value="2">BSAS</option>
 					<option value="3">TDF</option>
 				</select>
 			</div>
+			<label class="mt-4">Edad mínima:</label>
+			<div class="def-number-input number-input safari_only">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+				<input class="quantity" min="0" name="quantity" value="1" type="number" />
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+            <button class="btn rounded blue-gradient mt-1">Guardar</button>
 		</div>
 		@* Termina tab - Restricciones *@
 
 		@* Empieza tab - Entradas *@
 		<div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
-			panel entradas
+			<div>
+				<label>Paso 1:</label>
+                <select class="browser-default custom-select">
+                    <option disabled selected>Seleccionar...</option>
+                    <option value="1">Like</option>
+                    <option value="2">Retweet</option>
+                    <option value="3">Follow</option>
+                    <option value="4">Suscribirse</option>
+                </select>
+			</div>
+            <div class="mt-4">
+				<label>Paso 2:</label>
+				<select class="browser-default custom-select">
+					<option disabled selected>Seleccionar...</option>
+					<option value="1">Like</option>
+					<option value="2">Retweet</option>
+					<option value="3">Follow</option>
+					<option value="4">Suscribirse</option>
+				</select>
+			</div>
+            <div class="mt-4">
+                <label>Paso 3:</label>
+                <select class="browser-default custom-select">
+                    <option disabled selected>Seleccionar...</option>
+                    <option value="1">Like</option>
+                    <option value="2">Retweet</option>
+                    <option value="3">Follow</option>
+                    <option value="4">Suscribirse</option>
+                </select>
+            </div>
+            <div class="mt-4">
+                <label>Paso 4:</label>
+                <select class="browser-default custom-select">
+                    <option disabled selected>Seleccionar...</option>
+                    <option value="1">Like</option>
+                    <option value="2">Retweet</option>
+                    <option value="3">Follow</option>
+                    <option value="4">Suscribirse</option>
+                </select>
+            </div>
+            <div class="mt-4">
+                <label>Paso 5:</label>
+                <select class="browser-default custom-select">
+                    <option disabled selected>Seleccionar...</option>
+                    <option value="1">Like</option>
+                    <option value="2">Retweet</option>
+                    <option value="3">Follow</option>
+                    <option value="4">Suscribirse</option>
+                </select>
+            </div>
 		</div>
 		@* Termina tab - Entradas *@
 
 		@* Empieza tab Premio *@
-		<div class="tab-pane fade" id="premio" role="tabpanel" aria-labelledby="premio-tab">
-			<div>
-				<label>Cantidad de ganadores:</label>
-				<div class="def-number-input number-input safari_only">
-					<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-					<input class="quantity" min="0" name="quantity" value="1" type="number" />
-					<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-				</div>
-			</div>
-			<div class="md-form md-outline">
-				<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
-				<label for="form75">Descripción del premio...</label>
-			</div>
-		</div>
+    <div class="tab-pane fade" id="premio" role="tabpanel" aria-labelledby="premio-tab">
+        <div>
+            <label>Premio:</label>
+            <input class="form-control" />
+            <small class="form-text text-muted">
+                Ejemplo: "Notebook Intel modelo 0001"
+            </small>
+        </div>
+        <div class="md-form md-outline">
+            <textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
+            <label for="form75">Descripción del premio...</label>
+        </div>
+        <div>
+            <label>Cantidad de ganadores:</label>
+            <div class="def-number-input number-input safari_only">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                <input class="quantity" min="0" name="quantity" value="1" type="number" />
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+            </div>
+        </div>
+        <button class="btn rounded blue-gradient mt-1">Guardar</button>
+    </div>
 		@* Termina tab Premio *@
 
 		@* Empieza tab Confirmacion *@
