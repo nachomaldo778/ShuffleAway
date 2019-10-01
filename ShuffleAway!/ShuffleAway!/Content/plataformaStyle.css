@@ -1,15 +1,15 @@
 ﻿body {
 	font-family: 'Varela Round', sans-serif !important;
 	font-weight: 400 !important;
-	font-size: 70% !important;
+	font-size: 100% !important;
 }
 
 label {
-	font-size: 90% !important
+	font-size: 100% !important
 }
 
 select {
-	font-size: 90% !important;
+	font-size: 100% !important;
 }
 
 .navbar {
@@ -150,7 +150,7 @@ a.article:hover {
 	transition: all 0.3s;
 	position: absolute;
 	top: 0;
-	left: 20%;
+	right: 0;
 }
 
 	.content.active {
@@ -175,7 +175,7 @@ a.article:hover {
 	}
 
 		.content.active {
-			width: calc(100% - 300px);
+			width: calc(100% - 250px);
 		}
 
 	#sidebarCollapse span {
@@ -282,7 +282,7 @@ a.article:hover {
 
 .container-buttons {
 	position: absolute !important;
-	bottom: 30px !important;
-
+	bottom: 250px !important;
+    left: 600px !important;
 }
 
