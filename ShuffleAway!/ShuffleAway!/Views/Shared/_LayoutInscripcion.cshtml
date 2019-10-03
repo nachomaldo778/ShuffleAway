@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <!--Estilos para la plataforma-->
-    <link href="~/Content/plataformaStyle.css" rel="stylesheet" />
+    <link href="~/Content/inscripcionStyle.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/mdb.css" rel="stylesheet" />
@@ -27,13 +27,10 @@
                 <h3>Logo ShuffleAway que lleva a la home</h3>
             </div>
 
-            <ul class="list-unstyled components">	
+            <ul class="list-unstyled components">
                 <h6 class="text-center blue-gradient text-white p-2">Bienvenido!</h6>
                 <li>
-                    <a href="#">Crear sorteo</a>
-                </li>
-                <li>
-                    <a href="#">Mis sorteos activos</a>
+                    <a href="#">Sorteos activos</a>
                 </li>
                 <li>
                     <a href="#">Ajustes de perfil</a>
@@ -80,7 +77,9 @@
         });
     </script>
 
-	@RenderSection("scriptIndex", false)
+    @RenderSection("scriptIndex", false)
 
 </body>
 </html>
+
+
