@@ -10,16 +10,16 @@ namespace ShuffleAway_.Models
     {
         public long idUsuario { get; set; }
         public string nombreUsuario { get; set; }
-		public string pass { get; set; }
 		[Required(ErrorMessage = "Debe ingresar una contraseña.")]
 		[DataType(DataType.Password)]
-		public string rePass { get; set; }
+		public string pass { get; set; }
 		[DataType(DataType.Password)]
 		[Compare("pass", ErrorMessage = "Las contraseñas no coinciden. Intente nuevamente.")]
-        public long idTipoUsuario { get; set; }
-		public string email { get; set; }
+		public string rePass { get; set; }
 		[Required(ErrorMessage = "Ingrese un email válido.")]
 		[DataType(DataType.EmailAddress)]
+        public long idTipoUsuario { get; set; }
+		public string email { get; set; }
         public long idProvincia { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
