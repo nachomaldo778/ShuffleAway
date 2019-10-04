@@ -66,6 +66,11 @@ namespace ShuffleAway_.Controllers
 			return View("Index", mvc);
 		}
 
+		public List<Provincia> getListProvincias(AccesoDatos datos)
+		{
+			return datos.getListaProvincias();
+		}
+
 		public ActionResult Login(MvcModel mvc)
 		{
 			//objeto para traer datos de la BD
@@ -84,7 +89,9 @@ namespace ShuffleAway_.Controllers
 			else
 			{
 				TempData["error"] = "error";
-				return View(mvc);
+				mvc = new MvcModel();
+				mvc.lstProvincias = getListProvincias(datos);
+				return RedirectToAction("Index", "Home");
 			}
 
 		}

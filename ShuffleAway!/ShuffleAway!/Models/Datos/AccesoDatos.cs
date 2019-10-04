@@ -60,6 +60,33 @@ namespace ShuffleAway_.Models.Datos
 			return lst;
 		}
 
+		public List<Plataforma> getListaPlataformas()
+		{
+			List<Plataforma> lst = new List<Plataforma>();
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "SELECT * FROM Plataformas";
+
+				lst = conect.Query<Plataforma>(sql).ToList(); //se llena la lista automaticamente con todas las provincias
+			}
+
+			return lst;
+		}
+
+		public List<Entrada> getListaEntradas()
+		{
+			List<Entrada> lst = new List<Entrada>();
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "SELECT * FROM Entradas";
+
+				lst = conect.Query<Entrada>(sql).ToList(); //se llena la lista automaticamente con todas las provincias
+			}
+
+			return lst;
+		}
+
+
 		public Usuario getLoginUsuario(Usuario u)
 		{
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
@@ -87,6 +114,34 @@ namespace ShuffleAway_.Models.Datos
 				}
 			}
 			return u;
+		}
+
+		public bool RegistrarSorteo(Sorteo sorteo) //método para crear un sorteo
+		{
+			bool cargado = false;
+
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+
+				string sql = "INSERT INTO Sorteos (nombreSorteo, terminosCondiciones, edadMinima, fechaInicio, fechaFin, idEntrada, premio, " +
+					"descripcionpremio, numeroGanadores, idProvincia, idPlataforma) " +
+					"VALUES()";
+
+				var obj = new
+				{
+
+				};
+
+				if (!conect.Query<bool>(sql, obj).FirstOrDefault())
+				{
+
+					cargado = true;
+
+				}
+
+			}
+
+			return cargado;
 		}
 	}
 }
