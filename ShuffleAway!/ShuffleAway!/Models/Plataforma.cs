@@ -9,16 +9,6 @@ namespace ShuffleAway_.Models
     {
         public long idPlataforma { get; set; }
         public string nombrePlataforma { get; set; }
-
-        public Plataforma()
-        {
-
-        }
-
-        public Plataforma(long idPlataforma, string nombrePlataforma)
-        {
-            this.idPlataforma = idPlataforma;
-            this.nombrePlataforma = nombrePlataforma;
-        }
+		
     }
 }
