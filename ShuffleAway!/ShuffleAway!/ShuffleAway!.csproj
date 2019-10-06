@@ -225,12 +225,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\PlanPrecios.cshtml" />
     <Content Include="Views\Shared\_LayoutPlataforma.cshtml" />
     <Content Include="Views\Plataforma\Index.cshtml" />
-    <Content Include="Views\Home\SorteosActivos.cshtml" />
     <Content Include="Views\Inscripcion\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutInscripcion.cshtml" />
+    <Content Include="Views\Home\PlanPrecios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
