@@ -282,7 +282,8 @@ a.article:hover {
 
 .container-buttons {
 	position: absolute !important;
-	bottom: 250px !important;
-    left: 600px !important;
+	max-width: 960px !important;
+	bottom: 10px !important;
+	/*left: 600px !important;*/
 }
 

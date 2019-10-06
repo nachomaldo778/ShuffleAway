@@ -9,17 +9,7 @@ namespace ShuffleAway_.Models
     {
         public long idProvincia { get; set; }
         public string nombreProvincia { get; set; }
-
-        public Provincia()
-        {
-            
-        }
-
-        public Provincia(long idProvincia, string nombreProvincia)
-        {
-            this.idProvincia = idProvincia;
-            this.nombreProvincia = nombreProvincia;
-        }
+		
 		
     }
 }

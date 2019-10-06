@@ -116,32 +116,64 @@ namespace ShuffleAway_.Models.Datos
 			return u;
 		}
 
-		public bool RegistrarSorteo(Sorteo sorteo) //método para crear un sorteo
+		public int RegistrarSorteo(Sorteo sorteo) //método para crear un sorteo
 		{
-			bool cargado = false;
+			int idSorteo = 0;
 
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 
-				string sql = "INSERT INTO Sorteos (nombreSorteo, terminosCondiciones, edadMinima, fechaInicio, fechaFin, idEntrada, premio, " +
-					"descripcionpremio, numeroGanadores, idProvincia, idPlataforma) " +
-					"VALUES()";
+				string sql = "INSERT INTO Sorteos (nombreSorteo, terminosCondiciones, " +
+					"edadMinima, fechaInicio, fechaFin, premio, descripcionpremio, " +
+					"numeroGanadores, idProvincia, idPlataforma) " +
+					" VALUES (" +
+					"@nomSor, @termCon, @edadMin, @fecIn, @fecFin, @prem, " +
+					"@descPrem, @numGan, @idProv, @idPlat); SELECT LAST_INSERT_ID(); ";
 
+				string sql2 = "INSERT INTO EntradasXSorteo (idEntrada, idSorteo) VALUES " +
+					"(@idE, @idS)";
+
+				string sql3 = "INSERT INTO ProvinciasXSorteo (idProvincia, idSorteo) VALUES (@idP, @idS)";
+
+				
+
+				// preparacion de los parametros para usar el array en el primer insert
 				var obj = new
 				{
-
+					nomSor = sorteo.nombreSorteo,
+					termCon = sorteo.terminosCondiciones,
+					edadMin = sorteo.edadMinima,
+					fecIn = sorteo.fechaInicio,
+					fecFin = sorteo.fechaFin,
+					prem = sorteo.premio,
+					descPrem = sorteo.descripcionPremio,
+					numGan = sorteo.numeroGanadores,
+					idProv = sorteo.idProvincia,
+					idPlat = sorteo.idPlataforma
 				};
 
-				if (!conect.Query<bool>(sql, obj).FirstOrDefault())
+				// se hace el primer insert en Sorteos y se obtiene el nuevo ID del sorteo
+				idSorteo = conect.Query<int>(sql, obj).FirstOrDefault();
+
+				// si el ID es mayor a 0, se realizó correctamente el insert en Sorteos
+				if (idSorteo > 0)
 				{
+					foreach (var i in sorteo.lstIdEntradas.Where(x => x > 0)) //recorre la lista para aquellos items mayores a 0
+					{
+						//hace el insert en EntradasXSorteo
+						conect.Query<bool>(sql2, new { idE = i, idS = idSorteo }).FirstOrDefault();
+					}
 
-					cargado = true;
-
+					foreach (var o in sorteo.lstIdProvincias.Where(x => x > 0))
+					{
+						//hace el insert en ProvinciasXSorteo
+						conect.Query<bool>(sql3, new { idP = o, idS = idSorteo }).FirstOrDefault();
+					}
 				}
 
 			}
 
-			return cargado;
+			return idSorteo;
 		}
 	}
 }

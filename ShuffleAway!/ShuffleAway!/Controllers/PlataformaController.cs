@@ -1,5 +1,7 @@
 ﻿using ShuffleAway_.Models;
 using ShuffleAway_.Models.Datos;
+using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace ShuffleAway_.Controllers
@@ -21,6 +23,7 @@ namespace ShuffleAway_.Controllers
 				mvc.lstPlataformas = datos.getListaPlataformas();
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
+				
 
 				return View(mvc);
 			}
@@ -34,8 +37,8 @@ namespace ShuffleAway_.Controllers
 		public ActionResult CrearSorteo(MvcModel mvc)
 		{
 			AccesoDatos datos = new AccesoDatos();
-
-			if (datos.RegistrarSorteo(mvc.sorteo))
+			
+			if (datos.RegistrarSorteo(mvc.sorteo) > 0)
 			{
 				TempData["ok"] = "ok";
 				ModelState.Clear();

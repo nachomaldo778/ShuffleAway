@@ -34,12 +34,9 @@
 			   aria-selected="false">5. Confirmación</a>
 		</li>
 	</ul>
-	@*@using (Html.BeginForm("", "", FormMethod.Post))
-	{*@
+	@using (Html.BeginForm("CrearSorteo", "Plataforma", FormMethod.Post, new { @id = "form-sorteo" }))
+	{
 		<div class="tab-content tab-pasos mt-4" id="myTabContent">
-
-
-
 			@* Empieza tab - Preparacion *@
 			<div class="tab-pane fade show active" id="preparacion" role="tabpanel" aria-labelledby="preparacion-tab">
 				<div>
@@ -86,31 +83,21 @@
 			<div class="tab-pane fade" id="restricciones" role="tabpanel" aria-labelledby="restricciones-tab">
 				<div>
 					<label>Plataforma a utilizar:</label>
-					@*<select class="browser-default custom-select">
-							<option disabled selected>Plataforma...</option>
-							<option value="1">Facebook</option>
-							<option value="2">Twitter</option>
-							<option value="3">Instagram</option>
-							<option value="4">YouTube</option>
-						</select>*@
 					@Html.DropDownListFor(s => s.sorteo.idPlataforma, new SelectList(Model.lstPlataformas, "idPlataforma", "nombrePlataforma"), new { @class = "browser-default custom-select" })
 				</div>
 				<div class="mt-4">
 					<label>Provincias autorizadas:</label>
-					@*<select class="custom-select" multiple size="5">
-							<option disabled selected>Provincias (CTRL + CLICK)...</option>
-							<option value="1">CBA</option>
-							<option value="2">BSAS</option>
-							<option value="3">TDF</option>
-						</select>*@
-					@Html.DropDownListFor(s => s.sorteo.idPlataforma, new SelectList(Model.lstPlataformas, "idPlataforma", "nombrePlataforma"), new { @class = "custom-select", @multiple = true, @size = "5" })
+					<small class="form-text text-muted">
+						Presione Ctrl + click para seleccion múltiple
+					</small>
+					@Html.ListBoxFor(s => s.sorteo.lstIdProvincias, new SelectList(Model.lstProvincias, "idProvincia", "nombreProvincia"), new { @class = "custom-select", @multiple = true, @size = "5" })
 				</div>
 				<label class="mt-4">Edad mínima:</label>
 				<div class="def-number-input number-input safari_only">
-					<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+					<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
 					@*<input class="quantity" min="0" name="quantity" value="1" type="number" />*@
 					@Html.TextBoxFor(s => s.sorteo.edadMinima, new { @class = "quantity", Value = 1, @type = "number", @min = 0 })
-					<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+					<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
 				</div>
 			</div>
 			@* Termina tab - Restricciones *@
@@ -119,54 +106,26 @@
 			<div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
 				<div>
 					<label>Paso 1:</label>
-					@*<select class="browser-default custom-select" id="entradas-1">
-							<option disabled selected>Seleccionar...</option>
-							<option value="1">Like</option>
-							<option value="2">Retweet</option>
-							<option value="3">Follow</option>
-							<option value="4">Suscribirse</option>
-						</select>*@
-					@Html.DropDownListFor(s => s.sorteo.idPlataforma, new SelectList(Model.lstPlataformas, "idPlataforma", "nombrePlataforma"), new { @class = "browser-default custom-select" })
+					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
 				</div>
 				<div class="mt-4">
 					<label>Paso 2:</label>
-					<select class="browser-default custom-select" id="entradas-2">
-						<option disabled selected>Seleccionar...</option>
-						<option value="1">Like</option>
-						<option value="2">Retweet</option>
-						<option value="3">Follow</option>
-						<option value="4">Suscribirse</option>
-					</select>
+					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
 				</div>
 				<div class="mt-4">
 					<label>Paso 3:</label>
-					<select class="browser-default custom-select" id="entradas-3">
-						<option disabled selected>Seleccionar...</option>
-						<option value="1">Like</option>
-						<option value="2">Retweet</option>
-						<option value="3">Follow</option>
-						<option value="4">Suscribirse</option>
-					</select>
+					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+
 				</div>
 				<div class="mt-4">
 					<label>Paso 4:</label>
-					<select class="browser-default custom-select" id="entradas-4">
-						<option disabled selected>Seleccionar...</option>
-						<option value="1">Like</option>
-						<option value="2">Retweet</option>
-						<option value="3">Follow</option>
-						<option value="4">Suscribirse</option>
-					</select>
+					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+
 				</div>
 				<div class="mt-4">
 					<label>Paso 5:</label>
-					<select class="browser-default custom-select" id="entradas-5">
-						<option disabled selected>Seleccionar...</option>
-						<option value="1">Like</option>
-						<option value="2">Retweet</option>
-						<option value="3">Follow</option>
-						<option value="4">Suscribirse</option>
-					</select>
+					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+
 				</div>
 			</div>
 			@* Termina tab - Entradas *@
@@ -189,10 +148,10 @@
 				<div>
 					<label>Cantidad de ganadores:</label>
 					<div class="def-number-input number-input safari_only">
-						<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+						<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
 						@*<input class="quantity" min="0" name="quantity" value="1" type="number" />*@
 						@Html.TextBoxFor(s => s.sorteo.numeroGanadores, new { @class = "quantity", @min = "0", Value = 0, @type = "number" })
-						<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+						<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
 					</div>
 				</div>
 			</div>
@@ -206,7 +165,7 @@
 
 
 		</div>
-		@* } *@
+
 		<div class="container container-buttons">
 			<div class="row">
 				<div class="col-6">
@@ -215,50 +174,83 @@
 				</div>
 			</div>
 		</div>
-
-	</section>
+	}
+</section>
 
 @section scriptIndex{
 	<script type="text/javascript">
 
 		$('#btnSiguienteTab').click(function (e) {
-			e.preventDefault();
-			var tab = $('.nav-tabs .active').parent().next('li').find('a');
-			tab.trigger('click');
-			if (tab[0].id === 'confirmacion-tab') {
-				$(this).text('Confirmar');
+			if ($(this).attr('id') === 'btnSiguienteTab') {
+				e.preventDefault();
+				var tab = $('.nav-tabs .active').parent().next('li').find('a');
+				tab.trigger('click');
+				if (tab[0].id === 'confirmacion-tab') {
+					$(this).text('Confirmar');
+					$(this).prop("type", "submit");
+					$(this).prop('id', 'btn-submit');
+				}
 			}
+
+			//if ($(this).text() === 'Confirmar') {
+			//	$('#form-sorteo').submit();
+			//}
 		});
 
 		$('a.nav-link').click(function () {
 			var tb = $('.nav-link').attr('id');
-			console.log(tb);
 			if (tb !== 'confirmacion-tab') {
 				$('#btnSiguienteTab').text('Siguiente');
+				$('#btn-submit').prop('id', 'btnSiguienteTab');
 			}
 			if (tb === 'confirmacion-tab') {
 				$('#btnSiguienteTab').text('Confirmar');
+				$('#btnSiguienteTab').prop('id', 'btn-submit');
 			}
 		});
 
-						/**/
-
-						//var linkOrder = [
-						//	"entradas-1",
-						//	"entradas-2",
-						//	"entradas-3",
-						//	"entradas-4",
-						//	"entradas-5"
-						//];
-
-						//$('select.linked').not('#' + linkOrder[0]).attr('disabled', 'disabled');
-						//$('.linked').change(function () {
-						//	var id = $(this).attr('id');
-						//	var index = $.inArray(id, linkOrder);
-						//	$('#' + linkOrder[index + 1]).removeAttr('disabled');
-						//});
-
 
 	</script>
+
+	@* muestra el mensaje de creacion de Sorteo *@
+	@if (TempData["ok"] != null)
+	{
+		<div id="alert-correcto" role="alert" aria-live="assertive" aria-atomic="true"
+			 class="toast" data-autohide="true" data-delay="5000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+			<div class="toast-header">
+				<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+					 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+					<rect fill="#007aff" width="100%" height="100%" />
+				</svg>
+				<strong class="mr-auto">SuffleAway!</strong>
+				<small>notificación</small>
+			</div>
+			<div class="toast-body">
+				¡Sorteo creado correctamente!
+			</div>
+		</div>
+
+		<script type="text/javascript">$('#alert-correcto').toast('show');</script>
+	}
+
+	@if (TempData["err"] != null)
+	{
+		<div id="alert-correcto" role="alert" aria-live="assertive" aria-atomic="true"
+			 class="toast" data-autohide="true" data-delay="5000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+			<div class="toast-header">
+				<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+					 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+					<rect fill="#FF0000" width="100%" height="100%" />
+				</svg>
+				<strong class="mr-auto">SuffleAway!</strong>
+				<small>notificación</small>
+			</div>
+			<div class="toast-body">
+				:( Hubo un error al crear el sorteo.
+			</div>
+		</div>
+
+		<script type="text/javascript">$('#alert-correcto').toast('show');</script>
+	}
 }
 
