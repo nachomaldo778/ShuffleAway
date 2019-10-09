@@ -53,5 +53,13 @@ namespace ShuffleAway_.Controllers
 			TempData["err"] = "err";
 			return View(mvc);
 		}
-	}
+        public ActionResult Ajustes()
+        {
+            return View();
+        }
+        public ActionResult MisSorteosActivos()
+        {
+            return View();
+        }
+    }
 }

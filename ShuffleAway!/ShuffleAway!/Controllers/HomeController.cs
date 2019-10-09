@@ -61,5 +61,11 @@ namespace ShuffleAway_.Controllers
             mvc.lstProvincias = getListProvincias();
             return View(mvc);
         }
+        public ActionResult Contacto()
+        {
+            MvcModel mvc = new MvcModel();
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
     }
 }

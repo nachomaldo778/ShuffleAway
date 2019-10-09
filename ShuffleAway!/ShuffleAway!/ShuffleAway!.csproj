@@ -237,6 +237,9 @@
     <Content Include="Views\Home\ComoParticipar.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\PrivacidadYCondiciones.cshtml" />
+    <Content Include="Views\Home\Contacto.cshtml" />
+    <Content Include="Views\Plataforma\Ajustes.cshtml" />
+    <Content Include="Views\Plataforma\MisSorteosActivos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

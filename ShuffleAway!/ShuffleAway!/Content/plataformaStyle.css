@@ -21,6 +21,14 @@ select {
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+h2 {
+    text-align: center;
+    font-size: 72px;
+    background: -webkit-linear-gradient(#9CECFB 0%, #65C7F7 55%, #0052D4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .navbar-btn {
 	box-shadow: none;
 	outline: none !important;
@@ -285,5 +293,22 @@ a.article:hover {
 	max-width: 960px !important;
 	bottom: 10px !important;
 	/*left: 600px !important;*/
+}
+
+.listaActivosA {
+    margin-top: 75px;
+    width: 80%;
+}
+
+.listaActivosB {
+    margin-top: 75px;
+}
+
+.listaActivosA a:hover {
+    background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 15%, #0052D4 25%) !important;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: color 200ms linear;
 }
 
