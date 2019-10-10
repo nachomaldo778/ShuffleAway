@@ -81,5 +81,13 @@ namespace ShuffleAway_.Controllers
 		{
 			return Json(new { success = true, model = sorteo }, JsonRequestBehavior.AllowGet);
 		}
-	}
+        public ActionResult Ajustes()
+        {
+            return View();
+        }
+        public ActionResult MisSorteosActivos()
+        {
+            return View();
+        }
+    }
 }

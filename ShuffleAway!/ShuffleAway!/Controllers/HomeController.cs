@@ -19,8 +19,49 @@ namespace ShuffleAway_.Controllers
             mvc.lstProvincias = getListProvincias();
             return View(mvc);
         }
-
         public ActionResult PlanPrecios()
+        {
+            MvcModel mvc = new MvcModel();
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
+        public ActionResult About()
+        {
+            MvcModel mvc = new MvcModel();
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
+        public ActionResult PrivacidadYCondiciones()
+        {
+            MvcModel mvc = new MvcModel();
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
+        public ActionResult SorteosActivos()
+        {
+            MvcModel mvc = new MvcModel();
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
+        public ActionResult ComoParticipar()
+        {
+            MvcModel mvc = new MvcModel();
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
+        public ActionResult ComoCrear()
+        {
+            MvcModel mvc = new MvcModel();
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
+        public ActionResult Demostracion()
+        {
+            MvcModel mvc = new MvcModel();
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
+        public ActionResult Contacto()
         {
             MvcModel mvc = new MvcModel();
             mvc.lstProvincias = getListProvincias();
