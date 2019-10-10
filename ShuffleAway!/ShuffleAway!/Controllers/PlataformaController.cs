@@ -1,4 +1,5 @@
-﻿using ShuffleAway_.Models;
+﻿using Newtonsoft.Json;
+using ShuffleAway_.Models;
 using ShuffleAway_.Models.Datos;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace ShuffleAway_.Controllers
 {
 	public class PlataformaController : Controller
 	{
+		private static Conversor conversor = new Conversor();
 		// GET: Plataforma
 		public ActionResult Index()
 		{
@@ -37,21 +39,47 @@ namespace ShuffleAway_.Controllers
 		public ActionResult CrearSorteo(MvcModel mvc)
 		{
 			AccesoDatos datos = new AccesoDatos();
-			
-			if (datos.RegistrarSorteo(mvc.sorteo) > 0)
+
+			//seteo las fechas convertidas
+			mvc.sorteo.fechaInicio = conversor.txtAFecha(mvc.sorteo.fechaInicio);
+			mvc.sorteo.fechaFin = conversor.txtAFecha(mvc.sorteo.fechaFin);
+
+			if (ModelState.IsValid && (mvc.sorteo.lstIdEntradas.Count > 0 && mvc.sorteo.lstIdProvincias.Count > 0))
 			{
-				TempData["ok"] = "ok";
-				ModelState.Clear();
+				if (datos.RegistrarSorteo(mvc.sorteo) > 0)
+				{
+					TempData["ok"] = "ok";
+					ModelState.Clear();
 
-				//se llenan las listas para rellenar los combos
-				mvc.lstPlataformas = datos.getListaPlataformas();
-				mvc.lstProvincias = datos.getListaProvincias();
-				mvc.lstEntradas = datos.getListaEntradas();
-				return RedirectToAction("Index", "Plataforma", mvc);
+					//se llenan las listas para rellenar los combos
+					mvc.lstPlataformas = datos.getListaPlataformas();
+					mvc.lstProvincias = datos.getListaProvincias();
+					mvc.lstEntradas = datos.getListaEntradas();
+					return RedirectToAction("Index", "Plataforma", mvc);
+				}
 			}
-
+			else
+			{
+				mvc.lstErrores = new List<string>();
+				foreach (var modelStateVal in ViewData.ModelState.Values)
+				{
+					foreach (var item in modelStateVal.Errors)
+					{
+						mvc.lstErrores.Add(item.ErrorMessage);
+					}
+				}
+			}
+			mvc.lstPlataformas = datos.getListaPlataformas();
+			mvc.lstProvincias = datos.getListaProvincias();
+			mvc.lstEntradas = datos.getListaEntradas();
 			TempData["err"] = "err";
-			return View(mvc);
+			return View("Index", mvc);
+		}
+
+		[HttpPost]
+		public JsonResult DevolverSorteoConfirmacion(Sorteo sorteo)
+		{
+			return Json(new { success = true, model = sorteo }, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

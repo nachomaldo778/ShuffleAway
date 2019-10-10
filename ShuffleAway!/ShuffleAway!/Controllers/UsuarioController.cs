@@ -59,7 +59,7 @@ namespace ShuffleAway_.Controllers
 				}
 				TempData["errorReg"] = "error";
 				TempData["cd-div"] = "cd-signup";
-				mvc.ListErrores = list;
+				mvc.lstErrores = list;
 			}
 
 

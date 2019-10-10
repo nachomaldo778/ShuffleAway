@@ -7,6 +7,7 @@ namespace ShuffleAway_.Models
 {
 	public class MvcModel
 	{
+		public string[] str { get; set; }
 		public Usuario usuario { get; set; }
 		public Entrada entrada { get; set; }
 		public Sorteo sorteo { get; set; }
@@ -15,7 +16,7 @@ namespace ShuffleAway_.Models
 		public List<Provincia> lstProvincias { get; set; }
 		public Restriccion restriccion { get; set; }
 		public List<TiposDeUsuarios> lstTipoUsuario { get; set; }
-		public List<string> ListErrores { get; set; }
+		public List<string> lstErrores { get; set; }
 		public List<Plataforma> lstPlataformas { get; set; }
 		public List<Entrada> lstEntradas { get; set; }
 	}
