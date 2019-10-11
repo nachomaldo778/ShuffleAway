@@ -41,8 +41,8 @@ namespace ShuffleAway_.Controllers
 			AccesoDatos datos = new AccesoDatos();
 
 			//seteo las fechas convertidas
-			mvc.sorteo.fechaInicio = conversor.txtAFecha(mvc.sorteo.fechaInicio);
-			mvc.sorteo.fechaFin = conversor.txtAFecha(mvc.sorteo.fechaFin);
+			mvc.sorteo.fechaInicio = conversor.txtAFecha(mvc.sorteo.strFechaIn);
+			mvc.sorteo.fechaFin = conversor.txtAFecha(mvc.sorteo.strFechaFn);
 
 			if (ModelState.IsValid && (mvc.sorteo.lstIdEntradas.Count > 0 && mvc.sorteo.lstIdProvincias.Count > 0))
 			{

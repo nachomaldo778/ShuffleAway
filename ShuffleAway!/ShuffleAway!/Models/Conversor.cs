@@ -8,7 +8,7 @@ namespace ShuffleAway_.Models
 	public class Conversor
 	{
 		#region STRING FECHA FULL
-		public string txtAFecha(string fecha)
+		public DateTime txtAFecha(string fecha)
 		{
 			string[] a = fecha.Split(' '); //separo el string por cada espacio de la cadena
 
@@ -22,7 +22,7 @@ namespace ShuffleAway_.Models
 			int hora = Convert.ToInt32(b[0]);
 			int minutos = Convert.ToInt32(b[1]);
 			int segundos = 0;
-			return new DateTime(year, month, day, hora, minutos, segundos).ToString();
+			return new DateTime(year, month, day, hora, minutos, segundos);
 		}
 
 		#endregion

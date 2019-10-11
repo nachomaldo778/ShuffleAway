@@ -58,7 +58,7 @@
 						<div class="form-group">
 							<div class="input-append date form_datetime">
 								@*<input size="26" type="text" value="" readonly />*@
-								@Html.TextBoxFor(s => s.sorteo.fechaInicio, new { @readonly = true, @size = 26 })
+								@Html.TextBoxFor(s => s.sorteo.strFechaIn, new { @readonly = true, @size = 26 })
 								<span class="add-on"><i class="far fa-calendar-alt"></i></span>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 						<div class="form-group">
 							<div class="input-append date form_datetime">
 								@*<input size="26" type="text" value="" readonly />*@
-								@Html.TextBoxFor(s => s.sorteo.fechaFin, new { @readonly = true, @size = 26 })
+								@Html.TextBoxFor(s => s.sorteo.strFechaFn, new { @readonly = true, @size = 26 })
 								<span class="add-on"><i class="far fa-calendar-alt"></i></span>
 							</div>
 						</div>
@@ -104,28 +104,30 @@
 
 			@* Empieza tab - Entradas *@
 			<div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
-				<div>
+				<div class="entrada-content">
 					<label>Paso 1:</label>
 					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+					@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class= "form-control txtEntrada mt-2", @placeholder = "Url" })
 				</div>
-				<div class="mt-4">
+				<div class="mt-3 entrada-content">
 					<label>Paso 2:</label>
 					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+					@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
 				</div>
-				<div class="mt-4">
+				<div class="mt-3 entrada-content">
 					<label>Paso 3:</label>
 					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-
+					@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
 				</div>
-				<div class="mt-4">
+				<div class="mt-3 entrada-content">
 					<label>Paso 4:</label>
 					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-
+					@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
 				</div>
-				<div class="mt-4">
+				<div class="mt-3 entrada-content">
 					<label>Paso 5:</label>
 					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-
+					@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder="Url" })
 				</div>
 			</div>
 			@* Termina tab - Entradas *@
@@ -223,6 +225,15 @@
 @section scriptIndex{
 	<script type="text/javascript">
 
+		/*Entradas - Seleccion de combo, muestra el input correspondiente*/
+
+		$('.txtEntrada').hide(); // oculta todos los input de entradas
+		$('select#sorteo_lstIdEntradas').change(function () {
+			$(this).parent('.entrada-content').find('input').show();
+		});
+
+		/*Boton siguiente step, verifica que paso es para cambiar texto del boton y cambiar el tipo de btn*/
+
 		$('#btnSiguienteTab').click(function (e) {
 			if ($(this).attr('id') === 'btnSiguienteTab') {
 				e.preventDefault();
@@ -236,6 +247,8 @@
 				}
 			}
 		});
+
+		/*Al seleccionar el step, verifica si es el ultimo paso*/
 
 		$('a.nav-link').click(function () {
 			var tb = $('.nav-link').attr('id');
@@ -251,11 +264,31 @@
 		});
 
 		function rellenarCamposConfirmacion() {
+
+			/* Loop para concatenar las provincias seleccionadas */
 			var provincias = [];
 			$('#sorteo_lstIdProvincias option:selected').each(function () {
 				provincias.push($(this).text());
 			});
 			var strProvincias = provincias.join("<br>")
+
+			/* Loop para obtener las entradas seleccionadas */
+			var textoEntradas = [];
+			var urlEntradas = [];
+
+			$('#sorteo_lstIdEntradas option:selected').each(function () {
+				textoEntradas.push($(this).text());
+				$('#sorteo_lstStrEntradas').each(function () {
+					
+						urlEntradas.push($(this).val());
+					
+					
+				})
+				
+			});
+			var strEntradas = textoEntradas.join("<br>")
+			console.log(urlEntradas);
+			
 
 			$('.nombreSorteo').html($('#sorteo_nombreSorteo').val());
 			$('.terms').html($('#sorteo_terminosCondiciones').val());
@@ -263,7 +296,7 @@
 			$('.plataformas').html($('#sorteo_idPlataforma option:selected').text());
 			$('.provincias').html(strProvincias);
 			$('.edad').html($('#sorteo_edadMinima').val() + ' años.');
-			$('.entradas').html($('#sorteo_lstIdEntradas option:selected').text());
+			$('.entradas').html(strEntradas);
 			$('.premio').html('Premio: ' + $('#sorteo_premio').val() + '<br>' + 'Descripción: ' + $('#sorteo_descripcionPremio').val() + '<br>' + 'Número de ganadores: ' + $('#sorteo_numeroGanadores').val());
 		}
 
