@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 /*!
  * Material Design for Bootstrap 4
  * Version: MDB FREE 4.8.9
@@ -6683,7 +6683,7 @@ body.scrollable {
         .modal-dialog.cascading-modal .modal-c-tabs .md-tabs li a {
           text-align: center; }
     .modal-dialog.cascading-modal .modal-c-tabs .tab-content {
-      padding: 0.5rem 0 0 0; }
+      padding: 1.7rem 0 0 0; }
   .modal-dialog.cascading-modal .modal-body,
   .modal-dialog.cascading-modal .modal-footer {
     padding-left: 2rem;
