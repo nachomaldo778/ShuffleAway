@@ -5,8 +5,14 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: 0px;
+	padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+ol, ul, dl {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -57,7 +63,7 @@ textarea {
 }
 
 .dropdown-item:hover {
-    background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 50%, #0052D4 100%) !important;
+    background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 25%, #0052D4 95%) !important;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -82,6 +88,23 @@ textarea {
 	height: 100vh;
 }
 
+.tabLogin {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: dodgerblue;
+}
+
+.tabLogin:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.tabLogin.active {
+  color: white;
+  border: 2px solid #848484;
+  border-style: inset;
+}
+
 .section-contenido {
 	display: table-cell;
 	vertical-align: middle;
@@ -97,20 +120,21 @@ textarea {
 }
 
 .nav-item {
-	margin: 0 5%;
+	margin: inherit 5%;
 	transition: 0.3s all;
 	border: 1px solid transparent !important;
+    display: inline;
 }
 
 .nav-item:hover {
-     background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 50%, #0052D4 100%) !important;
+     background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 25%, #0052D4 95%) !important;
      -webkit-background-clip: text;
      background-clip: text;
      transition: color 200ms linear;
 }
 
 a:hover {
-    background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 50%, #0052D4 100%) !important;
+    background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 25%, #0052D4 95%) !important;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
