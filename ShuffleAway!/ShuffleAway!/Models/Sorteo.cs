@@ -16,19 +16,23 @@ namespace ShuffleAway_.Models
 		[Required(ErrorMessage = "Debe ingresar una edad mínima.")]
 		public long edadMinima { get; set; }
 		[Required(ErrorMessage = "Debe ingresar una fecha de inicio.")]
-		public string fechaInicio { get; set; }
+		public DateTime fechaInicio { get; set; }
 		[Required(ErrorMessage = "Debe ingresar una fecha de fin.")]
-		public string fechaFin { get; set; }
+		public DateTime fechaFin { get; set; }
 		[Required(ErrorMessage = "Debe ingresar un premio.")]
 		public string premio { get; set; }
 		[Required(ErrorMessage = "Debe ingresar el detalle del premio.")]
 		public string descripcionPremio { get; set; }
 		[Required(ErrorMessage = "Debe ingresar el número de ganadores.")]
 		public long numeroGanadores { get; set; }
+		public string strFechaIn { get; set; }
+		public string strFechaFn { get; set; }
 
         public long idProvincia { get; set; }
         public long idPlataforma { get; set; }	
-		public List<long> lstIdEntradas { get; set; }
+		public List<Entrada> lstEntradas { get; set; }
 		public List<long> lstIdProvincias { get; set; }
+		public List<long> lstIdEntradas { get; set; }
+		public List<string> lstStrEntradas { get; set; }
     }
 }

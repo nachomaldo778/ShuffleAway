@@ -19,5 +19,6 @@ namespace ShuffleAway_.Models
 		public List<string> lstErrores { get; set; }
 		public List<Plataforma> lstPlataformas { get; set; }
 		public List<Entrada> lstEntradas { get; set; }
+		
 	}
 }
