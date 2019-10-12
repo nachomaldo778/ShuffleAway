@@ -1,51 +1,33 @@
-﻿
+﻿@model ShuffleAway_.Models.MvcModel
+@using ShuffleAway_.Models
+
 @{
-    ViewBag.Title = "MisSorteosActivos";
-    Layout = "~/Views/Shared/_LayoutPlataforma.cshtml";
+	ViewBag.Title = "MisSorteosActivos";
+	Layout = "~/Views/Shared/_LayoutPlataforma.cshtml";
 }
 
 <h2 class="mt-5">Sorteos activos</h2>
 
-<div class="container">
-    <div class="row">
-        <div class="listaActivosA">
-            <p class="list-group-item list-group-item-primary text-center">Sorteos</p>
-            <a href="#!" class="list-group-item list-group-item-action list-group-item-action">
-                Sorteo orden de compra $1000 en Garbarino
-            </a>
-            <a href="#!" class="list-group-item list-group-item-action list-group-item-action">
-                Sorteo 3 prendas a eleccion en Lacoste
-            </a>
-            <a href="#!" class="list-group-item list-group-item-action list-group-item-action">
-                Sorteo viaje a Brasil verano 2020
-            </a>
-            <a href="#!" class="list-group-item list-group-item-action list-group-item-action">
-                Sorteo FIFA 2020 para PlayStation 4
-            </a>
-            <a href="#!" class="list-group-item list-group-item-action list-group-item-action">
-                Sorteo limpieza interior/exterior coche
-            </a>
-            <a href="#!" class="list-group-item list-group-item-action list-group-item-action">
-                Sorteo mouse gamer
-            </a>
-            <a href="#!" class="list-group-item list-group-item-action list-group-item-action">
-                Sorteo cena para dos personas
-            </a>
-            <a href="#!" class="list-group-item list-group-item-action list-group-item-action">
-                Sorteo estadia 3 dias en Alta Gracia
-            </a>
-        </div>
-        <div class="listaActivosB">
-            <p class="list-group-item list-group-item-primary text-center">Finalizacion</p>
-            <p class="list-group-item list-group-item">23/10/2019</p>
-            <p class="list-group-item list-group-item">25/10/2019</p>
-            <p class="list-group-item list-group-item">27/10/2019</p>
-            <p class="list-group-item list-group-item">28/10/2019</p>
-            <p class="list-group-item list-group-item">30/10/2019</p>
-            <p class="list-group-item list-group-item">1/11/2019</p>
-            <p class="list-group-item list-group-item">15/11/2019</p>
-            <p class="list-group-item list-group-item">20/11/2019</p>
-        </div>
-    </div>
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-8">
+			<p class="list-group-item list-group-item-primary text-center">Sorteos</p>
+			@foreach (var item in Model.lstSorteos)
+			{
+				<a href="#!" class="list-group-item list-group-item-action list-group-item-action">
+					@item.premio
+				</a>
+			}
+
+		</div>
+		<div class="col-4 text-center">
+			<p class="list-group-item list-group-item-primary text-center">Finalizacion</p>
+			@foreach (var item in Model.lstSorteos)
+			{
+				<p class="list-group-item list-group-item">@item.fechaFin</p>
+			}
+
+		</div>
+	</div>
 </div>
 

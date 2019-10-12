@@ -27,6 +27,7 @@ namespace ShuffleAway_.Models
 		public long numeroGanadores { get; set; }
 		public string strFechaIn { get; set; }
 		public string strFechaFn { get; set; }
+		public int id_usuario { get; set; }
 
         public long idProvincia { get; set; }
         public long idPlataforma { get; set; }	

@@ -107,7 +107,7 @@
 				<div class="entrada-content">
 					<label>Paso 1:</label>
 					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-					@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class= "form-control txtEntrada mt-2", @placeholder = "Url" })
+					@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
 				</div>
 				<div class="mt-3 entrada-content">
 					<label>Paso 2:</label>
@@ -127,7 +127,7 @@
 				<div class="mt-3 entrada-content">
 					<label>Paso 5:</label>
 					@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-					@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder="Url" })
+					@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
 				</div>
 			</div>
 			@* Termina tab - Entradas *@
@@ -151,8 +151,7 @@
 					<label>Cantidad de ganadores:</label>
 					<div class="def-number-input number-input safari_only">
 						<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-						@*<input class="quantity" min="0" name="quantity" value="1" type="number" />*@
-						@Html.TextBoxFor(s => s.sorteo.numeroGanadores, new { @class = "quantity", @min = "0", Value = 0, @type = "number" })
+						@Html.TextBoxFor(s => s.sorteo.numeroGanadores, new { @class = "quantity", @min = "0", Value = 1, @type = "number" })
 						<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
 					</div>
 				</div>
@@ -185,26 +184,26 @@
 					</div>
 					<div class="col-8">
 						<div class="tab-content" id="nav-tabContent">
-							<div class="tab-pane fade show active nombreSorteo" 
+							<div class="tab-pane fade show active nombreSorteo"
 								 id="list-nombreSorteo" role="tabpanel" aria-labelledby="list-nombreSorteo-list"></div>
-							<div class="tab-pane fade terms" 
+							<div class="tab-pane fade terms"
 								 id="list-terms" role="tabpanel" aria-labelledby="list-terms-list"></div>
-							<div class="tab-pane fade fechas" 
+							<div class="tab-pane fade fechas"
 								 id="list-fechas" role="tabpanel" aria-labelledby="list-fechas-list"></div>
-							<div class="tab-pane fade plataformas" 
+							<div class="tab-pane fade plataformas"
 								 id="list-plataformas" role="tabpanel" aria-labelledby="list-plataformas-list"></div>
-							<div class="tab-pane fade provincias" 
+							<div class="tab-pane fade provincias"
 								 id="list-provincias" role="tabpanel" aria-labelledby="list-provincias-list"></div>
-							<div class="tab-pane fade edad" 
+							<div class="tab-pane fade edad"
 								 id="list-edad" role="tabpanel" aria-labelledby="list-edad-list"></div>
-							<div class="tab-pane fade entradas" 
+							<div class="tab-pane fade entradas"
 								 id="list-entradas" role="tabpanel" aria-labelledby="list-entradas-list"></div>
-							<div class="tab-pane fade premio" 
+							<div class="tab-pane fade premio"
 								 id="list-premio" role="tabpanel" aria-labelledby="list-premio-list"></div>
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 			@* Termina tab Confirmacion *@
 
@@ -276,19 +275,23 @@
 			var textoEntradas = [];
 			var urlEntradas = [];
 
-			$('#sorteo_lstIdEntradas option:selected').each(function () {
-				textoEntradas.push($(this).text());
-				$('#sorteo_lstStrEntradas').each(function () {
-					
-						urlEntradas.push($(this).val());
-					
-					
-				})
-				
+			$('select#sorteo_lstIdEntradas option:selected').each(function () {
+				if ($(this).val() > '0') {
+					textoEntradas.push($(this).text());
+				}
 			});
-			var strEntradas = textoEntradas.join("<br>")
-			console.log(urlEntradas);
-			
+
+			$('input#sorteo_lstStrEntradas').each(function () {
+				if ($(this).val() !== '') {
+					urlEntradas.push($(this).val());
+				}
+			})
+
+			// se guardan todos los valores finales para mostrarlos en la ventana de confirmacion
+			var strEntradas = [];
+			for (var i = 0; i < textoEntradas.length; i++) {
+				strEntradas.push(textoEntradas[i] + ' - ' + urlEntradas[i] + '<br>');
+			}
 
 			$('.nombreSorteo').html($('#sorteo_nombreSorteo').val());
 			$('.terms').html($('#sorteo_terminosCondiciones').val());

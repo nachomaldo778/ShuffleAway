@@ -86,12 +86,27 @@ namespace ShuffleAway_.Models.Datos
 			return lst;
 		}
 
+		public List<Sorteo> getListaSorteosFiltrado(long idUsuario)
+		{
+			List<Sorteo> lst = new List<Sorteo>();
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "SELECT * FROM Sorteos WHERE id_usuario=@idu";
+
+				lst = conect.Query<Sorteo>(sql, new { idU = idUsuario }).ToList(); //se llena la lista automaticamente con todas las provincias
+			}
+
+			return lst;
+		}
+
 
 		public Usuario getLoginUsuario(Usuario u)
 		{
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 				string verificar = "SELECT 1 as a, pass as b FROM Usuarios WHERE email = @em";
+				string sql = "SELECT idUsuario, nombreUsuario, idTipoUsuario, nombre, apellido, email, idProvincia, fechaNacimiento " +
+					"FROM Usuarios WHERE email = @em";
 
 				//obtengo la contraseña y el valor 1 para verificar que exista el usuario
 				var row = (IDictionary<string, object>)conect.Query(verificar, new { em = u.email }).FirstOrDefault();
@@ -108,6 +123,7 @@ namespace ShuffleAway_.Models.Datos
 						//comparo la pass de la bd con la ingresada por el usuario
 						if (Crypto.VerifyHashedPassword(passHashed, u.pass))
 						{
+							u = conect.Query<Usuario>(sql, new { em = u.email }).FirstOrDefault();
 							u.logueado = true;
 						}
 					}
@@ -125,13 +141,13 @@ namespace ShuffleAway_.Models.Datos
 
 				string sql = "INSERT INTO Sorteos (nombreSorteo, terminosCondiciones, " +
 					"edadMinima, fechaInicio, fechaFin, premio, descripcionpremio, " +
-					"numeroGanadores, idProvincia, idPlataforma) " +
+					"numeroGanadores, idProvincia, idPlataforma, id_usuario) " +
 					" VALUES (" +
 					"@nomSor, @termCon, @edadMin, @fecIn, @fecFin, @prem, " +
-					"@descPrem, @numGan, @idProv, @idPlat); SELECT LAST_INSERT_ID(); ";
+					"@descPrem, @numGan, @idProv, @idPlat, @idU); SELECT LAST_INSERT_ID(); ";
 
-				string sql2 = "INSERT INTO EntradasXSorteo (idEntrada, idSorteo) VALUES " +
-					"(@idE, @idS)";
+				string sql2 = "INSERT INTO EntradasXSorteo (idEntrada, idSorteo, url) VALUES " +
+					"(@idE, @idS, @url)";
 
 				string sql3 = "INSERT INTO ProvinciasXSorteo (idProvincia, idSorteo) VALUES (@idP, @idS)";
 
@@ -149,7 +165,8 @@ namespace ShuffleAway_.Models.Datos
 					descPrem = sorteo.descripcionPremio,
 					numGan = sorteo.numeroGanadores,
 					idProv = sorteo.idProvincia,
-					idPlat = sorteo.idPlataforma
+					idPlat = sorteo.idPlataforma,
+					idU = sorteo.id_usuario
 				};
 
 				// se hace el primer insert en Sorteos y se obtiene el nuevo ID del sorteo
@@ -158,10 +175,18 @@ namespace ShuffleAway_.Models.Datos
 				// si el ID es mayor a 0, se realizó correctamente el insert en Sorteos
 				if (idSorteo > 0)
 				{
-					foreach (var i in sorteo.lstIdEntradas.Where(x => x > 0)) //recorre la lista para aquellos items mayores a 0
+					for (int i = 0; i < sorteo.lstIdEntradas.Where(x => x > 0).ToList().Count; i++) //recorre la lista para aquellos items mayores a 0
 					{
-						//hace el insert en EntradasXSorteo
-						conect.Query<bool>(sql2, new { idE = i, idS = idSorteo }).FirstOrDefault();
+						for (int e = 0; e < sorteo.lstStrEntradas.Where(x => x != "").ToList().Count; e++)
+						{
+							if (i == e)
+							{
+								//hace el insert en EntradasXSorteo
+								conect.Query<bool>(sql2, new { idE = sorteo.lstIdEntradas[i], idS = idSorteo, url = sorteo.lstStrEntradas[e] }).FirstOrDefault();
+							}
+							
+						}
+						
 					}
 
 					foreach (var o in sorteo.lstIdProvincias.Where(x => x > 0))

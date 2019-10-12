@@ -38,42 +38,52 @@ namespace ShuffleAway_.Controllers
 		[HttpPost]
 		public ActionResult CrearSorteo(MvcModel mvc)
 		{
-			AccesoDatos datos = new AccesoDatos();
-
-			//seteo las fechas convertidas
-			mvc.sorteo.fechaInicio = conversor.txtAFecha(mvc.sorteo.strFechaIn);
-			mvc.sorteo.fechaFin = conversor.txtAFecha(mvc.sorteo.strFechaFn);
-
-			if (ModelState.IsValid && (mvc.sorteo.lstIdEntradas.Count > 0 && mvc.sorteo.lstIdProvincias.Count > 0))
+			try
 			{
-				if (datos.RegistrarSorteo(mvc.sorteo) > 0)
-				{
-					TempData["ok"] = "ok";
-					ModelState.Clear();
+				AccesoDatos datos = new AccesoDatos();
 
-					//se llenan las listas para rellenar los combos
-					mvc.lstPlataformas = datos.getListaPlataformas();
-					mvc.lstProvincias = datos.getListaProvincias();
-					mvc.lstEntradas = datos.getListaEntradas();
-					return RedirectToAction("Index", "Plataforma", mvc);
-				}
-			}
-			else
-			{
-				mvc.lstErrores = new List<string>();
-				foreach (var modelStateVal in ViewData.ModelState.Values)
+				//seteo las fechas convertidas
+				mvc.sorteo.fechaInicio = conversor.txtAFecha(mvc.sorteo.strFechaIn);
+				mvc.sorteo.fechaFin = conversor.txtAFecha(mvc.sorteo.strFechaFn);
+
+
+				if (ModelState.IsValid && (mvc.sorteo.lstIdEntradas.Count > 0 && mvc.sorteo.lstIdProvincias.Count > 0))
 				{
-					foreach (var item in modelStateVal.Errors)
+					if (datos.RegistrarSorteo(mvc.sorteo) > 0)
 					{
-						mvc.lstErrores.Add(item.ErrorMessage);
+						TempData["ok"] = "ok";
+						ModelState.Clear();
+
+						//se llenan las listas para rellenar los combos
+						mvc.lstPlataformas = datos.getListaPlataformas();
+						mvc.lstProvincias = datos.getListaProvincias();
+						mvc.lstEntradas = datos.getListaEntradas();
+						return RedirectToAction("Index", "Plataforma", mvc);
 					}
 				}
+				else
+				{
+					mvc.lstErrores = new List<string>();
+					foreach (var modelStateVal in ViewData.ModelState.Values)
+					{
+						foreach (var item in modelStateVal.Errors)
+						{
+							mvc.lstErrores.Add(item.ErrorMessage);
+						}
+					}
+				}
+				mvc.lstPlataformas = datos.getListaPlataformas();
+				mvc.lstProvincias = datos.getListaProvincias();
+				mvc.lstEntradas = datos.getListaEntradas();
+				TempData["err"] = "err";
+				return View("Index", mvc);
 			}
-			mvc.lstPlataformas = datos.getListaPlataformas();
-			mvc.lstProvincias = datos.getListaProvincias();
-			mvc.lstEntradas = datos.getListaEntradas();
-			TempData["err"] = "err";
-			return View("Index", mvc);
+			catch (Exception)
+			{
+
+				throw;
+			}
+			
 		}
 
 		[HttpPost]
@@ -85,9 +95,24 @@ namespace ShuffleAway_.Controllers
         {
             return View();
         }
-        public ActionResult MisSorteosActivos()
+
+		public ActionResult MisSorteosActivos()
         {
-            return View();
+			try
+			{
+				// creo el modelo MvcModel para despues 
+				// recibir el usuario que se logueó desde el Home
+				MvcModel mvc = new MvcModel();
+				mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+
+				mvc.lstSorteos = new AccesoDatos().getListaSorteosFiltrado(mvc.usuario.idUsuario);
+				return View(mvc);
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
         }
     }
 }
