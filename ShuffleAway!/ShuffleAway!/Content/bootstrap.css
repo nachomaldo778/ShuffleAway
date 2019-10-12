@@ -4067,6 +4067,7 @@ input[type="button"].btn-block {
 
 .nav-link:hover, .nav-link:focus {
   text-decoration: none;
+  color: white;
 }
 
 .nav-link.disabled {
@@ -4101,9 +4102,8 @@ input[type="button"].btn-block {
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
-  background-color: #fff;
-  border-color: #dee2e6 #dee2e6 #fff;
+  color: white;
+  border: 1px solid #585858;
 }
 
 .nav-tabs .dropdown-menu {
