@@ -17,10 +17,21 @@ namespace ShuffleAway_.Models
 			int month = txtMesANumero(a[1]); //índice 1 para el mes y lo envío a otro metodo para que devuelva el mes
 			int day = Convert.ToInt32(a[0]); //índice 0 para el día
 
-			string[] b = a[4].Split(':'); //separo la hora donde hayan dos puntos (:)
-
-			int hora = Convert.ToInt32(b[0]);
-			int minutos = Convert.ToInt32(b[1]);
+			string[] b;
+			int hora = 0;
+			int minutos = 0;
+			if (a.Length > 3)
+			{
+				b = a[3].Split(':'); //separo la hora donde hayan dos puntos (:)
+				hora = Convert.ToInt32(b[0]);
+				minutos = Convert.ToInt32(b[1]);
+			}
+			else
+			{
+				hora = DateTime.Now.Hour;
+				minutos = DateTime.Now.Minute;
+			}
+			
 			int segundos = 0;
 			return new DateTime(year, month, day, hora, minutos, segundos);
 		}

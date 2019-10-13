@@ -17,6 +17,8 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
     <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+
+	@RenderSection("ajustesCss", false)
 </head>
 
 <body>
@@ -70,17 +72,10 @@
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.ar.js"></script>
 
-    <script type="text/javascript">
-        $(".form_datetime").datetimepicker({
-            format: "dd MM yyyy - hh:ii",
-            autoclose: true,
-            todayBtn: true,
-            pickerPosition: "bottom-left",
-            language: 'es'
-        });
-    </script>
+    
 
 	@RenderSection("scriptIndex", false)
+	@RenderSection("ajustesScript", false)
 
 </body>
 </html>

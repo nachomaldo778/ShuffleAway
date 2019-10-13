@@ -47,6 +47,41 @@ namespace ShuffleAway_.Models.Datos
 			return lastUsrId;
 		}
 
+		public Usuario ActualizarUsuario(Usuario u) //método para registrar un nuevo usuario
+		{
+			bool actualizado = false;
+			Usuario usr = null;
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "UPDATE Usuarios SET " +
+					"nombreUsuario = @nombreUsuario, nombre = @nombre, apellido = @apellido, " +
+					"email = @email, idProvincia = @idProvincia, fechaNacimiento = @fechaNacimiento " +
+					"WHERE idUsuario = @idUsuario";
+
+				// array con datos del usuario para actualizar
+				var obj = new
+				{
+					nombreUsuario = u.nombreUsuario,
+					nombre = u.nombre,
+					apellido = u.apellido,
+					email = u.email,
+					idProvincia = u.idProvincia,
+					fechaNacimiento = u.fechaNacimiento,
+					idUsuario = u.idUsuario
+				};
+
+				
+				if (conect.Execute(sql, obj) > 0)
+				{
+					usr = u;
+					actualizado = true;
+				}
+
+			}
+
+			return usr;
+		}
+
 		public List<Provincia> getListaProvincias()
 		{
 			List<Provincia> lst = new List<Provincia>();
