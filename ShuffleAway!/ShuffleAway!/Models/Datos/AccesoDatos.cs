@@ -49,7 +49,6 @@ namespace ShuffleAway_.Models.Datos
 
 		public Usuario ActualizarUsuario(Usuario u) //método para registrar un nuevo usuario
 		{
-			bool actualizado = false;
 			Usuario usr = null;
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
@@ -74,7 +73,6 @@ namespace ShuffleAway_.Models.Datos
 				if (conect.Execute(sql, obj) > 0)
 				{
 					usr = u;
-					actualizado = true;
 				}
 
 			}
@@ -159,6 +157,7 @@ namespace ShuffleAway_.Models.Datos
 						if (Crypto.VerifyHashedPassword(passHashed, u.pass))
 						{
 							u = conect.Query<Usuario>(sql, new { em = u.email }).FirstOrDefault();
+							u.strFechaNac = new Conversor().fechaATxt(u.fechaNacimiento);
 							u.logueado = true;
 						}
 					}

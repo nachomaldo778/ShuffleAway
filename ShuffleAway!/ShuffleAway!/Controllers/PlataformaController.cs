@@ -111,20 +111,19 @@ namespace ShuffleAway_.Controllers
 				MvcModel mvc = new MvcModel();
 				mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
 				m.usuario.idUsuario = mvc.usuario.idUsuario; // tomo solo el id del usuario de la Session
-				mvc.lstProvincias = new AccesoDatos().getListaProvincias();
+				m.lstProvincias = new AccesoDatos().getListaProvincias();
 				m.usuario.fechaNacimiento = conversor.txtAFecha(m.usuario.strFechaNac);
 
 				m.usuario = datos.ActualizarUsuario(m.usuario);
 				if (m.usuario != null)
 				{
-					mvc.usuario = m.usuario;
-					TempData["ok"] = "ok";
+					TempData["ok-upd-ajustes"] = "ok";
+					//return RedirectToAction("/Views/Plataforma/Ajustes.cshtml", mvc);
+					return View(m);
 				}
-				else
-				{
-					TempData["error"] = "error";
-				}
-				
+				TempData["error"] = "error";
+
+
 				return View(mvc);
 
 			}

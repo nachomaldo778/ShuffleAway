@@ -97,5 +97,30 @@ namespace ShuffleAway_.Models
 		}
 
 		#endregion
+
+		public string fechaATxt(DateTime fechaBD)
+		{
+			string txtYear = fechaBD.Year.ToString();
+			string txtMes = Enum.GetName(typeof(Meses), fechaBD.Month);
+			string txtDia = fechaBD.Day.ToString();
+
+			return txtDia + ' ' + txtMes + ' ' + txtYear;
+		}
+
+		public enum Meses
+		{
+			Enero = 1,
+			Febrero = 2,
+			Marzo = 3,
+			Abril = 4,
+			Mayo = 5,
+			Junio = 6,
+			Julio = 7,
+			Agosto = 8,
+			Septiembre = 9,
+			Octubre = 10,
+			Noviembre = 11,
+			Diciembre = 12
+		}
 	}
 }

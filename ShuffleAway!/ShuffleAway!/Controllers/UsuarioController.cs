@@ -88,10 +88,10 @@ namespace ShuffleAway_.Controllers
 			}
 			else
 			{
-				TempData["error"] = "error";
+				TempData["error-login"] = "error";
 				mvc = new MvcModel();
 				mvc.lstProvincias = getListProvincias(datos);
-				return RedirectToAction("Index", "Home");
+				return View("/Views/Home/Index.cshtml", mvc);
 			}
 
 		}

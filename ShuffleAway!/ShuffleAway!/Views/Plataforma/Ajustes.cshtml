@@ -76,6 +76,26 @@
 			language: 'es'
 		});
 	</script>
+
+	@if (TempData["ok-upd-ajustes"] != null)
+	{
+		<div id="alert-correcto" role="alert" aria-live="assertive" aria-atomic="true"
+			 class="toast" data-autohide="true" data-delay="5000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+			<div class="toast-header">
+				<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+					 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+					<rect fill="#007aff" width="100%" height="100%" />
+				</svg>
+				<strong class="mr-auto">SuffleAway!</strong>
+				<small>notificación</small>
+			</div>
+			<div class="toast-body">
+				¡Datos personales actualizados correctamente!
+			</div>
+		</div>
+
+		<script type="text/javascript">$('#alert-correcto').toast('show');</script>
+	}
 }
 
 
