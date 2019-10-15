@@ -22,7 +22,7 @@ namespace ShuffleAway_.Models
 			int minutos = 0;
 			if (a.Length > 3)
 			{
-				b = a[3].Split(':'); //separo la hora donde hayan dos puntos (:)
+				b = a[4].Split(':'); //separo la hora donde hayan dos puntos (:)
 				hora = Convert.ToInt32(b[0]);
 				minutos = Convert.ToInt32(b[1]);
 			}
