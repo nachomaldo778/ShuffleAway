@@ -78,10 +78,9 @@ namespace ShuffleAway_.Controllers
 				TempData["err"] = "err";
 				return View("Index", mvc);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-
-				throw;
+				throw ex;
 			}
 
 		}
@@ -146,10 +145,10 @@ namespace ShuffleAway_.Controllers
 
 				return View(mvc);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
 
-				throw;
+				throw ex;
 			}
 		}
 	}
