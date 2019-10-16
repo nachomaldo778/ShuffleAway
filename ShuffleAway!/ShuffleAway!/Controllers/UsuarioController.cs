@@ -96,6 +96,15 @@ namespace ShuffleAway_.Controllers
 
 		}
 
-		
+		[AllowAnonymous]
+		public ActionResult LogOut()
+		{
+			FormsAuthentication.SignOut();
+			MvcModel mvc = new MvcModel();
+			Session.Abandon();
+
+			return RedirectToAction("Index", "Home", mvc);
+		}
+
 	}
 }
