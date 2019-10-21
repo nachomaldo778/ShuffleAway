@@ -54,9 +54,9 @@
 					E-mail incorrecto
 				</div>
 			</div>
-			<div class="col-4 mb-3">
+			<div class="col-lg-4 mb-3">
 				<label>Fecha de nacimiento:</label>
-				@Html.TextBoxFor(m => m.usuario.strFechaNac, new { @class = "form-control date-pick date", @readonly = true })
+				@Html.TextBoxFor(m => m.usuario.strFechaNac, new { @class = "date-pick input-append date form_datetime", @readonly = true, @style = "width: 350px; height: 37px"})
 			</div>
 		</div> <!--ROW END-->
 		<div class="row">
