@@ -1,19 +1,17 @@
-﻿using ShuffleAway_.Models;
+﻿using MercadoPago.Common;
+using MercadoPago.DataStructures.Preference;
+using MercadoPago.Resources;
+using ShuffleAway_.Models;
 using ShuffleAway_.Models.Datos;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
 namespace ShuffleAway_.Controllers
 {
-    public class UsuarioController : Controller
-    {
-
+	public class UsuarioController : Controller
+	{
 		public ActionResult Registrar()
 		{
 			return View();
@@ -30,7 +28,7 @@ namespace ShuffleAway_.Controllers
 
 				//hash para encriptar la contraseña
 				mvc.usuario.pass = Crypto.HashPassword(mvc.usuario.pass);
-				
+
 				//se registra el usuario en la base de datos y obtiene el nuevo ID generado
 				long lastId = datos.RegistrarUsuario(mvc.usuario);
 
@@ -104,6 +102,54 @@ namespace ShuffleAway_.Controllers
 			Session.Abandon();
 
 			return RedirectToAction("Index", "Home", mvc);
+		}
+
+		public ActionResult UpgradeUsr() { return View(); }
+
+		[HttpPost]
+		public ActionResult UpgradeUsr(string correo)
+		{
+			AccesoDatos datos = new AccesoDatos();
+
+			/*MercadoPago*/
+			MercadoPago.SDK.ClientId = "6391733921836603";
+			MercadoPago.SDK.ClientSecret = "zLNcdYwlDIFIEFzU6m7Jl414RRpkBUVV";
+
+
+			decimal precioUp = 1; // cambiar valor a cobrar!!!
+
+			Preference preference = new Preference();
+			preference.Items.Add(
+			  new Item()
+			  {
+				  Id = "1", // crear tabla en base de datos y luego obtener el ultimo ID y sumarle 1
+				  Title = "Shuffle Away!",
+				  Quantity = 1,
+				  CurrencyId = 0,
+				  UnitPrice = precioUp,
+			  }
+			);
+			// Setting a payer object as value for Payer property
+			preference.Payer = new Payer()
+			{
+				Email = correo
+			};
+
+			preference.BackUrls = new BackUrls()
+			{
+				Success = "https://www.google.com.ar",
+				Failure = "https://www.google.com.ar",
+				Pending = "https://www.google.com.ar"
+			};
+
+			preference.AutoReturn = AutoReturnType.approved;
+			// Save and posting preference
+			preference.Save();
+
+			var url = preference.InitPoint;
+
+			return Json(new { url = url });
+
 		}
 
 	}

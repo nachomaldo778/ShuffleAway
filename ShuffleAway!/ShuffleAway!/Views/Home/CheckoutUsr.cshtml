@@ -1,0 +1,59 @@
+﻿
+@{
+	ViewBag.Title = "CheckoutUsr";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5">
+
+
+	<div class="card">
+		<div class="card-header">
+			Premium User
+		</div>
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row"></th>
+						<td>Actualización a usuario tipo Premium por 1 año</td>
+						<td></td>
+						<td><h4>$700</h4></td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#" id="btnActualizar" class="btn btn-primary" style="width: 100%">Actualizarme!</a>
+		</div>
+	</div>
+
+</div>
+
+@section scriptCheckoutUsr{
+	<script>
+
+		// llama a la accion para redirigir a pantalla de MercadoPago
+		$('#btnActualizar').click(function (e) {
+			e.preventDefault();
+
+			$(this).html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Redirigiendo...').addClass('disabled');
+
+
+            $.ajax({
+                url: '@Url.Action("UpgradeUsr", "Usuario")',
+                data: { 'correo': 'prueba@gmail.com' },
+                type: 'POST',
+                success: function (data) {
+                    window.location = data.url
+                }
+            });
+        });
+	</script>
+}
