@@ -191,6 +191,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Recursos\img\bg.jpg" />
     <Content Include="Recursos\img\logos\brand.png" />
+    <Content Include="Recursos\img\logos\shuffleaway.png" />
     <Content Include="Scripts\bootstrap-datetimepicker.ar.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />

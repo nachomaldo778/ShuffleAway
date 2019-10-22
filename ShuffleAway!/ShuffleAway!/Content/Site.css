@@ -145,6 +145,23 @@ li a{
     font-size: 14px;
 }
 
+.logoIndexMedio {
+    height: 250px;
+    width: 150%;
+}
+
+.logoLayoutIndex {
+    max-width: 300%;
+    height: auto;
+    margin-left: -45px;
+    margin-top: 4px;
+}
+
+.logoAbout {
+    max-width: 100%;
+    max-height: 250px;
+}
+
 /*Plan precios*/
 
 .pricing .card {

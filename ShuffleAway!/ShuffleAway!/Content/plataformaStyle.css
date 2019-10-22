@@ -42,6 +42,11 @@ h2 {
 	margin: 40px 0;
 }
 
+.logoLayoutPlataforma {
+    max-width: 100%;
+    max-height: 250px;
+}
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -69,7 +74,7 @@ h2 {
 	}
 
 	#sidebar .sidebar-header {
-		padding: 20px;
+		padding: 0px;
 		background: #6d7fcc;
 	}
 
