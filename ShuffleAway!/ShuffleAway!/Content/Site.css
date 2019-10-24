@@ -126,14 +126,14 @@ textarea {
     display: inline;
 }
 
-.nav-item:hover {
+.fadeLinks:hover {
      background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 25%, #0052D4 95%) !important;
      -webkit-background-clip: text;
      background-clip: text;
      transition: color 200ms linear;
 }
 
-a:hover {
+.fadeLinks:hover {
     background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 25%, #0052D4 95%) !important;
     -webkit-background-clip: text;
     background-clip: text;

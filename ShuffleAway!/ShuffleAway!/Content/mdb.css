@@ -6448,7 +6448,9 @@ table.table a.btn.btn-black {
   .navbar.navbar-dark .breadcrumb .nav-item .nav-link,
   .navbar.navbar-dark .navbar-nav .nav-item .nav-link {
     color: #fff;
-    transition: 0.35s; }
+    transition: 0.35s;
+    display: inline-table;
+  }
     .navbar.navbar-dark .breadcrumb .nav-item .nav-link:hover,
     .navbar.navbar-dark .navbar-nav .nav-item .nav-link:hover {
       color: rgba(255, 255, 255, 0.75); }
