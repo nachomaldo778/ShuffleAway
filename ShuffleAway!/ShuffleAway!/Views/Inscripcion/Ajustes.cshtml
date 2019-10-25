@@ -1,0 +1,101 @@
+﻿@model ShuffleAway_.Models.MvcModel
+
+@{
+    ViewBag.Title = "Ajustes";
+    Layout = "~/Views/Shared/_LayoutInscripcion.cshtml";
+}
+
+@section ajustesCss {
+    <link href="~/Content/ajustes-plataforma.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("Ajustes", "Plataforma", FormMethod.Post))
+{
+    <div class="container z-depth-1 p-3 mt-5">
+        <div class="row">
+            <div class="col-4 mb-3">
+                <label for="validationCustom01">Nombre</label>
+                @Html.TextBoxFor(m => m.usuario.nombre, new { @class = "form-control", @placeholder = "Tu nombre" })
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-4 mb-3">
+                <label for="validationCustom02">Apellido</label>
+                @Html.TextBoxFor(m => m.usuario.apellido, new { @class = "form-control", @placeholder = "Tu apellido" })
+                <div class="valid-feedback">
+                    Correcto!
+                </div>
+            </div>
+            <div class="col-4 mb-3">
+                <label for="validationCustomUsername">Nombre de usuario</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend">ID</span>
+                    </div>
+                    @Html.TextBoxFor(m => m.usuario.nombreUsuario, new { @class = "form-control", @placeholder = "Tu nombre de usuario" })
+                    @*<input type="text" class="form-control" id="validationCustomUsername" placeholder="Tu nombre de usuario"
+                        aria-describedby="inputGroupPrepend" required>*@
+                    <div class="invalid-feedback">
+                        Nombre de usuario incorrecto
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mb-3">
+                <label for="validationCustom03">Provincia</label>
+                @Html.DropDownListFor(m => m.usuario.idProvincia, new SelectList(Model.lstProvincias, "idProvincia", "nombreProvincia"), "Tu provincia", new { @class = "browser-default custom-select" })
+            </div>
+            <div class="col-4 mb-3">
+                <label for="validationCustom04">E-mail</label>
+                @Html.TextBoxFor(m => m.usuario.email, new { @class = "form-control", @placeholder = "Tu e-mail" })
+                <div class="invalid-feedback">
+                    E-mail incorrecto
+                </div>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <label>Fecha de nacimiento:</label>
+                @Html.TextBoxFor(m => m.usuario.strFechaNac, new { @class = "date-pick input-append date form_datetime", @readonly = true, @style = "width: 350px; height: 37px" })
+            </div>
+        </div> <!--ROW END-->
+        <div class="row">
+            <div class="col-6 mr-auto">
+                <button class="btn blue-gradient waves-effect ml-auto btn-sm" type="submit">Confirmar</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section ajustesScript{
+    <script type="text/javascript">
+		$('.date-pick').datetimepicker({
+			format: "dd MM yyyy",
+			autoclose: true,
+			todayBtn: true,
+			language: 'es'
+		});
+    </script>
+
+    @if (TempData["ok-upd-ajustes"] != null)
+    {
+        <div id="alert-correcto" role="alert" aria-live="assertive" aria-atomic="true"
+             class="toast" data-autohide="true" data-delay="5000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+            <div class="toast-header">
+                <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                     preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                    <rect fill="#007aff" width="100%" height="100%" />
+                </svg>
+                <strong class="mr-auto">SuffleAway!</strong>
+                <small>notificación</small>
+            </div>
+            <div class="toast-body">
+                ¡Datos personales actualizados correctamente!
+            </div>
+        </div>
+
+        <script type="text/javascript">$('#alert-correcto').toast('show');</script>
+    }
+}
+
+

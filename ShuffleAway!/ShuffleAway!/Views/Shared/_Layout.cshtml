@@ -21,7 +21,7 @@
 			<div class="col-md-12">
 				@* Navegador FUll width *@
 				<nav class="navbar navbar-expand-lg navbar-dark navbar-principal ">
-					<a class="navbar-brand" href="#"><img class="logoLayoutIndex" src="~/Recursos/img/logos/shuffleaway.png" alt="ShuffleAway!" /></a>
+					<a class="navbar-brand" href="@Url.Action("Index", "Home")"><img class="logoLayoutIndex" src="~/Recursos/img/logos/shuffleaway.png" alt="ShuffleAway!" /></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
 							aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -49,13 +49,13 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link fadeLinks" href="#">
+								<a class="nav-link fadeLinks" href="@Url.Action("Faq", "Home")">
 									FAQ
 									<span class="sr-only">(current)</span>
 								</a>
 							</li>
 							<li class="nav-item d-inline-flex">
-								<a class="nav-link fadeLinks" href="#">
+								<a class="nav-link fadeLinks" href="@Url.Action("Index", "Plataforma")">
 									Sorteos activos!
 									<span class="sr-only">(current)</span>
 								</a>
@@ -116,14 +116,14 @@
 										<i class="fas fa-envelope prefix"></i>
 										@Html.TextBoxFor(u => u.usuario.email, new { @class = "form-control form-control-sm validate", @type = "email" })
 										@*<input type="email" id="modalLRInput10" class="form-control form-control-sm validate">*@
-										<label data-error="verifique :(" data-success="correcto!" for="u.usuario.email">Email</label>
+										<label>Email</label>
 									</div>
 
 									<div class="md-form form-sm mb-4">
 										<i class="fas fa-lock prefix"></i>
 										@Html.TextBoxFor(u => u.usuario.pass, new { @class = "form-control form-control-sm validate", @type = "password" })
 										@*<input type="password" id="modalLRInput11" class="form-control form-control-sm validate">*@
-										<label data-error="verifique :(" data-success="correcto!" for="modalLRInput11">Contraseña</label>
+										<label>Contraseña</label>
 									</div>
 									<div class="text-center mt-2">
 										<button type="submit" class="btn btn-success blue-gradient">Ingresar <i class="fas fa-sign-in ml-1"></i></button>
@@ -252,13 +252,10 @@
 
 						<ul class="list-unstyled">
 							<li>
-								<a class="fadeLinks" href="#!">Que es ShuffleAway! ?</a>
+								<a class="fadeLinks" href="@Url.Action("About", "Home")">Que es ShuffleAway! ?</a>
 							</li>
 							<li>
-								<a class="fadeLinks" href="#!">Sobre nosotros</a>
-							</li>
-							<li>
-								<a class="fadeLinks" href="#!">Contactanos</a>
+								<a class="fadeLinks" href="@Url.Action("Contacto", "Home")">Contactanos</a>
 							</li>
 						</ul>
 

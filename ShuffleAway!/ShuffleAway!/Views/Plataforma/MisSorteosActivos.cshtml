@@ -6,22 +6,26 @@
 	Layout = "~/Views/Shared/_LayoutPlataforma.cshtml";
 }
 
-<h2 class="mt-5">Sorteos activos</h2>
+<div class="row">
+	<div class="col-md-12 text-lg-left">
+		<h3>Tus sorteos activos...</h3>
+	</div>
+</div>
 
 <div class="container mt-5">
 	<div class="row">
-		<div class="col-8">
-			<p class="list-group-item list-group-item-primary text-center">Sorteos</p>
+		<div class="col-8" style="left: 30px">
+			<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Sorteos</p>
 			@foreach (var item in Model.lstSorteos)
 			{
-				<a href="#!" class="list-group-item list-group-item-action list-group-item-action">
+				<a href="#!" class="list-group-item list-group-item-action list-group-item-action fadeLinks">
 					@item.nombreSorteo
 				</a>
 			}
 
 		</div>
 		<div class="col-4 text-center">
-			<p class="list-group-item list-group-item-primary text-center">Finalizacion</p>
+			<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Finalizacion</p>
 			@foreach (var item in Model.lstSorteos)
 			{
 				<p class="list-group-item list-group-item">@item.fechaFin</p>
