@@ -79,10 +79,12 @@ namespace ShuffleAway_.Controllers
 			if (mvc.usuario.logueado)
 			{
 				//guardo el usuario en la sesión
+				mvc.lstProvincias = datos.getListaProvincias();
 				Session["usuario"] = mvc.usuario;
 				//se guarda el usuario en las cookies
 				FormsAuthentication.SetAuthCookie(mvc.usuario.email, false);
-				return RedirectToAction("Index", "Plataforma");
+				return RedirectToAction("Index", "Home", new { mvc = mvc });
+				//return View("/Views/Home/Index.cshtml", mvc);
 			}
 			else
 			{
