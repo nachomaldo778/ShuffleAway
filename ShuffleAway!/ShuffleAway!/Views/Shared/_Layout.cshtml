@@ -32,8 +32,8 @@
 								<a class="nav-link dropdown-toggle fadeLinks" id="navbarDropdownMenuLink" data-toggle="dropdown"
 								   aria-haspopup="true" aria-expanded="false">Sorteos</a>
 								<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item fadeLinks" href="#">Cómo crear</a>
-									<a class="dropdown-item fadeLinks" href="#">Cómo participar</a>
+									<a class="dropdown-item fadeLinks" href="@Url.Action("Index", "Plataforma")">Crear sorteo</a>
+									<a class="dropdown-item fadeLinks" href="@Url.Action("Index", "Inscripcion")">Sorteos activos</a>
 								</div>
 							</li>
 							<li class="nav-item">
@@ -54,23 +54,17 @@
 									<span class="sr-only">(current)</span>
 								</a>
 							</li>
-							<li class="nav-item d-inline-flex">
-								<a class="nav-link fadeLinks" href="@Url.Action("Index", "Plataforma")">
-									Sorteos activos!
-									<span class="sr-only">(current)</span>
-								</a>
-							</li>
 						</ul>
 						<ul class="navbar-nav ml-auto">
 							@if (Model.usuario != null && Model.usuario.logueado)
 							{
 								<li class="nav-item dropdown">
-									<a class="badge badge-success nav-link dropdown-toggle fadeLinks text-white" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-									   aria-haspopup="true" aria-expanded="false" style="font-size: 12px">
-										@Model.usuario.nombre @Model.usuario.apellido
+									<a class="nav-link dropdown-toggle fadeLinks text-white" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+									   aria-haspopup="true" aria-expanded="false" style="font-size: 16px">
+										@Model.usuario.nombreUsuario
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-										<a class="dropdown-item" href="@Url.Action("LogOut", "Usuario")" style="font-size: 12px !important">Cerrar sesión</a>
+										<a class="dropdown-item" href="@Url.Action("LogOut", "Usuario")" style="font-size: 16px !important">Cerrar sesión</a>
 									</div>
 								</li>
 							}
@@ -241,17 +235,17 @@
 					<div class="col-md-2 mx-auto">
 
 						<!-- Links -->
-						<h6 class="font-weight-bold text-uppercase mt-3 mb-4 light-blue-text">Aplicaciones</h6>
+						<h6 class="font-weight-bold text-uppercase mt-3 mb-4 light-blue-text">Sorteos...</h6>
 
 						<ul class="list-unstyled">
 							<li>
 								<a class="fadeLinks" href="#!">Cómo funcionan los sorteos?</a>
 							</li>
 							<li>
-								<a class="fadeLinks" href="#!">Crea tu sorteo</a>
+								<a class="fadeLinks" href="@Url.Action("Index", "Plataforma")">Crea tu sorteo</a>
 							</li>
 							<li>
-								<a class="fadeLinks" href="#!">Participa de un sorteo</a>
+								<a class="fadeLinks" href="@Url.Action("Index", "Inscripcion")">Participa de un sorteo</a>
 							</li>
 						</ul>
 

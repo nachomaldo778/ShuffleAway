@@ -259,6 +259,8 @@
     <Content Include="Views\Plataforma\MisSorteosActivos.cshtml" />
     <Content Include="Views\Home\CheckoutUsr.cshtml" />
     <Content Include="Views\Inscripcion\Ajustes.cshtml" />
+    <Content Include="Views\Inscripcion\InscripcionSorteo.cshtml" />
+    <Content Include="Views\Inscripcion\MisInscripciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

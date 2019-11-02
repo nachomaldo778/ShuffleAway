@@ -13,5 +13,18 @@ namespace ShuffleAway_.Controllers
         {
             return View();
         }
+        public ActionResult InscripcionSorteo()
+        {
+            return View();
+        }
+        public ActionResult Ajustes()
+        {
+            return View();
+        }
+
+        public ActionResult MisInscripciones()
+        {
+            return View();
+        }
     }
 }

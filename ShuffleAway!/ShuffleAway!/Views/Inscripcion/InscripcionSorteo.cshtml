@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "InscripcionSorteo";
+    Layout = "~/Views/Shared/_LayoutInscripcion.cshtml";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <title>Bootstrap 4 Login/Register Form</title>
+</head>
+<body class="fondoInscripcion">
+    <div id="logreg-forms">
+        <form class="form-signin">
+            <h1 class="h3 mb-4 font-weight-normal" style="text-align: center"> Nombre sorteo</h1>
+            <hr />
+            <p class="h-50 mb-5 font-weight-normal" style="text-align: center; word-wrap:break-word;">
+                Aca va la descripcion del sorteo asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+            </p>
+            <div class="social-login mb-4">
+                <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Iniciar sesion</span> </button>
+            </div>
+            <hr />
+            <p class="h5 mb-3 font-weight-normal" style="text-align:center"> Entradas: </p>
+            <a class="fadeLinks">Ver pagina<i class="fas fa-user-plus" style="float: right;"></i></a>
+            <a class="fadeLinks">Visitar post<i class="fas fa-user-plus" style="float: right;"></i></a>
+            <a class="fadeLinks">Visitar usuario<i class="fas fa-user-plus" style="float: right;"></i></a>
+
+            <hr />
+            <a class="mb-2" style="text-align:center" href="@Url.Action("PrivacidadYCondiciones", "Home")">Terminos del servicio</a>
+        </form>
+
+    </div>
+</body>
+</html>
