@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Facebook;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,5 +27,18 @@ namespace ShuffleAway_.Controllers
         {
             return View();
         }
+
+		public ActionResult PruebaFb()
+		{
+			var token = "EAAHb8YzCPAQBANS3whwaPVCSg6EqYmZCJpPFKocI5ztvZCTfmSXnrR1L9uPSQKwUWkJoNCZB6GOxslSBZBk9hJ8QIdRMdmok3zPJiEe5BjsZAuCnNd02xAubHXs6ZCK7U6GeehZBynJxOrn4bXfPPRE3HZB7ZAZACgUvIFZCHlGvZAtaYV3h8W4zSZB57";
+			
+			var client = new FacebookClient(token);
+
+			dynamic me = client.Get("me");
+			string firstName = me.first_name;
+			string lastName = me.last_name;
+
+			return View();
+		}
     }
 }

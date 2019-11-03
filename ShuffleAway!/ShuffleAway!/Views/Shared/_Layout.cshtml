@@ -1,4 +1,18 @@
 ﻿@model ShuffleAway_.Models.MvcModel
+
+@{
+	var linkSorteosActivos = "javascript:void(0)";
+	if (Model.usuario != null)
+	{
+		if (Model.usuario.logueado)
+		{
+			linkSorteosActivos = Url.Action("Index", "Inscripcion");
+		}
+
+	}
+}
+
+
 <!DOCTYPE html>
 
 <html>
@@ -13,6 +27,8 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 	<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -33,7 +49,7 @@
 								   aria-haspopup="true" aria-expanded="false">Sorteos</a>
 								<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
 									<a class="dropdown-item fadeLinks" href="@Url.Action("Index", "Plataforma")">Crear sorteo</a>
-									<a class="dropdown-item fadeLinks" href="@Url.Action("Index", "Inscripcion")">Sorteos activos</a>
+									<a id="btnSorteosAct" class="dropdown-item fadeLinks" href="@linkSorteosActivos">Sorteos activos</a>
 								</div>
 							</li>
 							<li class="nav-item">
@@ -377,7 +393,31 @@
 		<script type="text/javascript">$('#alert-correcto').toast('show');</script>
 	}
 
+	<div id="alert-error-ins" role="alert" aria-live="assertive" aria-atomic="true"
+		 class="toast" data-autohide="true" data-delay="5000" style="position: fixed; top: 10px; right: 10px;z-index: 9999999">
+		<div class="toast-header">
+			<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+				 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				<rect fill="red" width="100%" height="100%" />
+			</svg>
+			<strong class="mr-auto">SuffleAway!</strong>
+			<small>notificación</small>
+		</div>
+		<div class="toast-body">
+			¡Debe estar logueado para ver los sorteos activos!
+		</div>
+	</div>
+
 	@RenderSection("scriptCheckoutUsr", false)
+	@RenderSection("scriptPlanPrecio", false)
+
+	<script>
+		$('#btnSorteosAct').click(function () {
+			if ($(this).attr('href') === 'javascript:void(0)') {
+				$('#alert-error-ins').toast('show');
+			}
+		})
+	</script>
 
 </body>
 </html>

@@ -1,48 +1,85 @@
-﻿<section class="pricing py-5">
-    <div class="container">
-        <div class="row">
-            <!-- Regular Tier -->
-            <div class="col-lg-5">
-                <div class="card mb-5 mb-lg-0">
-                    <div class="card-body">
-                        <h5 class="card-title text-muted text-uppercase text-center">Regular</h5>
-                        <h6 class="card-price text-center">$0<span class="period">/mes</span></h6>
-                        <hr>
-                        <ul class="fa-ul">
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Libre participacion en sorteos</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Acceso a la lista de sorteos activos</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Personalizacion del perfil</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Ranking mensual con reconocimientos</li>
-                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Creacion de sorteos</li>
-                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Seguimiento de tus sorteos</li>
-                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Acceso a estadisticas</li>
-                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Crecimiento continuo de tu pagina</li>
-                        </ul>
-                        <a href="#" class="btn btn-block btn-primary text-uppercase">EMPEZAR</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Premium Tier -->
-            <div class="col-lg-5">
-                <div class="card mb-5 mb-lg-0">
-                    <div class="card-body">
-                        <h5 class="card-title text-muted text-uppercase text-center">Premium</h5>
-                        <h6 class="card-price text-center">$750<span class="period">/mes</span></h6>
-                        <hr>
-                        <ul class="fa-ul">
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Libre participacion en sorteos</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Acceso a la lista de sorteos activos</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Personalizacion del perfil</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Ranking mensual con reconocimientos</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Creacion de sorteos</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Seguimiento de tus sorteos</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Acceso a estadisticas</li>
-                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Crecimiento continuo de tu pagina</li>
-                        </ul>
-                        <a href="@Url.Action("CheckoutUsr", "Home")" class="btn btn-block btn-primary text-uppercase">SUSCRIBIRSE</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+﻿@{
+	var link = "javascript:void(0)";
+	if (Model.usuario != null)
+	{
+		if (Model.usuario.logueado)
+		{
+			link = Url.Action("CheckoutUsr", "Home");
+		}
+
+	}
+}
+
+<section class="pricing py-5">
+	<div class="container">
+		<div class="row">
+			<!-- Regular Tier -->
+			<div class="col-lg-5">
+				<div class="card mb-5 mb-lg-0">
+					<div class="card-body">
+						<h5 class="card-title text-muted text-uppercase text-center">Regular</h5>
+						<h6 class="card-price text-center">$0<span class="period">/mes</span></h6>
+						<hr>
+						<ul class="fa-ul">
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Libre participacion en sorteos</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Acceso a la lista de sorteos activos</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Personalizacion del perfil</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Ranking mensual con reconocimientos</li>
+							<li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Creacion de sorteos</li>
+							<li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Seguimiento de tus sorteos</li>
+							<li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Acceso a estadisticas</li>
+							<li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Crecimiento continuo de tu pagina</li>
+						</ul>
+						<a href="#" class="btn btn-block btn-primary text-uppercase">EMPEZAR</a>
+					</div>
+				</div>
+			</div>
+			<!-- Premium Tier -->
+			<div class="col-lg-5">
+				<div class="card mb-5 mb-lg-0">
+					<div class="card-body">
+						<h5 class="card-title text-muted text-uppercase text-center">Premium</h5>
+						<h6 class="card-price text-center">$750<span class="period">/mes</span></h6>
+						<hr>
+						<ul class="fa-ul">
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Libre participacion en sorteos</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Acceso a la lista de sorteos activos</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Personalizacion del perfil</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Ranking mensual con reconocimientos</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Creacion de sorteos</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Seguimiento de tus sorteos</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Acceso a estadisticas</li>
+							<li><span class="fa-li"><i class="fas fa-check"></i></span>Crecimiento continuo de tu pagina</li>
+						</ul>
+						<a id="btnSuscribir" href="@link" class="btn btn-block btn-primary text-uppercase">SUSCRIBIRSE</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
+
+<div id="alert-error-ins" role="alert" aria-live="assertive" aria-atomic="true"
+	 class="toast" data-autohide="true" data-delay="5000" style="position: fixed; top: 10px; right: 10px;z-index: 9999999">
+	<div class="toast-header">
+		<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+			 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+			<rect fill="red" width="100%" height="100%" />
+		</svg>
+		<strong class="mr-auto">SuffleAway!</strong>
+		<small>notificación</small>
+	</div>
+	<div class="toast-body">
+		¡Debe estar logueado para suscribirse!
+	</div>
+</div>
+
+@section scriptPlanPrecio{
+	<script>
+		$('#btnSuscribir').click(function () {
+			if ($(this).attr('href') === 'javascript:void(0)') {
+				$('#alert-error-ins').toast('show');
+			}
+		})
+	</script>
+}
