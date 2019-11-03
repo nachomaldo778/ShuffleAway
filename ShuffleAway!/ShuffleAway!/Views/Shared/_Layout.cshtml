@@ -2,11 +2,14 @@
 
 @{
 	var linkSorteosActivos = "javascript:void(0)";
+	var linkCrearSorteo = "javascript:void(0)";
+	
 	if (Model.usuario != null)
 	{
 		if (Model.usuario.logueado)
 		{
-			linkSorteosActivos = Url.Action("Index", "Inscripcion");
+			linkSorteosActivos = Url.Action("Index", "Plataforma");
+			linkCrearSorteo = @Url.Action("CrearSorteo", "Plataforma");
 		}
 
 	}
@@ -48,7 +51,11 @@
 								<a class="nav-link dropdown-toggle fadeLinks" id="navbarDropdownMenuLink" data-toggle="dropdown"
 								   aria-haspopup="true" aria-expanded="false">Sorteos</a>
 								<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item fadeLinks" href="@Url.Action("Index", "Plataforma")">Crear sorteo</a>
+									@if (Model.usuario != null && Model.usuario.idTipoUsuario == 2)
+									{
+										<a id="btnCrearSorteo" class="dropdown-item fadeLinks" href="@linkCrearSorteo">Crear sorteo</a>
+									}
+
 									<a id="btnSorteosAct" class="dropdown-item fadeLinks" href="@linkSorteosActivos">Sorteos activos</a>
 								</div>
 							</li>
@@ -403,8 +410,8 @@
 			<strong class="mr-auto">SuffleAway!</strong>
 			<small>notificación</small>
 		</div>
-		<div class="toast-body">
-			¡Debe estar logueado para ver los sorteos activos!
+		<div class="toast-body" id="msjErrorHomeSorteo">
+			
 		</div>
 	</div>
 
@@ -414,6 +421,14 @@
 	<script>
 		$('#btnSorteosAct').click(function () {
 			if ($(this).attr('href') === 'javascript:void(0)') {
+				$('#msjErrorHomeSorteo').html('¡Debe estar logueado para ver los sorteos activos!');
+				$('#alert-error-sort-act').toast('show');
+			}
+		})
+
+		$('#btnCrearSorteo').click(function () {
+			if ($(this).attr('href') === 'javascript:void(0)') {
+				$('#msjErrorHomeSorteo').html('¡Debe estar logueado para crear sorteo!');
 				$('#alert-error-sort-act').toast('show');
 			}
 		})
