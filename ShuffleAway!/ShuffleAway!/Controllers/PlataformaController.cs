@@ -32,7 +32,24 @@ namespace ShuffleAway_.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		public ActionResult CrearSorteo() { return View(); }
+		public ActionResult CrearSorteo()
+		{
+			MvcModel mvc = new MvcModel();
+			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+			if (mvc.usuario != null)
+			{
+				//se llenan las listas para rellenar los combos
+				AccesoDatos datos = new AccesoDatos();
+				mvc.lstPlataformas = datos.getListaPlataformas();
+				mvc.lstProvincias = datos.getListaProvincias();
+				mvc.lstEntradas = datos.getListaEntradas();
+
+
+				return View(mvc);
+			}
+			return RedirectToAction("Index", "Home");
+			
+		}
 
 		[HttpPost]
 		public ActionResult CrearSorteo(MvcModel mvc)

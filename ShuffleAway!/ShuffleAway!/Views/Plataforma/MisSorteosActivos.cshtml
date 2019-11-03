@@ -6,31 +6,36 @@
 	Layout = "~/Views/Shared/_LayoutPlataforma.cshtml";
 }
 
-<div class="row">
-	<div class="col-md-12 text-lg-left">
-		<h3>Tus sorteos activos...</h3>
-	</div>
-</div>
+<div class="content">
+	<div class="container-fluid">
 
-<div class="container mt-5">
-	<div class="row">
-		<div class="col-8" style="left: 30px">
-			<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Sorteos</p>
-			@foreach (var item in Model.lstSorteos)
-			{
-				<a href="#!" class="list-group-item list-group-item-action list-group-item-action fadeLinks">
-					@item.nombreSorteo
-				</a>
-			}
-
+		<div class="row">
+			<div class="col-md-12 text-lg-left">
+				<h3>Tus sorteos activos...</h3>
+			</div>
 		</div>
-		<div class="col-4 text-center">
-			<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Finalizacion</p>
-			@foreach (var item in Model.lstSorteos)
-			{
-				<p class="list-group-item list-group-item">@item.fechaFin</p>
-			}
 
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-8" style="left: 30px">
+					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Sorteos</p>
+					@foreach (var item in Model.lstSorteos)
+					{
+						<a href="#!" class="list-group-item list-group-item-action list-group-item-action fadeLinks">
+							@item.nombreSorteo
+						</a>
+					}
+
+				</div>
+				<div class="col-4 text-center">
+					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Finalizacion</p>
+					@foreach (var item in Model.lstSorteos)
+					{
+						<p class="list-group-item list-group-item">@item.fechaFin</p>
+					}
+
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
