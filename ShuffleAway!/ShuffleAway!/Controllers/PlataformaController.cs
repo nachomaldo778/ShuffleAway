@@ -10,7 +10,7 @@ namespace ShuffleAway_.Controllers
 	{
 		private static Conversor conversor = new Conversor();
 		// GET: Plataforma
-		public ActionResult Index()
+		public ActionResult SorteosActivos()
 		{
 			// creo el modelo MvcModel para despues 
 			// recibir el usuario que se logueó desde el Home

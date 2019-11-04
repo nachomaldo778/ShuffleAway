@@ -245,7 +245,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPlataforma.cshtml" />
-    <Content Include="Views\Plataforma\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutInscripcion.cshtml" />
     <Content Include="Views\Home\PlanPrecios.cshtml" />
     <Content Include="Views\Home\Faq.cshtml" />
@@ -259,6 +258,7 @@
     <Content Include="Views\Home\CheckoutUsr.cshtml" />
     <Content Include="Views\Plataforma\CrearSorteo.cshtml" />
     <Content Include="Views\Plataforma\SorteosActivos.cshtml" />
+    <Content Include="Views\Plataforma\InscripcionSorteo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
