@@ -53,16 +53,6 @@ namespace ShuffleAway_.Controllers
 			mvc.lstProvincias = getListProvincias();
 			return View(mvc);
 		}
-		public ActionResult SorteosActivos()
-		{
-			MvcModel mvc = new MvcModel();
-			if (Session["usuario"] != null)
-			{
-				mvc.usuario = (Usuario)Session["usuario"];
-			}
-			mvc.lstProvincias = getListProvincias();
-			return View(mvc);
-		}
 		public ActionResult ComoParticipar()
 		{
 			MvcModel mvc = new MvcModel();
@@ -84,16 +74,6 @@ namespace ShuffleAway_.Controllers
 			return View(mvc);
 		}
 		public ActionResult Demostracion()
-		{
-			MvcModel mvc = new MvcModel();
-			if (Session["usuario"] != null)
-			{
-				mvc.usuario = (Usuario)Session["usuario"];
-			}
-			mvc.lstProvincias = getListProvincias();
-			return View(mvc);
-		}
-		public ActionResult Contacto()
 		{
 			MvcModel mvc = new MvcModel();
 			if (Session["usuario"] != null)
