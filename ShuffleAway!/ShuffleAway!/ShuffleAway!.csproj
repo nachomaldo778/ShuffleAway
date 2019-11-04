@@ -258,6 +258,7 @@
     <Content Include="Views\Plataforma\MisSorteosActivos.cshtml" />
     <Content Include="Views\Home\CheckoutUsr.cshtml" />
     <Content Include="Views\Plataforma\CrearSorteo.cshtml" />
+    <Content Include="Views\Plataforma\SorteosActivos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
