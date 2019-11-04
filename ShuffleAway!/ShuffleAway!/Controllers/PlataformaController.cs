@@ -3,6 +3,7 @@ using ShuffleAway_.Models.Datos;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ShuffleAway_.Controllers
 {
@@ -25,7 +26,7 @@ namespace ShuffleAway_.Controllers
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
 
-
+				
 				return View(mvc);
 			}
 
@@ -44,6 +45,13 @@ namespace ShuffleAway_.Controllers
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
 
+				if (string.IsNullOrEmpty(mvc.usuario.apellido) ||
+					string.IsNullOrEmpty(mvc.usuario.nombre) ||
+					mvc.usuario.fechaNacimiento == null ||
+					string.IsNullOrEmpty(mvc.usuario.nombreUsuario))
+				{
+					TempData["validar"] = "error";
+				}
 
 				return View(mvc);
 			}
@@ -68,14 +76,14 @@ namespace ShuffleAway_.Controllers
 				{
 					if (datos.RegistrarSorteo(mvc.sorteo) > 0)
 					{
-						TempData["ok"] = "ok";
+						TempData["okCrearSorteo"] = "ok";
 						ModelState.Clear();
 
 						//se llenan las listas para rellenar los combos
 						mvc.lstPlataformas = datos.getListaPlataformas();
 						mvc.lstProvincias = datos.getListaProvincias();
 						mvc.lstEntradas = datos.getListaEntradas();
-						return RedirectToAction("Index", "Plataforma", mvc);
+						return RedirectToAction("MisSorteosActivos", "Plataforma", mvc);
 					}
 				}
 				else
@@ -92,7 +100,7 @@ namespace ShuffleAway_.Controllers
 				mvc.lstPlataformas = datos.getListaPlataformas();
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
-				TempData["err"] = "err";
+				TempData["err-crear-sorteo"] = "err";
 				return View("Index", mvc);
 			}
 			catch (Exception ex)
@@ -167,6 +175,43 @@ namespace ShuffleAway_.Controllers
 
 				throw ex;
 			}
+		}
+
+		public ActionResult MisInscripciones()
+		{
+			return View();
+		}
+
+		public ActionResult LogOut()
+		{
+			FormsAuthentication.SignOut();
+			MvcModel mvc = new MvcModel();
+			Session.Abandon();
+
+			return RedirectToAction("Index", "Home", mvc);
+		}
+
+		public ActionResult EliminarSorteoActivo(long id)
+		{
+			// creo el modelo MvcModel para despues 
+			// recibir el usuario que se logueó desde el Home
+			MvcModel mvc = new MvcModel();
+			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+
+			mvc.lstSorteos = new AccesoDatos().getListaSorteosFiltrado(mvc.usuario.idUsuario);
+
+
+			if (new AccesoDatos().EliminarSorteoActivo(id))
+			{
+				TempData["exitoEliminarSorteo"] = "exito";
+			}
+			else
+			{
+				TempData["errorEliminarSorteo"] = "error";
+			}
+
+
+			return RedirectToAction("MisSorteosActivos", "Plataforma", mvc);
 		}
 	}
 }

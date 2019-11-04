@@ -3,7 +3,7 @@
 @{
 	var linkSorteosActivos = "javascript:void(0)";
 	var linkCrearSorteo = "javascript:void(0)";
-	
+
 	if (Model.usuario != null)
 	{
 		if (Model.usuario.logueado)
@@ -13,6 +13,14 @@
 		}
 
 	}
+
+	//
+	string perfil = "";
+	if (Model.usuario != null)
+	{
+		perfil = (!string.IsNullOrEmpty(Model.usuario.nombreUsuario)) ? Model.usuario.nombreUsuario : Model.usuario.email;
+	}
+
 }
 
 
@@ -84,9 +92,11 @@
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle fadeLinks text-white" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
 									   aria-haspopup="true" aria-expanded="false" style="font-size: 16px">
-										@Model.usuario.nombreUsuario
+										@perfil
 									</a>
+
 									<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+										<a class="dropdown-item" href="@Url.Action("SorteosActivos", "Plataforma")" style="font-size: 16px !important">Ir a plataforma</a>
 										<a class="dropdown-item" href="@Url.Action("LogOut", "Usuario")" style="font-size: 16px !important">Cerrar sesión</a>
 									</div>
 								</li>

@@ -32,6 +32,7 @@
 					@foreach (var item in Model.lstSorteos)
 					{
 						<p class="list-group-item list-group-item">@item.fechaFin</p>
+						<a href="@Url.Action("EliminarSorteoActivo", "Plataforma", new { id = item.idSorteo })">Eliminar</a>
 					}
 
 				</div>
@@ -39,4 +40,96 @@
 		</div>
 	</div>
 </div>
+
+@if (TempData["exitoEliminarSorteo"] != null)
+{
+	<div id="alert-correcto-eliminar-sorteo" role="alert" aria-live="assertive" aria-atomic="true"
+		 class="toast" data-autohide="true" data-delay="5000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+		<div class="toast-header">
+			<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+				 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				<rect fill="#007aff" width="100%" height="100%" />
+			</svg>
+			<strong class="mr-auto">SuffleAway!</strong>
+			<small>notificación</small>
+		</div>
+		<div class="toast-body">
+			¡Sorteo eliminado correctamente!
+		</div>
+	</div>
+
+	@section sorteoEliminadoScript{
+		<script type="text/javascript">$('#alert-correcto-eliminar-sorteo').toast('show');</script>
+	}
+
+}
+
+@if (TempData["errorEliminarSorteo"] != null)
+{
+	<div id="alert-eliminar-sorteo" role="alert" aria-live="assertive" aria-atomic="true"
+		 class="toast" data-autohide="true" data-delay="5000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+		<div class="toast-header">
+			<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+				 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				<rect fill="#FF0000" width="100%" height="100%" />
+			</svg>
+			<strong class="mr-auto">SuffleAway!</strong>
+			<small>notificación</small>
+		</div>
+		<div class="toast-body">
+			Hubo un error al intentar eliminar el sorteo.
+		</div>
+	</div>
+
+	@section sorteoEliminadoScript{
+		<script type="text/javascript">$('#alert-eliminar-sorteo').toast('show');</script>
+	}
+}
+
+@* muestra el mensaje de creacion de Sorteo *@
+@if (TempData["okCrearSorteo"] != null)
+{
+	<div id="alert-correcto-crear" role="alert" aria-live="assertive" aria-atomic="true"
+		 class="toast" data-autohide="true" data-delay="5000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+		<div class="toast-header">
+			<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+				 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				<rect fill="#007aff" width="100%" height="100%" />
+			</svg>
+			<strong class="mr-auto">SuffleAway!</strong>
+			<small>notificación</small>
+		</div>
+		<div class="toast-body">
+			¡Sorteo creado correctamente!
+		</div>
+	</div>
+
+	<script type="text/javascript">$('#alert-correcto-crear').toast('show');</script>
+}
+
+@if (TempData["err-crear-sorteo"] != null)
+{
+
+	foreach (var i in Model.lstErrores)
+	{
+
+		<div id="toast-lst-error" class="toast ml-auto mt-1 mr-1" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="8000">
+			<div class="toast-header">
+				<svg class="rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+					 focusable="false" role="img">
+					<rect fill="#FF0000" width="100%" height="100%" />
+				</svg>
+				<strong class="mr-auto">SuffleAway!</strong>
+				<small class="text-muted">notificación</small>
+			</div>
+			<div class="toast-body">
+				:( @i
+			</div>
+		</div>
+
+	}
+
+	<script type="text/javascript">$('#toast-lst-error').toast('show');</script>
+
+}
 

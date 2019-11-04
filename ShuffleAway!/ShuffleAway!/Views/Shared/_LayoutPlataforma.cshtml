@@ -55,7 +55,7 @@
 
 			<ul class="list-unstyled CTAs text-center">
 				<li>
-					<button class="btn blue-gradient waves-effect btnAnimate rounded-pill btn-sm">Cerrar sesión</button>
+					<a href="@Url.Action("LogOut", "Plataforma")" class="btn blue-gradient waves-effect btnAnimate rounded-pill btn-sm">Cerrar sesión</a>
 				</li>
 			</ul>
 		</nav>
@@ -83,6 +83,8 @@
 
 	@RenderSection("scriptIndex", false)
 	@RenderSection("ajustesScript", false)
+	@RenderSection("crearSorteoBtnScript", false)
+	@RenderSection("sorteoEliminadoScript", false)
 
 </body>
 </html>

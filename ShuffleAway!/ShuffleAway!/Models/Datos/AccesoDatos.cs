@@ -69,7 +69,7 @@ namespace ShuffleAway_.Models.Datos
 					idUsuario = u.idUsuario
 				};
 
-				
+
 				if (conect.Execute(sql, obj) > 0)
 				{
 					usr = u;
@@ -185,7 +185,7 @@ namespace ShuffleAway_.Models.Datos
 
 				string sql3 = "INSERT INTO ProvinciasXSorteo (idProvincia, idSorteo) VALUES (@idP, @idS)";
 
-				
+
 
 				// preparacion de los parametros para usar el array en el primer insert
 				var obj = new
@@ -218,9 +218,9 @@ namespace ShuffleAway_.Models.Datos
 								//hace el insert en EntradasXSorteo
 								conect.Query<bool>(sql2, new { idE = sorteo.lstIdEntradas[i], idS = idSorteo, url = sorteo.lstStrEntradas[e] }).FirstOrDefault();
 							}
-							
+
 						}
-						
+
 					}
 
 					foreach (var o in sorteo.lstIdProvincias.Where(x => x > 0))
@@ -234,5 +234,24 @@ namespace ShuffleAway_.Models.Datos
 
 			return idSorteo;
 		}
+
+		public bool EliminarSorteoActivo(long id)
+		{
+			bool cargado = false;
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "DELETE FROM ProvinciasXSorteo WHERE idSorteo=@id;" +
+								"DELETE FROM EntradasXSorteo WHERE idSorteo=@id;" +
+								"DELETE FROM Sorteos WHERE idSorteo=@id;";
+
+				if (conect.Execute(sql, new { id = id }) > 0)
+				{
+					cargado = true;
+				}
+
+			}
+			return cargado;
+		}
+
 	}
 }
