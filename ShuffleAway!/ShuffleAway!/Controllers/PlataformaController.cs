@@ -182,7 +182,12 @@ namespace ShuffleAway_.Controllers
 			return View();
 		}
 
-		public ActionResult LogOut()
+        public ActionResult InscripcionSorteo()
+        {
+            return View();
+        }
+
+        public ActionResult LogOut()
 		{
 			FormsAuthentication.SignOut();
 			MvcModel mvc = new MvcModel();

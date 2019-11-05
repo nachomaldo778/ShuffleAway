@@ -315,7 +315,8 @@ a.article:hover {
 
 .listaActivosA {
     margin-top: 75px;
-    width: 80%;
+    width: 50%;
+    margin-left: 200px;
 }
 
 .listaActivosB {
@@ -328,6 +329,9 @@ a.article:hover {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: color 200ms linear;
+}
+
+.eliminarSorteo {
 }
 
 /*Estilos cuadro sorteos activos*/

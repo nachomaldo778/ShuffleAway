@@ -91,7 +91,7 @@
 							{
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle fadeLinks text-white" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-									   aria-haspopup="true" aria-expanded="false" style="font-size: 16px">
+									   aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
 										@perfil
 									</a>
 
@@ -104,9 +104,9 @@
 							else
 							{
 								<li class="nav-item dropdown">
-									<i class="fas fa-user"></i>
-									<a class="nav-link dropdown-toggle fadeLinks" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-									   aria-haspopup="true" aria-expanded="false">
+									<i class="fas fa-user iconoPerfil"></i>
+									<a class="nav-link dropdown-toggle fadeLinks text-white" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+									   aria-haspopup="true" aria-expanded="false" style="font-size: 18px; margin-top: 0px; left:-75px">
 										Perfil
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
@@ -293,11 +293,14 @@
 						<!-- Links -->
 						<h6 class="font-weight-bold text-uppercase mt-3 mb-4 light-blue-text">Acerca de...</h6>
 
-						<ul class="list-unstyled">
-							<li>
-								<a class="fadeLinks" href="@Url.Action("About", "Home")">Que es ShuffleAway! ?</a>
-							</li>
-						</ul>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="fadeLinks" href="@Url.Action("About", "Home")">Que es ShuffleAway! ?</a>
+                            </li>
+                            <li>
+                                <a class="fadeLinks" href="@Url.Action("Faq", "Home")">FAQ</a>
+                            </li>
+                        </ul>
 
 					</div>
 					<!-- Grid column -->
