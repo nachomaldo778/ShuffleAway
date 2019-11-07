@@ -187,6 +187,7 @@
     <Content Include="Content\mdb.css" />
     <Content Include="Content\plataformaStyle.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -217,6 +218,11 @@
     <Content Include="fonts\Roboto-Thin.ttf" />
     <Content Include="fonts\Roboto-Thin.woff" />
     <Content Include="fonts\Roboto-Thin.woff2" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -245,7 +251,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPlataforma.cshtml" />
     <Content Include="Views\Home\PlanPrecios.cshtml" />
-    <Content Include="Views\Home\Faq.cshtml" />
     <Content Include="Views\Home\Demostracion.cshtml" />
     <Content Include="Views\Home\ComoCrear.cshtml" />
     <Content Include="Views\Home\ComoParticipar.cshtml" />
