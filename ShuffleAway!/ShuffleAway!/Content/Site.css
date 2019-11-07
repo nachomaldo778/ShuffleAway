@@ -79,14 +79,20 @@ textarea {
 	margin-top: 5%;
 }
 
-
+pre {
+    font-family: 'Varela Round', sans-serif !important;
+    font-size: 16px;
+    display: contents;
+    white-space: pre-line;
+    font-weight: bold;
+}
 /*Section para agregar contenido*/
 #section-intro {
-	width: 100%;
-	display: table;
-	margin: 0;
-	max-width: none;
-	height: 100vh;
+    width: 100%;
+    display: table;
+    margin: 0;
+    max-width: none;
+    height: 100vh;
 }
 
 .tabLogin {

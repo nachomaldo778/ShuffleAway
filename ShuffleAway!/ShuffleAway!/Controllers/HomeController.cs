@@ -43,7 +43,7 @@ namespace ShuffleAway_.Controllers
 			mvc.lstProvincias = getListProvincias();
 			return View(mvc);
 		}
-		public ActionResult PrivacidadYCondiciones()
+		public ActionResult Privacidad()
 		{
 			MvcModel mvc = new MvcModel();
 			if (Session["usuario"] != null)
@@ -53,7 +53,17 @@ namespace ShuffleAway_.Controllers
 			mvc.lstProvincias = getListProvincias();
 			return View(mvc);
 		}
-		public ActionResult ComoParticipar()
+        public ActionResult Terminos()
+        {
+            MvcModel mvc = new MvcModel();
+            if (Session["usuario"] != null)
+            {
+                mvc.usuario = (Usuario)Session["usuario"];
+            }
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
+        public ActionResult ComoParticipar()
 		{
 			MvcModel mvc = new MvcModel();
 			if (Session["usuario"] != null)

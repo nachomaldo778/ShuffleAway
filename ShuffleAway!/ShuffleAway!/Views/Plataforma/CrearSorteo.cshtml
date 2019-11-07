@@ -7,349 +7,355 @@
 }
 
 <div class="content">
-	<div class="container-fluid">
+    <div class="container-fluid">
 
-		@if (TempData["validar"] == null)
-		{
-			<div class="row">
-				<div class="col-md-12 text-lg-left">
-					<h1>Preparando tu sorteo...</h1>
-				</div>
-			</div>
+        @if (TempData["validar"] == null)
+        {
+            <div class="row">
+                <div class="col-md-12 text-lg-left">
+                    <h1 class="my-4 font-weight-bold">Preparando tu sorteo...</h1>
+                </div>
+            </div>
 
-			<section>
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item">
-						<a class="nav-link active" id="preparacion-tab" data-toggle="tab" href="#preparacion" role="tab" aria-controls="preparacion"
-						   aria-selected="true">1. Preparación</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="restricciones-tab" data-toggle="tab" href="#restricciones" role="tab" aria-controls="restricciones"
-						   aria-selected="false">2. Restricción</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="entradas-tab" data-toggle="tab" href="#entradas" role="tab" aria-controls="entradas"
-						   aria-selected="false">3. Entradas</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="premio-tab" data-toggle="tab" href="#premio" role="tab" aria-controls="premio"
-						   aria-selected="false">4. Premio</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="confirmacion-tab" data-toggle="tab" href="#confirmacion" role="tab" aria-controls="confirmacion"
-						   aria-selected="false">5. Confirmación</a>
-					</li>
-				</ul>
-				@using (Html.BeginForm("CrearSorteo", "Plataforma", FormMethod.Post, new { @id = "form-sorteo" }))
-				{
-					<div class="tab-content tab-pasos mt-4" id="myTabContent">
-						@* Empieza tab - Preparacion *@
-						<div class="tab-pane fade show active" id="preparacion" role="tabpanel" aria-labelledby="preparacion-tab">
-							<div>
-								<label>Nombre del sorteo</label>
-								@*<input class="form-control" />*@
-								@Html.TextBoxFor(s => s.sorteo.nombreSorteo, new { @class = "form-control" })
-								<small class="form-text text-muted">
-									Ejemplo: "MiEmpresa: Sorteo notebook Intel"
-								</small>
-							</div>
-							<div class="md-form md-outline">
-								@*<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>*@
-								@Html.TextAreaFor(s => s.sorteo.terminosCondiciones, new { @class = "md-textarea form-control", @rows = "3" })
-								<label for="form75">Términos y condiciones</label>
-							</div>
-							<div class="container ml-0">
-								<label>Fecha inicio:</label>
-								<div class="col-md-5">
-									<div class="form-group">
-										<div class="input-append date form_datetime">
-											@*<input size="26" type="text" value="" readonly />*@
-											@Html.TextBoxFor(s => s.sorteo.strFechaIn, new { @readonly = true, @size = 26 })
-											<span class="add-on"><i class="far fa-calendar-alt"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="container ml-0">
-								<label>Fecha fin:</label>
-								<div class="col-md-5">
-									<div class="form-group">
-										<div class="input-append date form_datetime">
-											@*<input size="26" type="text" value="" readonly />*@
-											@Html.TextBoxFor(s => s.sorteo.strFechaFn, new { @readonly = true, @size = 26 })
-											<span class="add-on"><i class="far fa-calendar-alt"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						@* Termina tab - Preparacion *@
+            <div class="row">
+                <div class="col-md-12 text-lg-left">
+                    <h5 class="my-4 mb-5">Antes de proseguir, asegurate de revisar los<a class="fadeLinks" style="color:dodgerblue;"> términos de servicio</a></h5>
+                </div>
+            </div>
 
-						@* Empieza tab - Restricciones *@
-						<div class="tab-pane fade" id="restricciones" role="tabpanel" aria-labelledby="restricciones-tab">
-							<div>
-								<label>Plataforma a utilizar:</label>
-								@Html.DropDownListFor(s => s.sorteo.idPlataforma, new SelectList(Model.lstPlataformas, "idPlataforma", "nombrePlataforma"), new { @class = "browser-default custom-select" })
-							</div>
-							<div class="mt-4">
-								<label>Provincias autorizadas:</label>
-								<small class="form-text text-muted">
-									Presione Ctrl + click para seleccion múltiple
-								</small>
-								@Html.ListBoxFor(s => s.sorteo.lstIdProvincias, new SelectList(Model.lstProvincias, "idProvincia", "nombreProvincia"), new { @class = "custom-select", @multiple = true, @size = "5" })
-							</div>
-							<label class="mt-4">Edad mínima:</label>
-							<div class="def-number-input number-input safari_only">
-								<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-								@*<input class="quantity" min="0" name="quantity" value="1" type="number" />*@
-								@Html.TextBoxFor(s => s.sorteo.edadMinima, new { @class = "quantity", Value = 1, @type = "number", @min = 0 })
-								<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-							</div>
-						</div>
-						@* Termina tab - Restricciones *@
+            <section>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="preparacion-tab" data-toggle="tab" href="#preparacion" role="tab" aria-controls="preparacion"
+                           aria-selected="true">1. Preparación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="restricciones-tab" data-toggle="tab" href="#restricciones" role="tab" aria-controls="restricciones"
+                           aria-selected="false">2. Restricción</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="entradas-tab" data-toggle="tab" href="#entradas" role="tab" aria-controls="entradas"
+                           aria-selected="false">3. Entradas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="premio-tab" data-toggle="tab" href="#premio" role="tab" aria-controls="premio"
+                           aria-selected="false">4. Premio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="confirmacion-tab" data-toggle="tab" href="#confirmacion" role="tab" aria-controls="confirmacion"
+                           aria-selected="false">5. Confirmación</a>
+                    </li>
+                </ul>
+                @using (Html.BeginForm("CrearSorteo", "Plataforma", FormMethod.Post, new { @id = "form-sorteo" }))
+                {
+                    <div class="tab-content tab-pasos mt-4" id="myTabContent">
+                        @* Empieza tab - Preparacion *@
+                        <div class="tab-pane fade show active" id="preparacion" role="tabpanel" aria-labelledby="preparacion-tab">
+                            <div>
+                                <label>Nombre del sorteo</label>
+                                @*<input class="form-control" />*@
+                                @Html.TextBoxFor(s => s.sorteo.nombreSorteo, new { @class = "form-control" })
+                                <small class="form-text text-muted">
+                                    Ejemplo: "MiEmpresa: Sorteo notebook Intel"
+                                </small>
+                            </div>
+                            <div class="md-form md-outline">
+                                @*<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>*@
+                                @Html.TextAreaFor(s => s.sorteo.terminosCondiciones, new { @class = "md-textarea form-control", @rows = "3" })
+                                <label for="form75">Términos y condiciones</label>
+                            </div>
+                            <div class="container ml-0">
+                                <label>Fecha inicio:</label>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <div class="input-append date form_datetime">
+                                            @*<input size="26" type="text" value="" readonly />*@
+                                            @Html.TextBoxFor(s => s.sorteo.strFechaIn, new { @readonly = true, @size = 26 })
+                                            <span class="add-on"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container ml-0">
+                                <label>Fecha fin:</label>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <div class="input-append date form_datetime">
+                                            @*<input size="26" type="text" value="" readonly />*@
+                                            @Html.TextBoxFor(s => s.sorteo.strFechaFn, new { @readonly = true, @size = 26 })
+                                            <span class="add-on"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @* Termina tab - Preparacion *@
 
-						@* Empieza tab - Entradas *@
-						<div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
-							<div class="entrada-content">
-								<label>Paso 1:</label>
-								@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-								@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
-							</div>
-							<div class="mt-3 entrada-content">
-								<label>Paso 2:</label>
-								@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-								@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
-							</div>
-							<div class="mt-3 entrada-content">
-								<label>Paso 3:</label>
-								@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-								@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
-							</div>
-							<div class="mt-3 entrada-content">
-								<label>Paso 4:</label>
-								@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-								@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
-							</div>
-							<div class="mt-3 entrada-content">
-								<label>Paso 5:</label>
-								@Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-								@Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
-							</div>
-						</div>
-						@* Termina tab - Entradas *@
+                        @* Empieza tab - Restricciones *@
+                        <div class="tab-pane fade" id="restricciones" role="tabpanel" aria-labelledby="restricciones-tab">
+                            <div>
+                                <label>Plataforma a utilizar:</label>
+                                @Html.DropDownListFor(s => s.sorteo.idPlataforma, new SelectList(Model.lstPlataformas, "idPlataforma", "nombrePlataforma"), new { @class = "browser-default custom-select" })
+                            </div>
+                            <div class="mt-4">
+                                <label>Provincias autorizadas:</label>
+                                <small class="form-text text-muted">
+                                    Presione Ctrl + click para seleccion múltiple
+                                </small>
+                                @Html.ListBoxFor(s => s.sorteo.lstIdProvincias, new SelectList(Model.lstProvincias, "idProvincia", "nombreProvincia"), new { @class = "custom-select", @multiple = true, @size = "5" })
+                            </div>
+                            <label class="mt-4">Edad mínima:</label>
+                            <div class="def-number-input number-input safari_only">
+                                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                @*<input class="quantity" min="0" name="quantity" value="1" type="number" />*@
+                                @Html.TextBoxFor(s => s.sorteo.edadMinima, new { @class = "quantity", Value = 1, @type = "number", @min = 0 })
+                                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                            </div>
+                        </div>
+                        @* Termina tab - Restricciones *@
 
-						@* Empieza tab Premio *@
-						<div class="tab-pane fade" id="premio" role="tabpanel" aria-labelledby="premio-tab">
-							<div>
-								<label>Premio:</label>
-								@*<input class="form-control" />*@
-								@Html.TextBoxFor(s => s.sorteo.premio, new { @class = "form-control" })
-								<small class="form-text text-muted">
-									Ejemplo: "Notebook Intel modelo 0001"
-								</small>
-							</div>
-							<div class="md-form md-outline">
-								@*<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>*@
-								@Html.TextAreaFor(s => s.sorteo.descripcionPremio, new { @class = "md-textarea form-control", @rows = "3" })
-								<label for="form75">Descripción del premio...</label>
-							</div>
-							<div>
-								<label>Cantidad de ganadores:</label>
-								<div class="def-number-input number-input safari_only">
-									<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-									@Html.TextBoxFor(s => s.sorteo.numeroGanadores, new { @class = "quantity", @min = "0", Value = 1, @type = "number" })
-									<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-								</div>
-							</div>
-						</div>
-						@* Termina tab Premio *@
+                        @* Empieza tab - Entradas *@
+                        <div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
+                            <div class="entrada-content">
+                                <label>Paso 1:</label>
+                                @Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+                                @Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
+                            </div>
+                            <div class="mt-3 entrada-content">
+                                <label>Paso 2:</label>
+                                @Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+                                @Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
+                            </div>
+                            <div class="mt-3 entrada-content">
+                                <label>Paso 3:</label>
+                                @Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+                                @Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
+                            </div>
+                            <div class="mt-3 entrada-content">
+                                <label>Paso 4:</label>
+                                @Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+                                @Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
+                            </div>
+                            <div class="mt-3 entrada-content">
+                                <label>Paso 5:</label>
+                                @Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
+                                @Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
+                            </div>
+                        </div>
+                        @* Termina tab - Entradas *@
 
-						@* Empieza tab Confirmacion *@
-						<div class="tab-pane fade" id="confirmacion" role="tabpanel" aria-labelledby="confirmacion-tab">
+                        @* Empieza tab Premio *@
+                        <div class="tab-pane fade" id="premio" role="tabpanel" aria-labelledby="premio-tab">
+                            <div>
+                                <label>Premio:</label>
+                                @*<input class="form-control" />*@
+                                @Html.TextBoxFor(s => s.sorteo.premio, new { @class = "form-control" })
+                                <small class="form-text text-muted">
+                                    Ejemplo: "Notebook Intel modelo 0001"
+                                </small>
+                            </div>
+                            <div class="md-form md-outline">
+                                @*<textarea id="form75" class="md-textarea form-control" rows="3"></textarea>*@
+                                @Html.TextAreaFor(s => s.sorteo.descripcionPremio, new { @class = "md-textarea form-control", @rows = "3" })
+                                <label for="form75">Descripción del premio...</label>
+                            </div>
+                            <div>
+                                <label>Cantidad de ganadores:</label>
+                                <div class="def-number-input number-input safari_only">
+                                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                    @Html.TextBoxFor(s => s.sorteo.numeroGanadores, new { @class = "quantity", @min = "0", Value = 1, @type = "number" })
+                                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                </div>
+                            </div>
+                        </div>
+                        @* Termina tab Premio *@
 
-							<div class="row">
-								<div class="col-4">
-									<div class="list-group" id="list-tab" role="tablist">
-										<a class="list-group-item list-group-item-action active" id="list-nombreSorteo-list" data-toggle="list" href="#list-nombreSorteo"
-										   role="tab" aria-controls="home">Nombre de sorteo</a>
-										<a class="list-group-item list-group-item-action" id="list-terms-list" data-toggle="list" href="#list-terms"
-										   role="tab" aria-controls="profile">Términos y condiciones</a>
-										<a class="list-group-item list-group-item-action" id="list-fechas-list" data-toggle="list" href="#list-fechas"
-										   role="tab" aria-controls="messages">Fechas</a>
-										<a class="list-group-item list-group-item-action" id="list-plataformas-list" data-toggle="list" href="#list-plataformas"
-										   role="tab" aria-controls="settings">Plataformas</a>
-										<a class="list-group-item list-group-item-action" id="list-provincias-list" data-toggle="list" href="#list-provincias"
-										   role="tab" aria-controls="settings">Provincias</a>
-										<a class="list-group-item list-group-item-action" id="list-edad-list" data-toggle="list" href="#list-edad"
-										   role="tab" aria-controls="settings">Edad mínima</a>
-										<a class="list-group-item list-group-item-action" id="list-entradas-list" data-toggle="list" href="#list-entradas"
-										   role="tab" aria-controls="settings">Entradas</a>
-										<a class="list-group-item list-group-item-action" id="list-premio-list" data-toggle="list" href="#list-premio"
-										   role="tab" aria-controls="settings">Premio</a>
-									</div>
-								</div>
-								<div class="col-8">
-									<div class="tab-content" id="nav-tabContent">
-										<div class="tab-pane fade show active nombreSorteo"
-											 id="list-nombreSorteo" role="tabpanel" aria-labelledby="list-nombreSorteo-list"></div>
-										<div class="tab-pane fade terms"
-											 id="list-terms" role="tabpanel" aria-labelledby="list-terms-list"></div>
-										<div class="tab-pane fade fechas"
-											 id="list-fechas" role="tabpanel" aria-labelledby="list-fechas-list"></div>
-										<div class="tab-pane fade plataformas"
-											 id="list-plataformas" role="tabpanel" aria-labelledby="list-plataformas-list"></div>
-										<div class="tab-pane fade provincias"
-											 id="list-provincias" role="tabpanel" aria-labelledby="list-provincias-list"></div>
-										<div class="tab-pane fade edad"
-											 id="list-edad" role="tabpanel" aria-labelledby="list-edad-list"></div>
-										<div class="tab-pane fade entradas"
-											 id="list-entradas" role="tabpanel" aria-labelledby="list-entradas-list"></div>
-										<div class="tab-pane fade premio"
-											 id="list-premio" role="tabpanel" aria-labelledby="list-premio-list"></div>
-									</div>
-								</div>
-							</div>
+                        @* Empieza tab Confirmacion *@
+                        <div class="tab-pane fade" id="confirmacion" role="tabpanel" aria-labelledby="confirmacion-tab">
 
-						</div>
-						@* Termina tab Confirmacion *@
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="list-group" id="list-tab" role="tablist">
+                                        <a class="list-group-item list-group-item-action active" id="list-nombreSorteo-list" data-toggle="list" href="#list-nombreSorteo"
+                                           role="tab" aria-controls="home">Nombre de sorteo</a>
+                                        <a class="list-group-item list-group-item-action" id="list-terms-list" data-toggle="list" href="#list-terms"
+                                           role="tab" aria-controls="profile">Términos y condiciones</a>
+                                        <a class="list-group-item list-group-item-action" id="list-fechas-list" data-toggle="list" href="#list-fechas"
+                                           role="tab" aria-controls="messages">Fechas</a>
+                                        <a class="list-group-item list-group-item-action" id="list-plataformas-list" data-toggle="list" href="#list-plataformas"
+                                           role="tab" aria-controls="settings">Plataformas</a>
+                                        <a class="list-group-item list-group-item-action" id="list-provincias-list" data-toggle="list" href="#list-provincias"
+                                           role="tab" aria-controls="settings">Provincias</a>
+                                        <a class="list-group-item list-group-item-action" id="list-edad-list" data-toggle="list" href="#list-edad"
+                                           role="tab" aria-controls="settings">Edad mínima</a>
+                                        <a class="list-group-item list-group-item-action" id="list-entradas-list" data-toggle="list" href="#list-entradas"
+                                           role="tab" aria-controls="settings">Entradas</a>
+                                        <a class="list-group-item list-group-item-action" id="list-premio-list" data-toggle="list" href="#list-premio"
+                                           role="tab" aria-controls="settings">Premio</a>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active nombreSorteo"
+                                             id="list-nombreSorteo" role="tabpanel" aria-labelledby="list-nombreSorteo-list"></div>
+                                        <div class="tab-pane fade terms"
+                                             id="list-terms" role="tabpanel" aria-labelledby="list-terms-list"></div>
+                                        <div class="tab-pane fade fechas"
+                                             id="list-fechas" role="tabpanel" aria-labelledby="list-fechas-list"></div>
+                                        <div class="tab-pane fade plataformas"
+                                             id="list-plataformas" role="tabpanel" aria-labelledby="list-plataformas-list"></div>
+                                        <div class="tab-pane fade provincias"
+                                             id="list-provincias" role="tabpanel" aria-labelledby="list-provincias-list"></div>
+                                        <div class="tab-pane fade edad"
+                                             id="list-edad" role="tabpanel" aria-labelledby="list-edad-list"></div>
+                                        <div class="tab-pane fade entradas"
+                                             id="list-entradas" role="tabpanel" aria-labelledby="list-entradas-list"></div>
+                                        <div class="tab-pane fade premio"
+                                             id="list-premio" role="tabpanel" aria-labelledby="list-premio-list"></div>
+                                    </div>
+                                </div>
+                            </div>
 
-
-					</div>
-
-					<div class="container container-buttons">
-						<div class="row">
-							<div class="col-6">
-								<button type="button" class="btn rounded blue-gradient mt-1 btn-md" id="btnSiguienteTab">Siguiente</button>
-								<button type="button" class="btn rounded purple-gradient mt-1 btn-md">Limpiar</button>
-							</div>
-						</div>
-					</div>
-				}
-			</section>
-
-			@section scriptIndex{
-
-				<script type="text/javascript">
-					$(".form_datetime").datetimepicker({
-						format: "dd MM yyyy - hh:ii",
-						autoclose: true,
-						todayBtn: true,
-						pickerPosition: "bottom-left",
-						language: 'es'
-					});
-				</script>
-
-				<script type="text/javascript">
-
-					/*Entradas - Seleccion de combo, muestra el input correspondiente*/
-
-					$('.txtEntrada').hide(); // oculta todos los input de entradas
-					$('select#sorteo_lstIdEntradas').change(function () {
-						$(this).parent('.entrada-content').find('input').show();
-					});
-
-					/*Boton siguiente step, verifica que paso es para cambiar texto del boton y cambiar el tipo de btn*/
-
-					$('#btnSiguienteTab').click(function (e) {
-						if ($(this).attr('id') === 'btnSiguienteTab') {
-							e.preventDefault();
-							var tab = $('.nav-tabs .active').parent().next('li').find('a');
-							tab.trigger('click');
-							if (tab[0].id === 'confirmacion-tab') {
-								rellenarCamposConfirmacion();
-								$(this).text('Confirmar');
-								$(this).prop("type", "submit");
-								$(this).prop('id', 'btn-submit');
-							}
-						}
-					});
-
-					/*Al seleccionar el step, verifica si es el ultimo paso*/
-
-					$('a.nav-link').click(function () {
-						var tb = $(this).attr('id');
-						console.log(tb);
-						if (tb !== 'confirmacion-tab') {
-							$('#btn-submit').text('Siguiente');
-							$('#btn-submit').prop('id', 'btnSiguienteTab');
-						}
-						if (tb === 'confirmacion-tab') {
-							rellenarCamposConfirmacion();
-							$('#btnSiguienteTab').text('Confirmar');
-							$('#btnSiguienteTab').prop('id', 'btn-submit');
-						}
-					});
-
-					function rellenarCamposConfirmacion() {
-
-						/* Loop para concatenar las provincias seleccionadas */
-						var provincias = [];
-						$('#sorteo_lstIdProvincias option:selected').each(function () {
-							provincias.push($(this).text());
-						});
-						var strProvincias = provincias.join("<br>")
-
-						/* Loop para obtener las entradas seleccionadas */
-						var textoEntradas = [];
-						var urlEntradas = [];
-
-						$('select#sorteo_lstIdEntradas option:selected').each(function () {
-							if ($(this).val() > '0') {
-								textoEntradas.push($(this).text());
-							}
-						});
-
-						$('input#sorteo_lstStrEntradas').each(function () {
-							if ($(this).val() !== '') {
-								urlEntradas.push($(this).val());
-							}
-						})
-
-						// se guardan todos los valores finales para mostrarlos en la ventana de confirmacion
-						var strEntradas = [];
-						for (var i = 0; i < textoEntradas.length; i++) {
-							strEntradas.push(textoEntradas[i] + ' - ' + urlEntradas[i] + '<br>');
-						}
-
-						$('.nombreSorteo').html($('#sorteo_nombreSorteo').val());
-						$('.terms').html($('#sorteo_terminosCondiciones').val());
-						$('.fechas').html($('#sorteo_strFechaIn').val() + ' al ' + $('#sorteo_strFechaFn').val());
-						$('.plataformas').html($('#sorteo_idPlataforma option:selected').text());
-						$('.provincias').html(strProvincias);
-						$('.edad').html($('#sorteo_edadMinima').val() + ' años.');
-						$('.entradas').html(strEntradas);
-						$('.premio').html('Premio: ' + $('#sorteo_premio').val() + '<br>' + 'Descripción: ' + $('#sorteo_descripcionPremio').val() + '<br>' + 'Número de ganadores: ' + $('#sorteo_numeroGanadores').val());
-					}
+                        </div>
+                        @* Termina tab Confirmacion *@
 
 
-				</script>
+                    </div>
 
-				
-			}
-		}
-		else
-		{
-			<div class="card mx-auto">
-				<div class="card-header">
-					Atención!
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">Antes de continuar...</h5>
-					<p class="card-text">Debes completar tus datos personales para crear un sorteo.</p>
-					<a id="btnCompletarDatos" href="@Url.Action("Ajustes", "Plataforma")" class="btn btn-primary">Completar mis datos</a>
-				</div>
-			</div>
+                    <div class="container container-buttons">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn rounded blue-gradient mt-1 btn-md" id="btnSiguienteTab">Siguiente</button>
+                                <button type="button" class="btn rounded purple-gradient mt-1 btn-md">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </section>
 
-			@section crearSorteoBtnScript{
-				<script>
-					$('#btnCompletarDatos').click(function () {
-						$(this).html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Cargando...');
-					});
-				</script>
-			}
+            @section scriptIndex{
 
-		}
+                <script type="text/javascript">
+                    $(".form_datetime").datetimepicker({
+                        format: "dd MM yyyy - hh:ii",
+                        autoclose: true,
+                        todayBtn: true,
+                        pickerPosition: "bottom-left",
+                        language: 'es'
+                    });
+                </script>
+
+                <script type="text/javascript">
+
+                    /*Entradas - Seleccion de combo, muestra el input correspondiente*/
+
+                    $('.txtEntrada').hide(); // oculta todos los input de entradas
+                    $('select#sorteo_lstIdEntradas').change(function () {
+                        $(this).parent('.entrada-content').find('input').show();
+                    });
+
+                    /*Boton siguiente step, verifica que paso es para cambiar texto del boton y cambiar el tipo de btn*/
+
+                    $('#btnSiguienteTab').click(function (e) {
+                        if ($(this).attr('id') === 'btnSiguienteTab') {
+                            e.preventDefault();
+                            var tab = $('.nav-tabs .active').parent().next('li').find('a');
+                            tab.trigger('click');
+                            if (tab[0].id === 'confirmacion-tab') {
+                                rellenarCamposConfirmacion();
+                                $(this).text('Confirmar');
+                                $(this).prop("type", "submit");
+                                $(this).prop('id', 'btn-submit');
+                            }
+                        }
+                    });
+
+                    /*Al seleccionar el step, verifica si es el ultimo paso*/
+
+                    $('a.nav-link').click(function () {
+                        var tb = $(this).attr('id');
+                        console.log(tb);
+                        if (tb !== 'confirmacion-tab') {
+                            $('#btn-submit').text('Siguiente');
+                            $('#btn-submit').prop('id', 'btnSiguienteTab');
+                        }
+                        if (tb === 'confirmacion-tab') {
+                            rellenarCamposConfirmacion();
+                            $('#btnSiguienteTab').text('Confirmar');
+                            $('#btnSiguienteTab').prop('id', 'btn-submit');
+                        }
+                    });
+
+                    function rellenarCamposConfirmacion() {
+
+                        /* Loop para concatenar las provincias seleccionadas */
+                        var provincias = [];
+                        $('#sorteo_lstIdProvincias option:selected').each(function () {
+                            provincias.push($(this).text());
+                        });
+                        var strProvincias = provincias.join("<br>")
+
+                        /* Loop para obtener las entradas seleccionadas */
+                        var textoEntradas = [];
+                        var urlEntradas = [];
+
+                        $('select#sorteo_lstIdEntradas option:selected').each(function () {
+                            if ($(this).val() > '0') {
+                                textoEntradas.push($(this).text());
+                            }
+                        });
+
+                        $('input#sorteo_lstStrEntradas').each(function () {
+                            if ($(this).val() !== '') {
+                                urlEntradas.push($(this).val());
+                            }
+                        })
+
+                        // se guardan todos los valores finales para mostrarlos en la ventana de confirmacion
+                        var strEntradas = [];
+                        for (var i = 0; i < textoEntradas.length; i++) {
+                            strEntradas.push(textoEntradas[i] + ' - ' + urlEntradas[i] + '<br>');
+                        }
+
+                        $('.nombreSorteo').html($('#sorteo_nombreSorteo').val());
+                        $('.terms').html($('#sorteo_terminosCondiciones').val());
+                        $('.fechas').html($('#sorteo_strFechaIn').val() + ' al ' + $('#sorteo_strFechaFn').val());
+                        $('.plataformas').html($('#sorteo_idPlataforma option:selected').text());
+                        $('.provincias').html(strProvincias);
+                        $('.edad').html($('#sorteo_edadMinima').val() + ' años.');
+                        $('.entradas').html(strEntradas);
+                        $('.premio').html('Premio: ' + $('#sorteo_premio').val() + '<br>' + 'Descripción: ' + $('#sorteo_descripcionPremio').val() + '<br>' + 'Número de ganadores: ' + $('#sorteo_numeroGanadores').val());
+                    }
 
 
-	</div>
+                </script>
+
+
+            }
+        }
+        else
+        {
+            <div class="card mx-auto">
+                <div class="card-header">
+                    Atención!
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Antes de continuar...</h5>
+                    <p class="card-text">Debes completar tus datos personales para crear un sorteo.</p>
+                    <a id="btnCompletarDatos" href="@Url.Action("Ajustes", "Plataforma")" class="btn btn-primary">Completar mis datos</a>
+                </div>
+            </div>
+
+            @section crearSorteoBtnScript{
+                <script>
+                    $('#btnCompletarDatos').click(function () {
+                        $(this).html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Cargando...');
+                    });
+                </script>
+            }
+
+        }
+
+
+    </div>
 </div>
