@@ -83,8 +83,17 @@ namespace ShuffleAway_.Controllers
 			mvc.lstProvincias = getListProvincias();
 			return View(mvc);
 		}
-
-		public ActionResult CheckoutUsr()
+        public ActionResult Faq()
+        {
+            MvcModel mvc = new MvcModel();
+            if (Session["usuario"] != null)
+            {
+                mvc.usuario = (Usuario)Session["usuario"];
+            }
+            mvc.lstProvincias = getListProvincias();
+            return View(mvc);
+        }
+        public ActionResult CheckoutUsr()
 		{
 			MvcModel mvc = new MvcModel();
 			if (Session["usuario"] != null)

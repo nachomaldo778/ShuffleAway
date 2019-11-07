@@ -95,14 +95,6 @@ h2 {
 		color: white;
 	}
 
-	#sidebar a:hover {
-		background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 25%, #0052D4 75%) !important;
-		-webkit-background-clip: text;
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
-		transition: color 200ms linear;
-	}
-
 	#sidebar ul li.active > a,
 	a[aria-expanded="true"] {
 		color: #fff;

@@ -33,29 +33,29 @@
 			<h6 class="text-center blue-gradient text-white p-2">Bienvenido!</h6>
             <ul class="list-unstyled components">
                 <li>
-                    <a href="@Url.Action("SorteosActivos", "Plataforma")">Sorteos activos</a>
+                    <a class="fadeLinks" href="@Url.Action("SorteosActivos", "Plataforma")">Sorteos activos</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("MisInscripciones", "Plataforma")">Mis inscripciones</a>
+                    <a class="fadeLinks" href="@Url.Action("MisInscripciones", "Plataforma")">Mis inscripciones</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Ajustes", "Plataforma")">Ajustes de perfil</a>
+                    <a class="fadeLinks" href="@Url.Action("Ajustes", "Plataforma")">Ajustes de perfil</a>
                 </li>
                 @if (Model.usuario.idTipoUsuario == 2)
                 {
                     <h6 class="text-center blue-gradient text-white p-2" style="margin-top: 30px; margin-bottom: 30px;">Seccion premium!</h6>
                     <li>
-                        <a href="@Url.Action("CrearSorteo", "Plataforma")">Crear sorteo</a>
+                        <a class="fadeLinks" href="@Url.Action("CrearSorteo", "Plataforma")">Crear sorteo</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("MisSorteosActivos", "Plataforma")">Mis sorteos activos</a>
+                        <a class="fadeLinks" href="@Url.Action("MisSorteosActivos", "Plataforma")">Mis sorteos activos</a>
                     </li>
                 }
             </ul>
 
 			<ul class="list-unstyled CTAs text-center">
 				<li>
-					<a href="@Url.Action("LogOut", "Plataforma")" class="btn blue-gradient waves-effect btnAnimate rounded-pill btn-sm">Cerrar sesión</a>
+					<a href="@Url.Action("LogOut", "Plataforma")" class="btn rounded blue-gradient rounded-pill">Cerrar sesión</a>
 				</li>
 			</ul>
 		</nav>
