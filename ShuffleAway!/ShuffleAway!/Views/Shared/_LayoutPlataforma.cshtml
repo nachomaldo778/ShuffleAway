@@ -41,6 +41,12 @@
                 <li>
                     <a class="fadeLinks" href="@Url.Action("Ajustes", "Plataforma")">Ajustes de perfil</a>
                 </li>
+                <li>
+                    <a class="fadeLinks" href="@Url.Action("UsuariosMasCreadores", "Plataforma")">Ranking creadores</a>
+                </li>
+                <li>
+                    <a class="fadeLinks" href="@Url.Action("UsuariosMasGanadores", "Plataforma")">Ranking ganadores</a>
+                </li>
                 @if (Model.usuario.idTipoUsuario == 2)
                 {
                     <h6 class="text-center blue-gradient text-white p-2" style="margin-top: 30px; margin-bottom: 30px;">Seccion premium!</h6>
