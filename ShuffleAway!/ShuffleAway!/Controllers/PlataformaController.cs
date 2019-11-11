@@ -2,6 +2,7 @@
 using ShuffleAway_.Models.Datos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -25,8 +26,9 @@ namespace ShuffleAway_.Controllers
 				mvc.lstPlataformas = datos.getListaPlataformas();
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
+				mvc.lstSorteos = datos.getListaSorteosActivos(0); // 0 porque no se requiere un filtro
+				Session["lstSorteos"] = mvc.lstSorteos;
 
-				
 				return View(mvc);
 			}
 
@@ -56,7 +58,7 @@ namespace ShuffleAway_.Controllers
 				return View(mvc);
 			}
 			return RedirectToAction("Index", "Home");
-			
+
 		}
 
 		[HttpPost]
@@ -109,6 +111,7 @@ namespace ShuffleAway_.Controllers
 			}
 
 		}
+		
 
 		[HttpPost]
 		public JsonResult DevolverSorteoConfirmacion(Sorteo sorteo)
@@ -166,7 +169,7 @@ namespace ShuffleAway_.Controllers
 				MvcModel mvc = new MvcModel();
 				mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
 
-				mvc.lstSorteos = new AccesoDatos().getListaSorteosFiltrado(mvc.usuario.idUsuario);
+				mvc.lstSorteos = new AccesoDatos().getListaSorteosActivos(mvc.usuario.idUsuario);
 
 				return View(mvc);
 			}
@@ -179,93 +182,123 @@ namespace ShuffleAway_.Controllers
 
 		public ActionResult MisInscripciones()
 		{
-            // creo el modelo MvcModel para despues 
-            // recibir el usuario que se logueó desde el Home
-            MvcModel mvc = new MvcModel();
-            mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+			// creo el modelo MvcModel para despues 
+			// recibir el usuario que se logueó desde el Home
+			MvcModel mvc = new MvcModel();
+			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
 
-            if (mvc.usuario != null)
-            {
-                //se llenan las listas para rellenar los combos
-                AccesoDatos datos = new AccesoDatos();
-                mvc.lstPlataformas = datos.getListaPlataformas();
-                mvc.lstProvincias = datos.getListaProvincias();
-                mvc.lstEntradas = datos.getListaEntradas();
-
-
-                return View(mvc);
-            }
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        public ActionResult UsuariosMasGanadores()
-        {
-            // creo el modelo MvcModel para despues 
-            // recibir el usuario que se logueó desde el Home
-            MvcModel mvc = new MvcModel();
-            mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
-
-            if (mvc.usuario != null)
-            {
-                //se llenan las listas para rellenar los combos
-                AccesoDatos datos = new AccesoDatos();
-                mvc.lstPlataformas = datos.getListaPlataformas();
-                mvc.lstProvincias = datos.getListaProvincias();
-                mvc.lstEntradas = datos.getListaEntradas();
+			if (mvc.usuario != null)
+			{
+				//se llenan las listas para rellenar los combos
+				AccesoDatos datos = new AccesoDatos();
+				mvc.lstPlataformas = datos.getListaPlataformas();
+				mvc.lstProvincias = datos.getListaProvincias();
+				mvc.lstEntradas = datos.getListaEntradas();
 
 
-                return View(mvc);
-            }
+				return View(mvc);
+			}
 
-            return RedirectToAction("Index", "Home");
-        }
+			return RedirectToAction("Index", "Home");
+		}
 
-        public ActionResult UsuariosMasCreadores()
-        {
-            // creo el modelo MvcModel para despues 
-            // recibir el usuario que se logueó desde el Home
-            MvcModel mvc = new MvcModel();
-            mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+		public ActionResult UsuariosMasGanadores()
+		{
+			// creo el modelo MvcModel para despues 
+			// recibir el usuario que se logueó desde el Home
+			MvcModel mvc = new MvcModel();
+			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
 
-            if (mvc.usuario != null)
-            {
-                //se llenan las listas para rellenar los combos
-                AccesoDatos datos = new AccesoDatos();
-                mvc.lstPlataformas = datos.getListaPlataformas();
-                mvc.lstProvincias = datos.getListaProvincias();
-                mvc.lstEntradas = datos.getListaEntradas();
-
-
-                return View(mvc);
-            }
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        public ActionResult InscripcionSorteo()
-        {
-            // creo el modelo MvcModel para despues 
-            // recibir el usuario que se logueó desde el Home
-            MvcModel mvc = new MvcModel();
-            mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
-
-            if (mvc.usuario != null)
-            {
-                //se llenan las listas para rellenar los combos
-                AccesoDatos datos = new AccesoDatos();
-                mvc.lstPlataformas = datos.getListaPlataformas();
-                mvc.lstProvincias = datos.getListaProvincias();
-                mvc.lstEntradas = datos.getListaEntradas();
+			if (mvc.usuario != null)
+			{
+				//se llenan las listas para rellenar los combos
+				AccesoDatos datos = new AccesoDatos();
+				mvc.lstPlataformas = datos.getListaPlataformas();
+				mvc.lstProvincias = datos.getListaProvincias();
+				mvc.lstEntradas = datos.getListaEntradas();
 
 
-                return View(mvc);
-            }
+				return View(mvc);
+			}
 
-            return RedirectToAction("Index", "Home");
-        }
+			return RedirectToAction("Index", "Home");
+		}
 
-        public ActionResult LogOut()
+		public ActionResult UsuariosMasCreadores()
+		{
+			// creo el modelo MvcModel para despues 
+			// recibir el usuario que se logueó desde el Home
+			MvcModel mvc = new MvcModel();
+			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+
+			if (mvc.usuario != null)
+			{
+				//se llenan las listas para rellenar los combos
+				AccesoDatos datos = new AccesoDatos();
+				mvc.lstPlataformas = datos.getListaPlataformas();
+				mvc.lstProvincias = datos.getListaProvincias();
+				mvc.lstEntradas = datos.getListaEntradas();
+
+
+				return View(mvc);
+			}
+
+			return RedirectToAction("Index", "Home");
+		}
+
+		public ActionResult InscripcionSorteo(long idSorteo)
+		{
+			MvcModel mvc = new MvcModel();
+			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+
+			if (mvc.usuario.logueado)
+			{
+				List<Sorteo> lstSorteos = (List<Sorteo>)Session["lstSorteos"];
+				if (lstSorteos.Count > 0 && lstSorteos != null) // se valida que la lista de sorteos no este vacia
+				{
+					Sorteo s = lstSorteos.Where(x => x.idSorteo == idSorteo).FirstOrDefault();
+					mvc.sorteo = s;
+
+					return View(mvc);
+				}
+
+
+				if (mvc.usuario != null)
+				{
+					//se llenan las listas para rellenar los combos
+					AccesoDatos datos = new AccesoDatos();
+					mvc.lstPlataformas = datos.getListaPlataformas();
+					mvc.lstProvincias = datos.getListaProvincias();
+					mvc.lstEntradas = datos.getListaEntradas();
+					mvc.lstSorteos = datos.getListaSorteosActivos(0); // 0 porque no se requiere un filtro
+					Session["lstSorteos"] = mvc.lstSorteos;
+
+					return View("SorteosActivos", mvc);
+				}
+			}
+
+			return RedirectToAction("Index", "Home");
+			// creo el modelo MvcModel para despues 
+			// recibir el usuario que se logueó desde el Home
+			//MvcModel mvc = new MvcModel();
+			//mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+
+			//if (mvc.usuario != null)
+			//{
+			//	//se llenan las listas para rellenar los combos
+			//	AccesoDatos datos = new AccesoDatos();
+			//	mvc.lstPlataformas = datos.getListaPlataformas();
+			//	mvc.lstProvincias = datos.getListaProvincias();
+			//	mvc.lstEntradas = datos.getListaEntradas();
+
+
+			//	return View(mvc);
+			//}
+
+			//return RedirectToAction("Index", "Home");
+		}
+
+		public ActionResult LogOut()
 		{
 			FormsAuthentication.SignOut();
 			MvcModel mvc = new MvcModel();
@@ -281,7 +314,7 @@ namespace ShuffleAway_.Controllers
 			MvcModel mvc = new MvcModel();
 			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
 
-			mvc.lstSorteos = new AccesoDatos().getListaSorteosFiltrado(mvc.usuario.idUsuario);
+			mvc.lstSorteos = new AccesoDatos().getListaSorteosActivos(mvc.usuario.idUsuario);
 
 
 			if (new AccesoDatos().EliminarSorteoActivo(id))

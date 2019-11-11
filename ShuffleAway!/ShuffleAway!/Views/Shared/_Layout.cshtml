@@ -292,14 +292,14 @@
 						<!-- Links -->
 						<h6 class="font-weight-bold text-uppercase mt-3 mb-4 light-blue-text">Acerca de...</h6>
 
-                        <ul class="list-unstyled">
-                            <li>
-                                <a class="fadeLinks" href="@Url.Action("About", "Home")">Que es ShuffleAway! ?</a>
-                            </li>
-                            <li>
-                                <a class="fadeLinks" href="@Url.Action("Faq", "Home")">FAQ</a>
-                            </li>
-                        </ul>
+						<ul class="list-unstyled">
+							<li>
+								<a class="fadeLinks" href="@Url.Action("About", "Home")">Que es ShuffleAway! ?</a>
+							</li>
+							<li>
+								<a class="fadeLinks" href="@Url.Action("Faq", "Home")">FAQ</a>
+							</li>
+						</ul>
 
 					</div>
 					<!-- Grid column -->
@@ -420,12 +420,13 @@
 			<small>notificación</small>
 		</div>
 		<div class="toast-body" id="msjErrorHomeSorteo">
-			
+
 		</div>
 	</div>
 
 	@RenderSection("scriptCheckoutUsr", false)
 	@RenderSection("scriptPlanPrecio", false)
+	@RenderSection("ss", false)
 
 	<script>
 		$('#btnSorteosAct').click(function () {

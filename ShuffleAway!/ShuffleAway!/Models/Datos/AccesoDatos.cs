@@ -119,14 +119,25 @@ namespace ShuffleAway_.Models.Datos
 			return lst;
 		}
 
-		public List<Sorteo> getListaSorteosFiltrado(long idUsuario)
+		public List<Sorteo> getListaSorteosActivos(long idUsuario = 0)
 		{
 			List<Sorteo> lst = new List<Sorteo>();
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
-				string sql = "SELECT * FROM Sorteos WHERE id_usuario=@idu";
+				string sql = "SELECT * FROM Sorteos";
+				string sql2 = "SELECT e.idEntrada, e.tipoEntrada, es.url FROM Entradas e, EntradasXSorteo es WHERE e.idEntrada=es.idEntrada AND es.idSorteo = @idS";
+				if (idUsuario > 0)
+				{
+					sql += " WHERE id_usuario=@idu";
+				}
 
-				lst = conect.Query<Sorteo>(sql, new { idU = idUsuario }).ToList(); //se llena la lista automaticamente con todas las provincias
+				
+				lst = conect.Query<Sorteo>(sql, new { idU = idUsuario }).ToList(); //se llena la lista automaticamente con todos los sorteos
+
+				foreach (var s in lst)
+				{
+					s.lstEntradas = conect.Query<Entrada>(sql2, new { idS = s.idSorteo }).ToList();
+				}
 			}
 
 			return lst;

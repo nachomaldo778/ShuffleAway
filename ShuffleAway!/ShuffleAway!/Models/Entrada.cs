@@ -10,6 +10,7 @@ namespace ShuffleAway_.Models
         public long idEntrada { get; set; }
         public string tipoEntrada { get; set; }
         public long idPlataforma { get; set; }
+		public string url { get; set; }
 		
     }
 }
