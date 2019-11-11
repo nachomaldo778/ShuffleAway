@@ -15,7 +15,6 @@
 }
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v5.0&appId=523305471851524&autoLogAppEvents=1"></script>
-<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
 <div class="content fondoInscripcion">
 	<div class="container-fluid">
 
@@ -28,8 +27,7 @@
 				</p>
 				<hr />
 				<div class="social-login mb-4 flex-center" style="display: inline-flex;">
-					<button class="btn facebook-btn social-btn" type="button" id="btnLoginFacebook"><span><i class="fab fa-facebook-f"></i> Iniciar sesion</span> </button>
-					<button class="btn instagram-btn social-btn" type="button"><span><i class="fab fa-instagram"></i> Iniciar sesion</span> </button>
+                    <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
 				</div>
 				<hr />
 				<p class="h5 mb-3 font-weight-normal" style="text-align:center"> Entradas: </p>
@@ -76,10 +74,10 @@
 
 		window.fbAsyncInit = function () {
 			FB.init({
-				appId: '{app-id}',
+				appId: '523305471851524',
 				cookie: true,                     // Enable cookies to allow the server to access the session.
 				xfbml: true,                     // Parse social plugins on this webpage.
-				version: '{api-version}'           // Use this Graph API version for this call.
+				version: 'v5.0'           // Use this Graph API version for this call.
 			});
 
 
