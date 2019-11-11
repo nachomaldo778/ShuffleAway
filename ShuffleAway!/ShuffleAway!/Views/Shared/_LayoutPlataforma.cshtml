@@ -23,6 +23,8 @@
 </head>
 
 <body>
+	@RenderSection("scriptFbInscripcion", false)
+
 	<div class="wrapper">
 		<!-- Sidebar  -->
 		<nav id="sidebar" class="stylish-color">
@@ -31,33 +33,33 @@
 			</div>
 
 			<h6 class="text-center blue-gradient text-white p-2">Bienvenido!</h6>
-            <ul class="list-unstyled components">
-                <li>
-                    <a class="fadeLinks" href="@Url.Action("SorteosActivos", "Plataforma")">Sorteos activos</a>
-                </li>
-                <li>
-                    <a class="fadeLinks" href="@Url.Action("MisInscripciones", "Plataforma")">Mis inscripciones</a>
-                </li>
-                <li>
-                    <a class="fadeLinks" href="@Url.Action("Ajustes", "Plataforma")">Ajustes de perfil</a>
-                </li>
-                <li>
-                    <a class="fadeLinks" href="@Url.Action("UsuariosMasCreadores", "Plataforma")">Ranking creadores</a>
-                </li>
-                <li>
-                    <a class="fadeLinks" href="@Url.Action("UsuariosMasGanadores", "Plataforma")">Ranking ganadores</a>
-                </li>
-                @if (Model.usuario.idTipoUsuario == 2)
-                {
-                    <h6 class="text-center blue-gradient text-white p-2" style="margin-top: 30px; margin-bottom: 30px;">Seccion premium!</h6>
-                    <li>
-                        <a class="fadeLinks" href="@Url.Action("CrearSorteo", "Plataforma")">Crear sorteo</a>
-                    </li>
-                    <li>
-                        <a class="fadeLinks" href="@Url.Action("MisSorteosActivos", "Plataforma")">Mis sorteos activos</a>
-                    </li>
-                }
-            </ul>
+			<ul class="list-unstyled components">
+				<li>
+					<a class="fadeLinks" href="@Url.Action("SorteosActivos", "Plataforma")">Sorteos activos</a>
+				</li>
+				<li>
+					<a class="fadeLinks" href="@Url.Action("MisInscripciones", "Plataforma")">Mis inscripciones</a>
+				</li>
+				<li>
+					<a class="fadeLinks" href="@Url.Action("Ajustes", "Plataforma")">Ajustes de perfil</a>
+				</li>
+				<li>
+					<a class="fadeLinks" href="@Url.Action("UsuariosMasCreadores", "Plataforma")">Ranking creadores</a>
+				</li>
+				<li>
+					<a class="fadeLinks" href="@Url.Action("UsuariosMasGanadores", "Plataforma")">Ranking ganadores</a>
+				</li>
+				@if (Model.usuario.idTipoUsuario == 2)
+				{
+					<h6 class="text-center blue-gradient text-white p-2" style="margin-top: 30px; margin-bottom: 30px;">Seccion premium!</h6>
+					<li>
+						<a class="fadeLinks" href="@Url.Action("CrearSorteo", "Plataforma")">Crear sorteo</a>
+					</li>
+					<li>
+						<a class="fadeLinks" href="@Url.Action("MisSorteosActivos", "Plataforma")">Mis sorteos activos</a>
+					</li>
+				}
+			</ul>
 
 			<ul class="list-unstyled CTAs text-center">
 				<li>
