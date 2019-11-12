@@ -15,25 +15,32 @@
 		</div>
 
 		<div class="container">
-			<div class="row">
-				<div class="col-6" style="left: 30px">
-					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Sorteos</p>
-					@foreach (var item in Model.lstSorteos)
-					{
-						<a href="@Url.Action("InscripcionSorteo", "Plataforma", new { idSorteo = item.idSorteo })" class="list-group-item list-group-item-action list-group-item-action fadeLinks">
-							@item.nombreSorteo
-						</a>
-					}
+            <div class="row">
+                <div class="col-6" style="left: 30px">
+                    <p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Sorteos</p>
+                    @foreach (var item in Model.lstSorteos)
+                    {
+                        <a href="@Url.Action("InscripcionSorteo", "Plataforma", new { idSorteo = item.idSorteo })" class="list-group-item list-group-item-action list-group-item-action fadeLinks">
+                            @item.nombreSorteo
+                        </a>
+                    }
 
-				</div>
-				<div class="col-4 text-center">
-					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Finalizacion</p>
-					@foreach (var item in Model.lstSorteos)
-					{
-						<p class="list-group-item list-group-item">@item.fechaFin</p>
-					}
-				</div>
-			</div>
+                </div>
+                <div class="col-2 text-center">
+                    <p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Edad minima</p>
+                    @foreach (var item in Model.lstSorteos)
+                    {
+                        <p class="list-group-item list-group-item">@item.edadMinima</p>
+                    }
+                </div>
+                <div class="col-4 text-center" style="right: 30px">
+                    <p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Finalizacion</p>
+                    @foreach (var item in Model.lstSorteos)
+                    {
+                        <p class="list-group-item list-group-item">@item.fechaFin</p>
+                    }
+                </div>
+            </div>
 		</div>
 	</div>
 </div>

@@ -19,29 +19,33 @@
 	<div class="container-fluid">
 
 		<div id="logreg-forms">
-			<form class="form-signin">
-				<h1 class="h3 mb-4 font-weight-normal" style="text-align: center"> @Model.sorteo.nombreSorteo</h1>
-				<hr />
-				<p class="h-50 mb-5 font-weight-normal" style="text-align: center; word-wrap:break-word;">
-					@Model.sorteo.descripcionPremio
-				</p>
-				<hr />
-				<div class="social-login mb-4 flex-center" style="display: inline-flex;">
+            <form class="form-signin">
+                <h1 class="h3 mb-4 font-weight-normal" style="text-align: center"> @Model.sorteo.nombreSorteo</h1>
+                <hr />
+                <p class="h-50 mb-5 font-weight-normal" style="text-align: justify; word-wrap:break-word;">
+                    @Model.sorteo.descripcionPremio
+                </p>
+                <hr />
+                <p class="h-50 mb-5 font-weight-normal" style="text-align: justify; word-wrap:break-word;">
+                    @Model.sorteo.terminosCondiciones
+                </p>
+                <hr />
+                <div class="social-login mb-4 flex-center" style="display: inline-flex;">
                     <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
-				</div>
-				<hr />
-				<p class="h5 mb-3 font-weight-normal" style="text-align:center"> Entradas: </p>
-				@foreach (var i in Model.sorteo.lstEntradas)
-				{
-					<a href="@i.url" target="_blank" class="fadeLinks">@i.tipoEntrada<i class="fas fa-user-plus" style="float: right;"></i></a>
-				}
+                </div>
+                <hr />
+                <p class="h5 mb-3 font-weight-normal" style="text-align:center"> Entradas: </p>
+                @foreach (var i in Model.sorteo.lstEntradas)
+                {
+                    <a href="@i.url" target="_blank" class="fadeLinks">@i.tipoEntrada<i class="fas fa-user-plus" style="float: right;"></i></a>
+                }
 
-				@*<a class="fadeLinks">Visitar post<i class="fas fa-user-plus" style="float: right;"></i></a>
-					<a class="fadeLinks">Visitar usuario<i class="fas fa-user-plus" style="float: right;"></i></a>*@
+                @*<a class="fadeLinks">Visitar post<i class="fas fa-user-plus" style="float: right;"></i></a>
+        <a class="fadeLinks">Visitar usuario<i class="fas fa-user-plus" style="float: right;"></i></a>*@
 
-				<hr />
-				<a class="mb-2" style="text-align:center" target="_blank" href="@Url.Action("Terminos", "Home")">Terminos del servicio</a>
-			</form>
+                <hr />
+                <a class="mb-2" style="text-align:center" target="_blank" href="@Url.Action("Terminos", "Home")">Terminos del servicio</a>
+            </form>
 
 
 		</div>
