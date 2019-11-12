@@ -117,7 +117,7 @@
                         @* Empieza tab - Entradas *@
                         <div class="tab-pane fade" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
                             <div class="entrada-content">
-                                <h6 class="my-4 mb-5">IMPORTANTE: El límite de entradas por sorteo es 4 (cuatro).</h6>
+                                <h6 class="my-4 mb-5">IMPORTANTE: El límite de entradas por sorteo es 3 (tres).</h6>
                                 <label>Paso 1:</label>
                                 @Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
                                 @Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
@@ -129,11 +129,6 @@
                             </div>
                             <div class="mt-3 entrada-content">
                                 <label>Paso 3:</label>
-                                @Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
-                                @Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
-                            </div>
-                            <div class="mt-3 entrada-content">
-                                <label>Paso 4:</label>
                                 @Html.DropDownListFor(s => s.sorteo.lstIdEntradas, new SelectList(Model.lstEntradas, "idEntrada", "tipoEntrada"), "Seleccione Entrada", new { @class = "browser-default custom-select" })
                                 @Html.TextBoxFor(s => s.sorteo.lstStrEntradas, new { @class = "form-control txtEntrada mt-2", @placeholder = "Url" })
                             </div>
