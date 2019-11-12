@@ -377,10 +377,6 @@ a.article:hover {
 	}
 
 		#logreg-forms a:hover {
-			background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 15%, #0052D4 25%) !important;
-			-webkit-background-clip: text;
-			background-clip: text;
-			-webkit-text-fill-color: transparent;
 			transition: color 200ms linear;
 		}
 
