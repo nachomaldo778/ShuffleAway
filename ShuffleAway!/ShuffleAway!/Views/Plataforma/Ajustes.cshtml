@@ -47,7 +47,7 @@
 				<div class="row">
 					<div class="col-4 mb-3">
 						<label for="validationCustom03">Provincia</label>
-						@Html.DropDownListFor(m => m.usuario.idProvincia, new SelectList(Model.lstProvincias, "idProvincia", "nombreProvincia"), "Tu provincia", new { @class = "browser-default custom-select" })
+						@Html.DropDownListFor(m => m.usuario.idProvincia, new SelectList(Model.lstProvincias, "idProvincia", "nombreProvincia"), "Tu provincia", new { @class = "browser-default custom-select"})
 					</div>
 					<div class="col-4 mb-3">
 						<label for="validationCustom04">E-mail</label>
@@ -57,7 +57,7 @@
 						</div>
 					</div>
 					<div class="col-lg-4 mb-3">
-						<label>Fecha de nacimiento:</label>
+                        <label>Fecha de nacimiento</label>
 						@Html.TextBoxFor(m => m.usuario.strFechaNac, new { @class = "date-pick input-append date form_datetime", @readonly = true, @style = "width: 350px; height: 37px" })
 					</div>
 				</div> <!--ROW END-->
