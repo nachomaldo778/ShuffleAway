@@ -329,7 +329,7 @@ a.article:hover {
 /*Estilos cuadro sorteos activos*/
 
 .fondoInscripcion {
-	height: 100%;
+	height: auto;
 	margin: 0;
 	background-repeat: no-repeat;
 	background-attachment: fixed;

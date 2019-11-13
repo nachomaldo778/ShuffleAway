@@ -31,7 +31,8 @@
                 </p>
                 <hr />
                 <div class="social-login mb-4 flex-center" style="display: inline-flex;">
-                    <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                    <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="false"></div>
+                    
                 </div>
                 <hr />
                 <p class="h5 mb-3 font-weight-normal" style="text-align:center"> Entradas: </p>
@@ -57,7 +58,7 @@
 
 	<script>
 
-		function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+        function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
 			console.log('statusChangeCallback');
 			console.log(response);                   // The current login status of the person.
 			if (response.status === 'connected') {   // Logged into your webpage and Facebook.
@@ -74,7 +75,6 @@
 				statusChangeCallback(response);
 			});
 		}
-
 
 		window.fbAsyncInit = function () {
 			FB.init({
@@ -97,10 +97,9 @@
 			js = d.createElement(s); js.id = id;
 			js.src = "https://connect.facebook.net/en_US/sdk.js";
 			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
+        }(document, 'script', 'facebook-jssdk'));
 
-
-		function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+        function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
 			console.log('Welcome!  Fetching your information.... ');
 			FB.api('/me', function (response) {
 				console.log('Successful login for: ' + response.name);
