@@ -138,6 +138,7 @@ namespace ShuffleAway_.Controllers
 				MvcModel mvc = new MvcModel();
 				mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
 				m.usuario.idUsuario = mvc.usuario.idUsuario; // tomo solo el id del usuario de la Session
+				m.usuario.idTipoUsuario = mvc.usuario.idTipoUsuario;
 				m.lstProvincias = new AccesoDatos().getListaProvincias();
 				m.usuario.fechaNacimiento = conversor.txtAFecha(m.usuario.strFechaNac);
 

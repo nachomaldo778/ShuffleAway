@@ -49,7 +49,6 @@ namespace ShuffleAway_.Models.Datos
 
 		public Usuario ActualizarUsuario(Usuario u) //método para registrar un nuevo usuario
 		{
-			Usuario usr = null;
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 				string sql = "UPDATE Usuarios SET " +
@@ -70,14 +69,11 @@ namespace ShuffleAway_.Models.Datos
 				};
 
 
-				if (conect.Execute(sql, obj) > 0)
-				{
-					usr = u;
-				}
+				conect.Execute(sql, obj);
 
 			}
 
-			return usr;
+			return u;
 		}
 
 		public List<Provincia> getListaProvincias()
