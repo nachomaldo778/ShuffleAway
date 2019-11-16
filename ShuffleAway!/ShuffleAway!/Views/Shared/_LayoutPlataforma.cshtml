@@ -23,77 +23,78 @@
 </head>
 
 <body>
-	@RenderSection("scriptFbInscripcion", false)
+    @RenderSection("scriptFbInscripcion", false)
 
-	<div class="wrapper">
-		<!-- Sidebar  -->
-		<nav id="sidebar" class="stylish-color">
-			<div class="sidebar-header stylish-color" id="logoSidebar">
-				<a href="@Url.Action("Index", "Home")"><img class="logoLayoutPlataforma" src="~/Recursos/img/logos/shuffleaway.png" alt=""></a>
-			</div>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar" class="stylish-color">
+            <div class="sidebar-header stylish-color" id="logoSidebar">
+                <a href="@Url.Action("Index", "Home")"><img class="logoLayoutPlataforma" src="~/Recursos/img/logos/shuffleaway.png" alt=""></a>
+            </div>
 
-			<h6 class="text-center blue-gradient text-white p-2">Bienvenido!</h6>
-			<ul class="list-unstyled components">
-				<li>
-					<a class="fadeLinks" href="@Url.Action("SorteosActivos", "Plataforma")">Sorteos activos</a>
-				</li>
-				<li>
-					<a class="fadeLinks" href="@Url.Action("MisInscripciones", "Plataforma")">Mis inscripciones</a>
-				</li>
-				<li>
-					<a class="fadeLinks" href="@Url.Action("Ajustes", "Plataforma")">Ajustes de perfil</a>
-				</li>
-				<li>
-					<a class="fadeLinks" href="@Url.Action("UsuariosMasCreadores", "Plataforma")">Ranking creadores</a>
-				</li>
-				<li>
-					<a class="fadeLinks" href="@Url.Action("UsuariosMasGanadores", "Plataforma")">Ranking ganadores</a>
-				</li>
-				@if (Model.usuario.idTipoUsuario == 2)
-				{
-					<h6 class="text-center blue-gradient text-white p-2" style="margin-top: 20px; margin-bottom: 20px;">Seccion premium!</h6>
-					<li>
-						<a class="fadeLinks" href="@Url.Action("CrearSorteo", "Plataforma")">Crear sorteo</a>
-					</li>
-					<li>
-						<a class="fadeLinks" href="@Url.Action("MisSorteosActivos", "Plataforma")">Mis sorteos activos</a>
-					</li>
-				}
-			</ul>
+            <h6 class="text-center blue-gradient text-white p-2">Bienvenido!</h6>
+            <ul class="list-unstyled components">
+                <li>
+                    <a class="fadeLinks" href="@Url.Action("SorteosActivos", "Plataforma")">Sorteos activos</a>
+                </li>
+                <li>
+                    <a class="fadeLinks" href="@Url.Action("MisInscripciones", "Plataforma")">Mis inscripciones</a>
+                </li>
+                <li>
+                    <a class="fadeLinks" href="@Url.Action("Ajustes", "Plataforma")">Ajustes de perfil</a>
+                </li>
+                <li>
+                    <a class="fadeLinks" href="@Url.Action("UsuariosMasCreadores", "Plataforma")">Ranking creadores</a>
+                </li>
+                <li>
+                    <a class="fadeLinks" href="@Url.Action("UsuariosMasGanadores", "Plataforma")">Ranking ganadores</a>
+                </li>
+                @if (Model.usuario.idTipoUsuario == 2)
+                {
+                    <h6 class="text-center blue-gradient text-white p-2" style="margin-top: 20px; margin-bottom: 20px;">Seccion premium!</h6>
+                    <li>
+                        <a class="fadeLinks" href="@Url.Action("CrearSorteo", "Plataforma")">Crear sorteo</a>
+                    </li>
+                    <li>
+                        <a class="fadeLinks" href="@Url.Action("MisSorteosActivos", "Plataforma")">Mis sorteos activos</a>
+                    </li>
+                }
+            </ul>
 
-			<ul class="list-unstyled CTAs text-center">
-				<li>
-					<a href="@Url.Action("LogOut", "Plataforma")" class="btn rounded blue-gradient rounded-pill" style="top: -20px;">Cerrar sesión</a>
-				</li>
-			</ul>
-		</nav>
+            <ul class="list-unstyled CTAs text-center">
+                <li>
+                    <a href="@Url.Action("LogOut", "Plataforma")" class="btn rounded blue-gradient rounded-pill" style="top: -20px;">Cerrar sesión</a>
+                </li>
+            </ul>
+        </nav>
 
-		@* Contenido *@
-		@RenderBody()
+        @* Contenido *@
+        @RenderBody()
 
-	</div>
+    </div>
 
-	<!-- JQuery -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/js/mdb.min.js"></script>
-	<script type="text/javascript" src="~/Scripts/shuffleScript.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/js/mdb.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/shuffleScript.js"></script>
 
-	<!--Libreria Datepicker-->
-	<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-	<script src="~/Scripts/bootstrap-datetimepicker.ar.js"></script>
+    <!--Libreria Datepicker-->
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.ar.js"></script>
 
 
 
-	@RenderSection("scriptIndex", false)
-	@RenderSection("ajustesScript", false)
-	@RenderSection("crearSorteoBtnScript", false)
-	@RenderSection("sorteoEliminadoScript", false)
-	@RenderSection("scriptLoginFacebook", false)
+    @RenderSection("scriptIndex", false)
+    @RenderSection("ajustesScript", false)
+    @RenderSection("crearSorteoBtnScript", false)
+    @RenderSection("sorteoEliminadoScript", false)
+    @RenderSection("scriptLoginFacebook", false)
+    @RenderSection("sorteoCreadoScript", false)
 
 </body>
 </html>

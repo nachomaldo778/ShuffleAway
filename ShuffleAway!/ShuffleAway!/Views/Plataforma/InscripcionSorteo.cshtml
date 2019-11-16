@@ -38,7 +38,9 @@
                 <p class="h5 mb-3 font-weight-normal" style="text-align:center"> Entradas: </p>
                 @foreach (var i in Model.sorteo.lstEntradas)
                 {
-                    <a href="@i.url" target="_blank" class="fadeLinks">@i.tipoEntrada<i class="fas fa-user-plus" style="float: right;"></i></a>
+                    <a href="#" class="fadeLinks" data-toggle="collapse">@i.tipoEntrada<i class="fas fa-user-plus" style="float: right;"></i>
+                        
+                    </a>
                 }
                 <hr />
                 <div>

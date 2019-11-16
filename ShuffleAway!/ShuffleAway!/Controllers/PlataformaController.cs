@@ -78,7 +78,7 @@ namespace ShuffleAway_.Controllers
 				{
 					if (datos.RegistrarSorteo(mvc.sorteo) > 0)
 					{
-						TempData["okCrearSorteo"] = "ok";
+						TempData["okCrearSorteo"] = "exito";
 						ModelState.Clear();
 
 						//se llenan las listas para rellenar los combos
@@ -102,7 +102,7 @@ namespace ShuffleAway_.Controllers
 				mvc.lstPlataformas = datos.getListaPlataformas();
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
-				TempData["err-crear-sorteo"] = "err";
+				TempData["errorCrearSorteo"] = "error";
 				return View("Index", mvc);
 			}
 			catch (Exception ex)
