@@ -1,39 +1,95 @@
-﻿
+﻿@model ShuffleAway_.Models.MvcModel
+@using ShuffleAway_.Models
+
 @{
-    ViewBag.Title = "MisInscripciones";
-    Layout = "~/Views/Shared/_LayoutPlataforma.cshtml";
+	ViewBag.Title = "MisInscripciones";
+	Layout = "~/Views/Shared/_LayoutPlataforma.cshtml";
 }
 
-    <div class="content">
-        <div class="container-fluid">
+<div class="content">
+	<div class="container-fluid">
 
-            <div class="row">
-                <div class="col-md-12 text-lg-left">
-                    <h3 class="my-4 font-weight-bold">Tus inscripciones activas...</h3>
-                </div>
-            </div>
+		<div class="row">
+			<div class="col-md-12 text-lg-left">
+				<h3 class="my-4 font-weight-bold">Tus inscripciones activas...</h3>
+			</div>
+		</div>
 
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-5" style="left: 30px">
-                        <p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Sorteos</p>
-                        <p class="list-group-item list-group-item">Sorteo</p>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-4 text-center" style="left: 60px">
+					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Sorteos</p>
+					@foreach (var item in Model.lstInscripciones)
+					{
+						<p class="list-group-item list-group-item">@item.nombreSorteo</p>
+					}
+				</div>
+				<div class="col-3 text-center" style="left: 30px">
+					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Fecha Inscripción</p>
+					@foreach (var item in Model.lstInscripciones)
+					{
+						<p class="list-group-item list-group-item">@item.fechaInscripcion</p>
+					}
+				</div>
+				<div class="col-3 text-center">
+					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Fecha Finalización</p>
+					@foreach (var item in Model.lstInscripciones)
+					{
+						<p class="list-group-item list-group-item">@item.fechaFin</p>
+					}
+				</div>
+				<div class="col-2 text-center" style="right: 30px">
+					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Eliminar</p>
+					@foreach (var item in Model.lstInscripciones)
+					{
+						<a class="list-group-item list-group-item" href="@Url.Action("EliminarSorteoActivo", "Plataforma", new { id = item.idSorteo })"><i class="fas fa-times"></i></a>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-                    </div>
-                    <div class="col-3 text-center">
-                        <p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Finalizacion</p>
-                        <p class="list-group-item list-group-item">Fecha</p>
-                    </div>
-                    <div class="col-2 text-center" style="right: 30px">
-                        <p class="list-group-item list-group-item-primary blue-gradient" style="color:aliceblue;">Eliminar</p>
-                        <a class="list-group-item list-group-item" href="#"><i class="fas fa-times"></i></a>
-                    </div>
-                    <div class="col-2 text-center" style="right: 60px">
-                        <p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Ganador</p>
-                        <p class="list-group-item list-group-item">Nombre usuario</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@if (TempData["insc-exito"] != null)
+{
+	<div id="alert-correcto-crear" role="alert" aria-live="assertive" aria-atomic="true"
+		 class="toast" data-autohide="true" data-delay="5000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+		<div class="toast-header">
+			<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+				 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				<rect fill="#007aff" width="100%" height="100%" />
+			</svg>
+			<strong class="mr-auto">SuffleAway!</strong>
+			<small>notificación</small>
+		</div>
+		<div class="toast-body">
+			¡Inscripción realizada correctamente!
+		</div>
+	</div>
 
+	@section scriptInscripcionSorteo{
+		<script type="text/javascript">$('#alert-correcto-crear').toast('show');</script>
+	}
+}
+
+@if (TempData["insc-error"] != null)
+{
+
+	<div id="toast-lst-error" class="toast ml-auto mt-1 mr-1" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="8000">
+		<div class="toast-header">
+			<svg class="rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+				 focusable="false" role="img">
+				<rect fill="#FF0000" width="100%" height="100%" />
+			</svg>
+			<strong class="mr-auto">SuffleAway!</strong>
+			<small class="text-muted">notificación</small>
+		</div>
+		<div class="toast-body">
+			Hubo un error al inscribirse al sorteo.
+		</div>
+	</div>
+
+	@section sorteoCreadoScript{
+		<script type="text/javascript">$('#toast-lst-error').toast('show');</script>
+	}
+}

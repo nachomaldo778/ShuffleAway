@@ -122,7 +122,7 @@ namespace ShuffleAway_.Models.Datos
 					sql += " WHERE id_usuario=@idu";
 				}
 
-				
+
 				lst = conect.Query<Sorteo>(sql, new { idU = idUsuario }).ToList(); //se llena la lista automaticamente con todos los sorteos
 
 				foreach (var s in lst)
@@ -254,7 +254,41 @@ namespace ShuffleAway_.Models.Datos
 			}
 			return cargado;
 		}
-        /*
+
+		public bool RegistrarInscripcion(Inscripciones i)
+		{
+			bool cargado = false;
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string validar = "SELECT 1 FROM Inscripciones WHERE idSorteo = @idS AND idUsuario = @idU";
+				string sql = "INSERT INTO Inscripciones (idSorteo, idUsuario, fechaInscripcion) VALUES (@idS, @idU, @fec)";
+
+				if (!conect.Query<bool>(validar, new { idS = i.idSorteo, idU = i.idUsuario }).FirstOrDefault())
+				{
+					if (conect.Execute(sql, new { idS = i.idSorteo, idU = i.idUsuario, fec = i.fechaInscripcion }) > 0)
+					{
+						cargado = true;
+					}
+				}
+
+			}
+			return cargado;
+		}
+
+		public List<Inscripciones> getListaInscripcionesUsuario(long idUsuario = 0)
+		{
+			List<Inscripciones> lst = new List<Inscripciones>();
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "SELECT nombreSorteo, fechaFin, fechaInscripcion FROM Sorteos s, Inscripciones i WHERE s.idSorteo =  i.idSorteo AND i.idUsuario = @idU";
+				
+				lst = conect.Query<Inscripciones>(sql, new { idU = idUsuario }).ToList(); //se llena la lista automaticamente con todos las inscripciones
+				
+			}
+
+			return lst;
+		}
+		/*
         public bool EliminarInscripcionActiva(long id)
         {
             bool cargado = false;
@@ -271,5 +305,5 @@ namespace ShuffleAway_.Models.Datos
             return cargado;
         }
         */
-    }
+	}
 }

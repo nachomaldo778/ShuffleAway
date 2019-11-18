@@ -195,7 +195,7 @@ namespace ShuffleAway_.Controllers
 				mvc.lstPlataformas = datos.getListaPlataformas();
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
-
+				mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario);
 
 				return View(mvc);
 			}
@@ -247,6 +247,10 @@ namespace ShuffleAway_.Controllers
 		{
 			MvcModel mvc = new MvcModel();
 			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+
+			//se guardan los ids para hacer el insert
+			Session["idUsuario"] = mvc.usuario.idUsuario;
+			Session["idSorteo"] = idSorteo;
 
 			if (mvc.usuario.logueado)
 			{
@@ -305,6 +309,40 @@ namespace ShuffleAway_.Controllers
 
 
 			return RedirectToAction("MisSorteosActivos", "Plataforma", mvc);
+		}
+
+		[HttpPost]
+		public ActionResult InscribirASorteo()
+		{
+
+			AccesoDatos datos = new AccesoDatos();
+
+			Inscripciones i = new Inscripciones()
+			{
+				idSorteo = (long)Session["idSorteo"],
+				idUsuario = (long)Session["idUsuario"],
+				fechaInscripcion = DateTime.Now
+			};
+
+			MvcModel mvc = new MvcModel();
+			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+
+			if (datos.RegistrarInscripcion(i))
+			{
+				TempData["insc-exito"] = "ok";
+			}
+			else
+			{
+				TempData["insc-error"] = "error";
+			}
+			//se llenan las listas para rellenar los combos
+			
+			mvc.lstPlataformas = datos.getListaPlataformas();
+			mvc.lstProvincias = datos.getListaProvincias();
+			mvc.lstEntradas = datos.getListaEntradas();
+			mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario);
+
+			return View("MisInscripciones", mvc);
 		}
 
         /*
