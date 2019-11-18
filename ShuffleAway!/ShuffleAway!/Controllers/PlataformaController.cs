@@ -35,7 +35,7 @@ namespace ShuffleAway_.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		public ActionResult CrearSorteo()
+        public ActionResult CrearSorteo()
 		{
 			MvcModel mvc = new MvcModel();
 			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
@@ -205,10 +205,8 @@ namespace ShuffleAway_.Controllers
 
 		public ActionResult UsuariosMasGanadores()
 		{
-			// creo el modelo MvcModel para despues 
-			// recibir el usuario que se logueó desde el Home
 			MvcModel mvc = new MvcModel();
-			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+			mvc.usuario = (Usuario)Session["usuario"];
 
 			if (mvc.usuario != null)
 			{
@@ -227,10 +225,8 @@ namespace ShuffleAway_.Controllers
 
 		public ActionResult UsuariosMasCreadores()
 		{
-			// creo el modelo MvcModel para despues 
-			// recibir el usuario que se logueó desde el Home
 			MvcModel mvc = new MvcModel();
-			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+			mvc.usuario = (Usuario)Session["usuario"];
 
 			if (mvc.usuario != null)
 			{
@@ -279,24 +275,6 @@ namespace ShuffleAway_.Controllers
 			}
 
 			return RedirectToAction("Index", "Home");
-			// creo el modelo MvcModel para despues 
-			// recibir el usuario que se logueó desde el Home
-			//MvcModel mvc = new MvcModel();
-			//mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
-
-			//if (mvc.usuario != null)
-			//{
-			//	//se llenan las listas para rellenar los combos
-			//	AccesoDatos datos = new AccesoDatos();
-			//	mvc.lstPlataformas = datos.getListaPlataformas();
-			//	mvc.lstProvincias = datos.getListaProvincias();
-			//	mvc.lstEntradas = datos.getListaEntradas();
-
-
-			//	return View(mvc);
-			//}
-
-			//return RedirectToAction("Index", "Home");
 		}
 
 		public ActionResult LogOut()
@@ -310,10 +288,8 @@ namespace ShuffleAway_.Controllers
 
 		public ActionResult EliminarSorteoActivo(long id)
 		{
-			// creo el modelo MvcModel para despues 
-			// recibir el usuario que se logueó desde el Home
 			MvcModel mvc = new MvcModel();
-			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
+			mvc.usuario = (Usuario)Session["usuario"];
 
 			mvc.lstSorteos = new AccesoDatos().getListaSorteosActivos(mvc.usuario.idUsuario);
 
@@ -330,5 +306,30 @@ namespace ShuffleAway_.Controllers
 
 			return RedirectToAction("MisSorteosActivos", "Plataforma", mvc);
 		}
-	}
+
+        /*
+
+        public ActionResult EliminarInscripcion(long id)
+        {
+            MvcModel mvc = new MvcModel();
+            mvc.usuario = (Usuario)Session["usuario"];
+
+            mvc.lstSorteos = new AccesoDatos().getListaInscripcionesActivas(mvc.usuario.idUsuario);
+
+
+            if (new AccesoDatos().EliminarInscripcionActiva(id))
+            {
+                TempData["exitoEliminarInscripcion"] = "exito";
+            }
+            else
+            {
+                TempData["errorEliminarInscripcion"] = "error";
+            }
+
+
+            return RedirectToAction("MisInscripciones", "Plataforma", mvc);
+        }
+
+        */
+    }
 }

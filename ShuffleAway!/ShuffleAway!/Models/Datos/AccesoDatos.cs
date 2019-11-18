@@ -12,16 +12,11 @@ namespace ShuffleAway_.Models.Datos
 	{
 		public long RegistrarUsuario(Usuario u) //método para registrar un nuevo usuario
 		{
-			//bool cargado = false;
-			//int lastId = 0
 			long lastUsrId = 0;
 
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 				string verificar = "SELECT 1 FROM Usuarios WHERE email = @email";
-
-				//string sql2 = "INSERT INTO Usuarios(nombreUsuario,pass,idTipoUsuario, nombre, apellido, email, pais, fechaNacimiento) " +
-				//			"VALUES (@nomU,@pass,@idTusr, @nom, @ape, @em, @idPa, @fecNac); SELECT LAST_INSERT_ID()";
 
 				string sql2 = "INSERT INTO Usuarios(pass,idTipoUsuario, email, idProvincia) " +
 							"VALUES (@pass,@idTusr, @em, @idProv); SELECT LAST_INSERT_ID()";
@@ -259,6 +254,22 @@ namespace ShuffleAway_.Models.Datos
 			}
 			return cargado;
 		}
+        /*
+        public bool EliminarInscripcionActiva(long id)
+        {
+            bool cargado = false;
+            using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+            {
+                string sql = "DELETE FROM Inscripciones WHERE idInscripcion=@id";
 
-	}
+                if (conect.Execute(sql, new { id = id }) > 0)
+                {
+                    cargado = true;
+                }
+
+            }
+            return cargado;
+        }
+        */
+    }
 }

@@ -9,18 +9,18 @@ namespace ShuffleAway_.Models
     {
         public long idInscripcion { get; set; }
         public long idSorteo { get; set; }
-        public long idEntrada { get; set; }
+        public long idUsuario { get; set; }
 
         public Inscripciones()
         {
 
         }
 
-        public Inscripciones(long idInscripcion, long idSorteo, long idEntrada)
+        public Inscripciones(long idInscripcion, long idSorteo, long idUsuario)
         {
             this.idInscripcion = idInscripcion;
             this.idSorteo = idSorteo;
-            this.idEntrada = idEntrada;
+            this.idUsuario = idUsuario;
         }
     }
 }

@@ -168,11 +168,9 @@
     <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\Datos\AccesoDatos.cs" />
     <Compile Include="Models\Inscripciones.cs" />
-    <Compile Include="Models\InscripcionesXUsuarios.cs" />
     <Compile Include="Models\MvcModel.cs" />
     <Compile Include="Models\Plataforma.cs" />
     <Compile Include="Models\Provincia.cs" />
-    <Compile Include="Models\Restriccion.cs" />
     <Compile Include="Models\Sorteo.cs" />
     <Compile Include="Models\TiposDeUsuarios.cs" />
     <Compile Include="Models\Usuario.cs" />

@@ -38,9 +38,24 @@
                 <p class="h5 mb-3 font-weight-normal" style="text-align:center"> Entradas: </p>
                 @foreach (var i in Model.sorteo.lstEntradas)
                 {
-                    <a href="#" class="fadeLinks" data-toggle="collapse">@i.tipoEntrada<i class="fas fa-user-plus" style="float: right;"></i>
-                        
-                    </a>
+                <div class="container">
+                    <div class="panel-group" id="entradaAccordion">
+                        <div class="panel panel-default ">
+                            <div class="panel panel-default ">
+                                <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#entradaAccordion" data-target="#entrada1">
+                                    <p class="mb-3 font-weight-normal">
+                                        <a href="#" class="ing">@i.tipoEntrada<i class="fas fa-user-plus" style="float: right;"></i></a>
+                                    </p>
+                                </div>
+                                <div id="entrada1" class="panel-collapse collapse" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <a href="#" class="fadeLinks" style="margin-top: -15px; margin-bottom: 15px;">@i.url</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 }
                 <hr />
                 <div>
