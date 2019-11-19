@@ -42,7 +42,7 @@
 				foreach (var i in Model.sorteo.lstEntradas)
 				{
 					<div class="contenedor-links">
-						<a href="http://@i.url" class="fadeLinks btnRedirigeEntrada" id="@i.idEntrada" data-activado="false">
+						<a href="http://@i.url" target="_blank" class="fadeLinks btnRedirigeEntrada" id="@i.idEntrada" data-activado="false">
 							@i.tipoEntrada<i class="fas fa-chevron-right" style="float: right;"></i>
 						</a>
 					</div>

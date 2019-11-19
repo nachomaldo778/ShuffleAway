@@ -288,7 +288,40 @@ namespace ShuffleAway_.Models.Datos
 
 			return lst;
 		}
-		/*
+
+        /*
+        public List<Ganador> getListaUsuariosMasGanadores()
+        {
+            List<Ganador> lst = new List<Ganador>();
+            using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+            {
+                string sql = "SELECT nombreUsuario, sorteosGanados, @curRank := @curRank + 1 AS rankGanadores FROM Ganadores g, Usuarios u, (SELECT @curRank := 0) r WHERE g.idUsuario =  u.idUsuario GROUP BY nombreUsuario";
+
+                lst = conect.Query<Ganador>(sql, new { idG = idGanador }).ToList(); //se llena la lista automaticamente con todos los ganadores
+
+            }
+
+            return lst;
+        }
+        */
+
+        /*
+        public List<Inscripciones> getListaUsuariosMasParticipativos() 
+        {
+            List<Inscripciones> lst = new List<Inscripciones>();
+            using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+            {
+                string sql = "SELECT nombreUsuario, count(idInscripcion), @curRank := @curRank + 1 AS rankInscripciones FROM Inscripciones i, Usuarios u, (SELECT @curRank := 0) r WHERE i.idUsuario = u.idUsuario GROUP BY nombreUsuario";
+
+                lst = conect.Query<Inscripciones>(sql, new { idI = idInscripcion }).ToList(); //se llena la lista automaticamente con todos los inscriptos
+
+            }
+
+            return lst;
+        }
+        */
+
+        /*
         public bool EliminarInscripcionActiva(long id)
         {
             bool cargado = false;
@@ -305,5 +338,5 @@ namespace ShuffleAway_.Models.Datos
             return cargado;
         }
         */
-	}
+    }
 }
