@@ -13,6 +13,9 @@ namespace ShuffleAway_.Models
 		public DateTime fechaInscripcion { get; set; }
 		public DateTime fechaFin { get; set; }
 		public string nombreSorteo { get; set; }
+		public long cantidadInscripciones { get; set; }
+		public string nombreUsuario { get; set; }
 
-    }
+
+	}
 }

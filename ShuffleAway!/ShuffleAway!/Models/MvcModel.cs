@@ -20,6 +20,7 @@ namespace ShuffleAway_.Models
 		public List<Entrada> lstEntradas { get; set; }
 		public List<Sorteo> lstSorteos { get; set; }
 		public List<Inscripciones> lstInscripciones { get; set; }
+		public List<Ganador> lstGanadores { get; set; }
 		
 	}
 }

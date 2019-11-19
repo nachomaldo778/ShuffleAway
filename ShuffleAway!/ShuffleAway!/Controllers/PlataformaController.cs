@@ -212,10 +212,7 @@ namespace ShuffleAway_.Controllers
 			{
 				//se llenan las listas para rellenar los combos
 				AccesoDatos datos = new AccesoDatos();
-				mvc.lstPlataformas = datos.getListaPlataformas();
-				mvc.lstProvincias = datos.getListaProvincias();
-				mvc.lstEntradas = datos.getListaEntradas();
-
+				mvc.lstGanadores = datos.getListaUsuariosMasGanadores();
 
 				return View(mvc);
 			}
@@ -232,10 +229,7 @@ namespace ShuffleAway_.Controllers
 			{
 				//se llenan las listas para rellenar los combos
 				AccesoDatos datos = new AccesoDatos();
-				mvc.lstPlataformas = datos.getListaPlataformas();
-				mvc.lstProvincias = datos.getListaProvincias();
-				mvc.lstEntradas = datos.getListaEntradas();
-
+				mvc.lstInscripciones = datos.getListaUsuariosMasParticipativos();
 
 				return View(mvc);
 			}
@@ -344,8 +338,9 @@ namespace ShuffleAway_.Controllers
 
 			return View("MisInscripciones", mvc);
 		}
+		
 
-        /*
+		/*
 
         public ActionResult EliminarInscripcion(long id)
         {
@@ -369,5 +364,5 @@ namespace ShuffleAway_.Controllers
         }
 
         */
-    }
+	}
 }
