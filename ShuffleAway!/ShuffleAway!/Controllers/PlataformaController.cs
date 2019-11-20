@@ -220,7 +220,7 @@ namespace ShuffleAway_.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		public ActionResult UsuariosMasCreadores()
+		public ActionResult UsuariosMasParticipativos()
 		{
 			MvcModel mvc = new MvcModel();
 			mvc.usuario = (Usuario)Session["usuario"];

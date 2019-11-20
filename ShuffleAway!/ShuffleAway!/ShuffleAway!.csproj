@@ -266,7 +266,7 @@
     <Content Include="Views\Home\Faq.cshtml" />
     <Content Include="Views\Home\Terminos.cshtml" />
     <Content Include="Views\Plataforma\UsuariosMasGanadores.cshtml" />
-    <Content Include="Views\Plataforma\UsuariosMasCreadores.cshtml" />
+    <Content Include="Views\Plataforma\UsuariosMasParticipativos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
