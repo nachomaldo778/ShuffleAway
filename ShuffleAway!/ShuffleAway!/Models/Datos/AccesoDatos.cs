@@ -110,16 +110,24 @@ namespace ShuffleAway_.Models.Datos
 			return lst;
 		}
 
-		public List<Sorteo> getListaSorteosActivos(long idUsuario = 0)
+		public List<Sorteo> getListaSorteosActivos(long idUsuario, EstadosEnum estado)
 		{
 			List<Sorteo> lst = new List<Sorteo>();
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
-				string sql = "SELECT * FROM Sorteos";
+				string sql = "SELECT * FROM Sorteos s where ";
 				string sql2 = "SELECT e.idEntrada, e.tipoEntrada, es.url FROM Entradas e, EntradasXSorteo es WHERE e.idEntrada=es.idEntrada AND es.idSorteo = @idS";
 				if (idUsuario > 0)
 				{
-					sql += " WHERE id_usuario=@idu";
+					sql += "id_usuario=@idu AND ";
+				}
+				if ((int)estado == 1)
+				{
+					sql += "s.estado = 1";
+				}
+				else
+				{
+					sql += "s.estado <> 1";
 				}
 
 
@@ -244,7 +252,7 @@ namespace ShuffleAway_.Models.Datos
 			{
 				string sql = "DELETE FROM ProvinciasXSorteo WHERE idSorteo=@id;" +
 								"DELETE FROM EntradasXSorteo WHERE idSorteo=@id;" +
-								"DELETE FROM Sorteos WHERE idSorteo=@id;";
+								"UPDATE Sorteos SET estado = 3 WHERE idSorteo=@id;";
 
 				if (conect.Execute(sql, new { id = id }) > 0)
 				{
@@ -261,7 +269,7 @@ namespace ShuffleAway_.Models.Datos
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 				string validar = "SELECT 1 FROM Inscripciones WHERE idSorteo = @idS AND idUsuario = @idU";
-				string sql = "INSERT INTO Inscripciones (idSorteo, idUsuario, fechaInscripcion) VALUES (@idS, @idU, @fec)";
+				string sql = "INSERT INTO Inscripciones (idSorteo, idUsuario, fechaInscripcion, estado) VALUES (@idS, @idU, @fec, 1)";
 
 				if (!conect.Query<bool>(validar, new { idS = i.idSorteo, idU = i.idUsuario }).FirstOrDefault())
 				{
@@ -275,14 +283,14 @@ namespace ShuffleAway_.Models.Datos
 			return cargado;
 		}
 
-		public List<Inscripciones> getListaInscripcionesUsuario(long idUsuario = 0)
+		public List<Inscripciones> getListaInscripcionesUsuario(long idUsuario, EstadosEnum estado)
 		{
 			List<Inscripciones> lst = new List<Inscripciones>();
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
-				string sql = "SELECT nombreSorteo, fechaFin, fechaInscripcion FROM Sorteos s, Inscripciones i WHERE s.idSorteo =  i.idSorteo AND i.idUsuario = @idU";
+				string sql = "SELECT i.idInscripcion as idInscripcion, nombreSorteo, fechaFin, fechaInscripcion, i.estado FROM Sorteos s, Inscripciones i WHERE s.idSorteo =  i.idSorteo AND i.idUsuario = @idU AND i.estado = @e";
 				
-				lst = conect.Query<Inscripciones>(sql, new { idU = idUsuario }).ToList(); //se llena la lista automaticamente con todos las inscripciones
+				lst = conect.Query<Inscripciones>(sql, new { idU = idUsuario, e = (int)estado }).ToList(); //se llena la lista automaticamente con todos las inscripciones
 				
 			}
 
@@ -295,7 +303,7 @@ namespace ShuffleAway_.Models.Datos
 			List<Ganador> lst = new List<Ganador>();
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
-				string sql = "SELECT nombreUsuario, SUM(sorteosGanados) AS sorteosGanados " +
+				string sql = "SELECT nombreUsuario, COUNT(g.idUsuario) AS sorteosGanados " +
 					"FROM Ganadores g, Usuarios u WHERE g.idUsuario =  u.idUsuario GROUP BY nombreUsuario";
 
 				lst = conect.Query<Ganador>(sql).ToList(); //se llena la lista automaticamente con todos los ganadores
@@ -313,7 +321,7 @@ namespace ShuffleAway_.Models.Datos
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 				string sql = "SELECT nombreUsuario, count(idInscripcion) as cantidadInscripciones " +
-					"FROM Inscripciones i, Usuarios u WHERE i.idUsuario = u.idUsuario GROUP BY nombreUsuario";
+					"FROM Inscripciones i, Usuarios u WHERE i.idUsuario = u.idUsuario and i.estado <> 3 GROUP BY nombreUsuario";
 
 				lst = conect.Query<Inscripciones>(sql).ToList(); //se llena la lista automaticamente con todos los inscriptos
 
@@ -323,22 +331,78 @@ namespace ShuffleAway_.Models.Datos
 		}
 
 
-		/*
-        public bool EliminarInscripcionActiva(long id)
-        {
-            bool cargado = false;
-            using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
-            {
-                string sql = "DELETE FROM Inscripciones WHERE idInscripcion=@id";
 
-                if (conect.Execute(sql, new { id = id }) > 0)
-                {
-                    cargado = true;
-                }
+		public bool EliminarInscripcionActiva(long id)
+		{
+			bool cargado = false;
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "UPDATE Inscripciones SET estado = 3 WHERE idInscripcion=@id";
 
-            }
-            return cargado;
-        }
-        */
+				if (conect.Execute(sql, new { id = id }) > 0)
+				{
+					cargado = true;
+				}
+
+			}
+			return cargado;
+		}
+
+		public int obtenerCantidadGanadores(long idSorteo)
+		{
+			int cargado = 0;
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "SELECT numeroGanadores FROM Sorteos s WHERE s.idSorteo = @idS";
+
+				cargado = conect.Query<int>(sql, new { idS = idSorteo }).FirstOrDefault();
+
+
+			}
+			return cargado;
+		}
+
+		public object[] sortearGanadores(long idSorteo, int limit)
+		{
+			List<Ganador> lstGanadores = new List<Ganador>();
+			object[] resultado = new object[2];
+
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "SELECT nombreUsuario, i.idUsuario FROM Inscripciones i, Usuarios u " +
+							"WHERE i.idUsuario = u.idUsuario AND idSorteo = @idS " +
+							"ORDER BY RAND() " +
+							"LIMIT @limit; ";
+
+				string sqlGanadores = "INSERT INTO Ganadores (idUsuario, idSorteo) VALUES (@idU, @idS)";
+
+				string sqlCambiarEstadoSorteo = "UPDATE Sorteos SET estado = 2 WHERE idSorteo = @idS";
+
+				lstGanadores = conect.Query<Ganador>(sql, new { idS = idSorteo, limit = limit }).ToList();
+
+				// hace los insert de los ganadores en la tabla Ganadores
+
+				int c = 0; // contador para validar que se haga los insert en ganadores
+				foreach (var g in lstGanadores)
+				{
+					//hace el insert
+					conect.Query<bool>(sqlGanadores, new { idU = g.idUsuario, idS = idSorteo }).FirstOrDefault();
+					c++;
+				}
+
+				if (c > 0) // validacion para cambiar estado a sorteo
+				{
+					if(conect.Execute(sqlCambiarEstadoSorteo, new { idS = idSorteo }) > 0){
+						resultado[0] = lstGanadores;
+						resultado[1] = true;
+					}
+				}
+				
+			}
+			return resultado;
+		}
+
+
+
 	}
 }

@@ -26,7 +26,7 @@ namespace ShuffleAway_.Controllers
 				mvc.lstPlataformas = datos.getListaPlataformas();
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
-				mvc.lstSorteos = datos.getListaSorteosActivos(0); // 0 porque no se requiere un filtro
+				mvc.lstSorteos = datos.getListaSorteosActivos(0, EstadosEnum.En_Curso); // 0 porque no se requiere un filtro
 				Session["lstSorteos"] = mvc.lstSorteos;
 
 				return View(mvc);
@@ -35,7 +35,7 @@ namespace ShuffleAway_.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-        public ActionResult CrearSorteo()
+		public ActionResult CrearSorteo()
 		{
 			MvcModel mvc = new MvcModel();
 			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
@@ -111,7 +111,7 @@ namespace ShuffleAway_.Controllers
 			}
 
 		}
-		
+
 
 		[HttpPost]
 		public JsonResult DevolverSorteoConfirmacion(Sorteo sorteo)
@@ -145,6 +145,7 @@ namespace ShuffleAway_.Controllers
 				m.usuario = datos.ActualizarUsuario(m.usuario);
 				if (m.usuario != null)
 				{
+					Session["usuario"] = m.usuario;
 					TempData["ok-upd-ajustes"] = "ok";
 					//return RedirectToAction("/Views/Plataforma/Ajustes.cshtml", mvc);
 					return View(m);
@@ -168,9 +169,11 @@ namespace ShuffleAway_.Controllers
 				// creo el modelo MvcModel para despues 
 				// recibir el usuario que se logueó desde el Home
 				MvcModel mvc = new MvcModel();
+				AccesoDatos datos = new AccesoDatos();
 				mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
 
-				mvc.lstSorteos = new AccesoDatos().getListaSorteosActivos(mvc.usuario.idUsuario);
+				mvc.lstSorteos = datos.getListaSorteosActivos(mvc.usuario.idUsuario, EstadosEnum.En_Curso);
+				mvc.lstSorteosHistorial = datos.getListaSorteosActivos(mvc.usuario.idUsuario, EstadosEnum.Cancelado);
 
 				return View(mvc);
 			}
@@ -195,7 +198,7 @@ namespace ShuffleAway_.Controllers
 				mvc.lstPlataformas = datos.getListaPlataformas();
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
-				mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario);
+				mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.En_Curso);
 
 				return View(mvc);
 			}
@@ -237,40 +240,59 @@ namespace ShuffleAway_.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		public ActionResult InscripcionSorteo(long idSorteo)
+		public ActionResult InscripcionSorteo(long idSorteo, int edadMinima)
 		{
 			MvcModel mvc = new MvcModel();
 			mvc.usuario = (Usuario)Session["usuario"]; //recibe el usuario que viene del Home a traves de la Session
 
-			//se guardan los ids para hacer el insert
-			Session["idUsuario"] = mvc.usuario.idUsuario;
-			Session["idSorteo"] = idSorteo;
-
-			if (mvc.usuario.logueado)
+			if (edadMinima <= conversor.calcularEdad(mvc.usuario.fechaNacimiento))
 			{
-				List<Sorteo> lstSorteos = (List<Sorteo>)Session["lstSorteos"];
-				if (lstSorteos.Count > 0 && lstSorteos != null) // se valida que la lista de sorteos no este vacia
+				//se guardan los ids para hacer el insert
+				Session["idUsuario"] = mvc.usuario.idUsuario;
+				Session["idSorteo"] = idSorteo;
+
+				if (mvc.usuario.logueado)
 				{
-					Sorteo s = lstSorteos.Where(x => x.idSorteo == idSorteo).FirstOrDefault();
-					mvc.sorteo = s;
+					List<Sorteo> lstSorteos = (List<Sorteo>)Session["lstSorteos"];
+					if (lstSorteos.Count > 0 && lstSorteos != null) // se valida que la lista de sorteos no este vacia
+					{
+						Sorteo s = lstSorteos.Where(x => x.idSorteo == idSorteo).FirstOrDefault();
+						mvc.sorteo = s;
 
-					return View(mvc);
-				}
+						return View(mvc);
+					}
 
 
-				if (mvc.usuario != null)
-				{
-					//se llenan las listas para rellenar los combos
-					AccesoDatos datos = new AccesoDatos();
-					mvc.lstPlataformas = datos.getListaPlataformas();
-					mvc.lstProvincias = datos.getListaProvincias();
-					mvc.lstEntradas = datos.getListaEntradas();
-					mvc.lstSorteos = datos.getListaSorteosActivos(0); // 0 porque no se requiere un filtro
-					Session["lstSorteos"] = mvc.lstSorteos;
+					if (mvc.usuario != null)
+					{
+						//se llenan las listas para rellenar los combos
+						AccesoDatos datos = new AccesoDatos();
+						mvc.lstPlataformas = datos.getListaPlataformas();
+						mvc.lstProvincias = datos.getListaProvincias();
+						mvc.lstEntradas = datos.getListaEntradas();
+						mvc.lstSorteos = datos.getListaSorteosActivos(0, EstadosEnum.En_Curso); // 0 porque no se requiere un filtro
+						Session["lstSorteos"] = mvc.lstSorteos;
 
-					return View("SorteosActivos", mvc);
+						return View("SorteosActivos", mvc);
+					}
 				}
 			}
+			else
+			{
+				//se llenan las listas para rellenar los combos
+				AccesoDatos datos = new AccesoDatos();
+				mvc.lstPlataformas = datos.getListaPlataformas();
+				mvc.lstProvincias = datos.getListaProvincias();
+				mvc.lstEntradas = datos.getListaEntradas();
+				mvc.lstSorteos = datos.getListaSorteosActivos(0, EstadosEnum.En_Curso); // 0 porque no se requiere un filtro
+				Session["lstSorteos"] = mvc.lstSorteos;
+				TempData["error-inscribirse"] = "error";
+
+				return View("SorteosActivos", mvc);
+			}
+
+
+
 
 			return RedirectToAction("Index", "Home");
 		}
@@ -287,13 +309,14 @@ namespace ShuffleAway_.Controllers
 		public ActionResult EliminarSorteoActivo(long id)
 		{
 			MvcModel mvc = new MvcModel();
+			AccesoDatos datos = new AccesoDatos();
 			mvc.usuario = (Usuario)Session["usuario"];
-
-			mvc.lstSorteos = new AccesoDatos().getListaSorteosActivos(mvc.usuario.idUsuario);
 
 
 			if (new AccesoDatos().EliminarSorteoActivo(id))
 			{
+				mvc.lstSorteos = datos.getListaSorteosActivos(mvc.usuario.idUsuario, EstadosEnum.En_Curso);
+				mvc.lstSorteosHistorial = datos.getListaSorteosActivos(mvc.usuario.idUsuario, EstadosEnum.Cancelado);
 				TempData["exitoEliminarSorteo"] = "exito";
 			}
 			else
@@ -330,39 +353,59 @@ namespace ShuffleAway_.Controllers
 				TempData["insc-error"] = "error";
 			}
 			//se llenan las listas para rellenar los combos
-			
+
 			mvc.lstPlataformas = datos.getListaPlataformas();
 			mvc.lstProvincias = datos.getListaProvincias();
 			mvc.lstEntradas = datos.getListaEntradas();
-			mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario);
+			mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.En_Curso); // 1 es estado En Curso
 
 			return View("MisInscripciones", mvc);
 		}
-		
 
-		/*
+		public ActionResult CambiarEstadoInscripcion(long id)
+		{
+			MvcModel mvc = new MvcModel();
+			AccesoDatos datos = new AccesoDatos();
+			mvc.usuario = (Usuario)Session["usuario"];
 
-        public ActionResult EliminarInscripcion(long id)
-        {
-            MvcModel mvc = new MvcModel();
-            mvc.usuario = (Usuario)Session["usuario"];
-
-            mvc.lstSorteos = new AccesoDatos().getListaInscripcionesActivas(mvc.usuario.idUsuario);
-
-
-            if (new AccesoDatos().EliminarInscripcionActiva(id))
-            {
-                TempData["exitoEliminarInscripcion"] = "exito";
-            }
-            else
-            {
-                TempData["errorEliminarInscripcion"] = "error";
-            }
+			if (datos.EliminarInscripcionActiva(id))
+			{
+				mvc.lstInscripcionesHistorial = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.Cancelado);
+				TempData["exitoEliminarInscripcion"] = "exito";
+			}
+			else
+			{
+				TempData["errorEliminarInscripcion"] = "error";
+			}
 
 
-            return RedirectToAction("MisInscripciones", "Plataforma", mvc);
-        }
+			return RedirectToAction("MisInscripciones", "Plataforma", mvc);
+		}
 
-        */
+		public ActionResult GenerarSorteo(long idSorteo)
+		{
+			MvcModel mvc = new MvcModel();
+			AccesoDatos datos = new AccesoDatos();
+			mvc.usuario = (Usuario)Session["usuario"];
+
+			int cantidadGanadores = datos.obtenerCantidadGanadores(idSorteo);
+			if (cantidadGanadores > 0)
+			{
+				mvc.lstGanadores = (List<Ganador>)datos.sortearGanadores(idSorteo, cantidadGanadores)[0];
+
+				TempData["exito-sorteo"] = "ok";
+			}
+			else
+			{
+				TempData["error-sorteo"] = "error";
+			}
+
+			mvc.lstSorteos = datos.getListaSorteosActivos(mvc.usuario.idUsuario, EstadosEnum.En_Curso);
+			mvc.lstSorteosHistorial = datos.getListaSorteosActivos(mvc.usuario.idUsuario, EstadosEnum.Cancelado);
+
+			return View("MisSorteosActivos", mvc);
+		}
+
+
 	}
 }

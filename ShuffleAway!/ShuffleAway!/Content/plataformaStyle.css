@@ -433,3 +433,16 @@ a.article:hover {
 		}
 }
 
+
+.accordion-historial-title{
+	background: none !important;
+}
+
+table.tabla-historial th {
+	font-size: 13px !important
+}
+
+table.tabla-historial td{
+	font-size: 10px !important
+}
+

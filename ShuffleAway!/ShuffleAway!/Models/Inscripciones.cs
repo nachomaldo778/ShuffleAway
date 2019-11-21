@@ -15,6 +15,7 @@ namespace ShuffleAway_.Models
 		public string nombreSorteo { get; set; }
 		public long cantidadInscripciones { get; set; }
 		public string nombreUsuario { get; set; }
+		public int estado { get; set; }
 
 
 	}

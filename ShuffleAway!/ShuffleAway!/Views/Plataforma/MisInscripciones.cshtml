@@ -39,14 +39,69 @@
 					}
 				</div>
 				<div class="col-2 text-center" style="right: 30px">
-					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Eliminar</p>
+					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Cancelar</p>
 					@foreach (var item in Model.lstInscripciones)
 					{
-						<a class="list-group-item list-group-item" href="@Url.Action("EliminarSorteoActivo", "Plataforma", new { id = item.idSorteo })"><i class="fas fa-times"></i></a>
+						<a class="list-group-item list-group-item" href="@Url.Action("CambiarEstadoInscripcion", "Plataforma", new { id = item.idInscripcion })"><i class="fas fa-times"></i></a>
 					}
 				</div>
 			</div>
 		</div>
+
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-8 mx-auto">
+					<!--Accordion wrapper-->
+					<div class="accordion md-accordion accordion-2" id="accordionEx7" role="tablist"
+						 aria-multiselectable="true">
+
+						<!-- Accordion card -->
+						<div class="card">
+
+							<!-- Card header -->
+							<div class="card-header rgba-stylish-strong z-depth-1 mb-1" role="tab" id="heading1">
+								<a data-toggle="collapse" data-parent="#accordionEx7" href="#collapse1" aria-expanded="true"
+								   aria-controls="collapse1">
+									<h5 class="mb-0 white-text text-uppercase font-thin" style="font-size: 10px">
+										Historial de inscripciones
+									</h5>
+								</a>
+							</div>
+
+							<!-- Card body -->
+							<div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="heading1"
+								 data-parent="#accordionEx7">
+								<div class="card-body mb-1 rgba-grey-light white-text">
+									<table class="table table-striped tabla-historial">
+										<thead>
+											<tr>
+												<th scope="col">Sorteo</th>
+												<th scope="col">Fecha inscripción</th>
+												<th scope="col">Fecha finalización</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach (var item in Model.lstInscripciones)
+											{
+												<tr>
+													<td>@item.nombreSorteo</td>
+													<td>@item.fechaInscripcion</td>
+													<td>@item.fechaFin</td>
+												</tr>
+											}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- Accordion card -->
+					</div>
+					<!--/.Accordion wrapper-->
+				</div>
+			</div>
+
+		</div>
+
 	</div>
 </div>
 

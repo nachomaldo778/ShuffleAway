@@ -19,8 +19,11 @@ namespace ShuffleAway_.Models
 		public List<Plataforma> lstPlataformas { get; set; }
 		public List<Entrada> lstEntradas { get; set; }
 		public List<Sorteo> lstSorteos { get; set; }
+		public List<Sorteo> lstSorteosHistorial { get; set; }
 		public List<Inscripciones> lstInscripciones { get; set; }
+		public List<Inscripciones> lstInscripcionesHistorial { get; set; }
 		public List<Ganador> lstGanadores { get; set; }
+		public EstadosEnum estados { get;set; }
 		
 	}
 }

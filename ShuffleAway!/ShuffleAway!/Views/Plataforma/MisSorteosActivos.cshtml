@@ -21,7 +21,7 @@
 					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Sortear!</p>
 					@foreach (var item in Model.lstSorteos)
 					{
-						<a class="list-group-item list-group-item" href="#"><i class="fas fa-random"></i></a>
+						<a class="list-group-item list-group-item" href="@Url.Action("GenerarSorteo", "Plataforma", new { idSorteo = item.idSorteo })"><i class="fas fa-random"></i></a>
 					}
 				</div>
 				<div class="col-5" style="left: 30px">
@@ -40,7 +40,7 @@
 					}
 				</div>
 				<div class="col-2 text-center" style="right: 30px">
-					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Eliminar</p>
+					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Cancelar</p>
 					@foreach (var item in Model.lstSorteos)
 					{
 						<a class="list-group-item list-group-item" href="@Url.Action("EliminarSorteoActivo", "Plataforma", new { id = item.idSorteo })"><i class="fas fa-times"></i></a>
@@ -48,6 +48,61 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-8 mx-auto">
+					<!--Accordion wrapper-->
+					<div class="accordion md-accordion accordion-2" id="accordionEx7" role="tablist"
+						 aria-multiselectable="true">
+
+						<!-- Accordion card -->
+						<div class="card">
+
+							<!-- Card header -->
+							<div class="card-header rgba-stylish-strong z-depth-1 mb-1" role="tab" id="heading1">
+								<a data-toggle="collapse" data-parent="#accordionEx7" href="#collapse1" aria-expanded="true"
+								   aria-controls="collapse1">
+									<h5 class="mb-0 white-text text-uppercase font-thin" style="font-size: 10px">
+										Historial de sorteos
+									</h5>
+								</a>
+							</div>
+
+							<!-- Card body -->
+							<div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="heading1"
+								 data-parent="#accordionEx7">
+								<div class="card-body mb-1 rgba-grey-light white-text">
+									<table class="table table-striped tabla-historial">
+										<thead>
+											<tr>
+												<th scope="col">Sorteo</th>
+												<th scope="col">Fecha inscripción</th>
+												<th scope="col">Fecha finalización</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach (var item in Model.lstSorteosHistorial)
+											{
+												<tr>
+													<td>@item.nombreSorteo</td>
+													<td>@item.fechaFin</td>
+													<td>@item.DevolverEstado()</td>
+												</tr>
+											}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- Accordion card -->
+					</div>
+					<!--/.Accordion wrapper-->
+				</div>
+			</div>
+
+		</div>
+
 	</div>
 </div>
 
@@ -114,6 +169,54 @@
 
 	@section sorteoCreadoScript{
 		<script type="text/javascript">$('#alert-correcto-crear').toast('show');</script>
+	}
+}
+
+@if (TempData["exito-sorteo"] != null)
+{
+	<div id="alert-correcto-generar-sorteo" role="alert" aria-live="assertive" aria-atomic="true"
+		 class="toast" data-autohide="true" data-delay="7000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+		<div class="toast-header">
+			<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+				 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				<rect fill="#007aff" width="100%" height="100%" />
+			</svg>
+			<strong class="mr-auto">SuffleAway!</strong>
+			<small>notificación</small>
+		</div>
+		<div class="toast-body">
+			Sorteo realizado correctamente, usuarios ganadores: <br />
+			@foreach (var g in Model.lstGanadores)
+			{
+				  @g.nombreUsuario <br />
+			}
+		</div>
+	</div>
+
+	@section sorteoEliminadoScript{
+		<script type="text/javascript">$('#alert-correcto-generar-sorteo').toast('show');</script>
+	}
+}
+
+@if (TempData["error-sorteo"] != null)
+{
+	<div id="alert-error-generar-sorteo" role="alert" aria-live="assertive" aria-atomic="true"
+		 class="toast" data-autohide="true" data-delay="5000" style="position: absolute; top: 10px; right: 10px;z-index: 9999999">
+		<div class="toast-header">
+			<svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+				 preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				<rect fill="#FF0000" width="100%" height="100%" />
+			</svg>
+			<strong class="mr-auto">SuffleAway!</strong>
+			<small>notificación</small>
+		</div>
+		<div class="toast-body">
+			Hubo un error al intentar generar el sorteo.
+		</div>
+	</div>
+
+	@section sorteoEliminadoScript{
+		<script type="text/javascript">$('#alert-error-generar-sorteo').toast('show');</script>
 	}
 }
 

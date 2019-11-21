@@ -122,5 +122,17 @@ namespace ShuffleAway_.Models
 			Noviembre = 11,
 			Diciembre = 12
 		}
+
+		public int calcularEdad(DateTime fecha)
+		{
+			// Save today's date.
+			var hoy = DateTime.Today;
+			// Calculate the age.
+			var edad = hoy.Year - fecha.Year;
+			// Go back to the year the person was born in case of a leap year
+			if (fecha.Date > hoy.AddYears(-edad)) edad--;
+
+			return edad;
+		}
 	}
 }

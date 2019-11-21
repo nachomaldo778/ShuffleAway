@@ -167,6 +167,7 @@
     <Compile Include="Models\Conversor.cs" />
     <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\Datos\AccesoDatos.cs" />
+    <Compile Include="Models\EstadosEnum.cs" />
     <Compile Include="Models\Ganador.cs" />
     <Compile Include="Models\Inscripciones.cs" />
     <Compile Include="Models\MvcModel.cs" />

@@ -12,6 +12,7 @@ namespace ShuffleAway_.Models
 		public string nombreUsuario { get; set; }
         public long sorteosGanados { get; set; }
 		public long rankGanadores { get; set; }
+		public bool estado { get; set; }
 
 	}
 }

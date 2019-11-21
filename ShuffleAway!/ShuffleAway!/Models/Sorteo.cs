@@ -35,5 +35,11 @@ namespace ShuffleAway_.Models
 		public List<long> lstIdProvincias { get; set; }
 		public List<long> lstIdEntradas { get; set; }
 		public List<string> lstStrEntradas { get; set; }
+		public int estado { get; set; }
+
+		public string DevolverEstado()
+		{
+			return Enum.GetName(typeof(EstadosEnum), estado).Replace("_", " ");
+		}
     }
 }
