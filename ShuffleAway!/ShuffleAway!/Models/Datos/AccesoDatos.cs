@@ -185,10 +185,10 @@ namespace ShuffleAway_.Models.Datos
 
 				string sql = "INSERT INTO Sorteos (nombreSorteo, terminosCondiciones, " +
 					"edadMinima, fechaInicio, fechaFin, premio, descripcionpremio, " +
-					"numeroGanadores, idProvincia, idPlataforma, id_usuario) " +
+					"numeroGanadores, idProvincia, idPlataforma, id_usuario, estado) " +
 					" VALUES (" +
 					"@nomSor, @termCon, @edadMin, @fecIn, @fecFin, @prem, " +
-					"@descPrem, @numGan, @idProv, @idPlat, @idU); SELECT LAST_INSERT_ID(); ";
+					"@descPrem, @numGan, @idProv, @idPlat, @idU, 1); SELECT LAST_INSERT_ID(); ";
 
 				string sql2 = "INSERT INTO EntradasXSorteo (idEntrada, idSorteo, url) VALUES " +
 					"(@idE, @idS, @url)";
@@ -210,8 +210,9 @@ namespace ShuffleAway_.Models.Datos
 					numGan = sorteo.numeroGanadores,
 					idProv = sorteo.idProvincia,
 					idPlat = sorteo.idPlataforma,
-					idU = sorteo.id_usuario
-				};
+					idU = sorteo.id_usuario,
+                    est = sorteo.estado
+                };
 
 				// se hace el primer insert en Sorteos y se obtiene el nuevo ID del sorteo
 				idSorteo = conect.Query<int>(sql, obj).FirstOrDefault();
