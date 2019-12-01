@@ -54,38 +54,47 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-						<ul class="navbar-nav">
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle fadeLinks" id="navbarDropdownMenuLink" data-toggle="dropdown"
-								   aria-haspopup="true" aria-expanded="false">Sorteos</a>
-								<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-									@if (Model.usuario != null && Model.usuario.idTipoUsuario == 2)
-									{
-										<a id="btnCrearSorteo" class="dropdown-item fadeLinks" href="@linkCrearSorteo">Crear sorteo</a>
-									}
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fadeLinks" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Sorteos</a>
+                                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                                    @if (Model.usuario != null && Model.usuario.idTipoUsuario == 2)
+                                    {
+                                        <a id="btnCrearSorteo" class="dropdown-item fadeLinks" href="@linkCrearSorteo">Crear sorteo</a>
+                                    }
 
-									<a id="btnSorteosAct" class="dropdown-item fadeLinks" href="@linkSorteosActivos">Sorteos activos</a>
-								</div>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link fadeLinks" href="@Url.Action("Demostracion", "Home")">
-									Demostración
-									<span class="sr-only">(current)</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link fadeLinks" href="@Url.Action("PlanPrecios", "Home")">
-									Planes
-									<span class="sr-only">(current)</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link fadeLinks" href="@Url.Action("Faq", "Home")">
-									FAQ
-									<span class="sr-only">(current)</span>
-								</a>
-							</li>
-						</ul>
+                                    <a id="btnSorteosAct" class="dropdown-item fadeLinks" href="@linkSorteosActivos">Sorteos activos</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fadeLinks" href="@Url.Action("Demostracion", "Home")">
+                                    Demostración
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fadeLinks" href="@Url.Action("PlanPrecios", "Home")">
+                                    Planes
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fadeLinks" href="@Url.Action("Faq", "Home")">
+                                    FAQ
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item avatar dropdown">
+                                <a class="nav-link dropdown-toggle waves-effect waves-light" style="" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="badge badge-danger ml-2">4</span>
+                                    <i class="fas fa-bell"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-5">
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Notificacion</a>
+                                </div>
+                            </li>
+                        </ul>
 						<ul class="navbar-nav ml-auto">
 							@if (Model.usuario != null && Model.usuario.logueado)
 							{
