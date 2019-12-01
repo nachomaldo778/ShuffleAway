@@ -305,7 +305,7 @@ namespace ShuffleAway_.Models.Datos
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 				string sql = "SELECT nombreUsuario, COUNT(g.idUsuario) AS sorteosGanados " +
-					"FROM Ganadores g, Usuarios u WHERE g.idUsuario =  u.idUsuario GROUP BY nombreUsuario";
+					"FROM Ganadores g, Usuarios u WHERE g.idUsuario =  u.idUsuario GROUP BY nombreUsuario ORDER BY sorteosGanados desc";
 
 				lst = conect.Query<Ganador>(sql).ToList(); //se llena la lista automaticamente con todos los ganadores
 
@@ -322,7 +322,7 @@ namespace ShuffleAway_.Models.Datos
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 				string sql = "SELECT nombreUsuario, count(idInscripcion) as cantidadInscripciones " +
-					"FROM Inscripciones i, Usuarios u WHERE i.idUsuario = u.idUsuario and i.estado <> 3 GROUP BY nombreUsuario";
+					"FROM Inscripciones i, Usuarios u WHERE i.idUsuario = u.idUsuario and i.estado <> 3 GROUP BY nombreUsuario ORDER BY cantidadInscripciones desc";
 
 				lst = conect.Query<Inscripciones>(sql).ToList(); //se llena la lista automaticamente con todos los inscriptos
 
