@@ -440,7 +440,7 @@ namespace ShuffleAway_.Models.Datos
 
 				string sqlCambiarEstadoSorteo = "UPDATE Sorteos SET estado = 2 WHERE idSorteo = @idS";
 
-				string sqlNombreSorteo = "SELECT nombreSorteo FROM sorteos s WHERE s.idSorteo = @idS";
+				string sqlNombreSorteo = "SELECT nombreSorteo FROM Sorteos s WHERE s.idSorteo = @idS";
 				string sqlNotificacion = "INSERT INTO Notificaciones (detalle) VALUES (@det); SELECT LAST_INSERT_ID();";
 				string sqlNotificacionUsuario = "INSERT INTO UsuariosXnotificacion (idUsuario, idNotificacion, fechaNotificacion, estado) " +
 					"VALUES (@idU, @idN, @fec, @est)";
@@ -455,7 +455,7 @@ namespace ShuffleAway_.Models.Datos
 					//hace el insert
 					g.fechaGanador = DateTime.Now;
 					conect.Query<bool>(sqlGanadores, new { idU = g.idUsuario, idS = idSorteo, fec = g.fechaGanador }).FirstOrDefault();
-					var nombreSorteo = conect.Query<string>(sqlNombreSorteo, new { idSorteo }).FirstOrDefault();
+					var nombreSorteo = conect.Query<string>(sqlNombreSorteo, new { idS = idSorteo }).FirstOrDefault();
 					var detalle = "Felicitaciones! Ganaste el sorteo " + nombreSorteo;
 					var idNotificacion = conect.Query<long>(sqlNotificacion, new { det = detalle }).FirstOrDefault();
 					conect.Query<bool>(sqlNotificacionUsuario, new {
