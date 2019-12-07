@@ -19,8 +19,8 @@
                 FILTRAR
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Mensual</a>
-                <a class="dropdown-item" href="#">Historico</a>
+                <a class="dropdown-item" href="@Url.Action("UsuariosMasGanadores", "Plataforma", new { filtro = 1 })">Mensual</a>
+                <a class="dropdown-item" href="@Url.Action("UsuariosMasGanadores", "Plataforma", new { filtro = 0 })">Historico</a>
             </div>
         </div>
 

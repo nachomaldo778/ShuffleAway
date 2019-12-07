@@ -11,4 +11,10 @@ namespace ShuffleAway_.Models
 		Finalizado = 2,
 		Cancelado = 3
 	}
+
+	public enum FiltrosEnum
+	{
+		Mes_Actual = 1,
+		Historico = 2
+	}
 }

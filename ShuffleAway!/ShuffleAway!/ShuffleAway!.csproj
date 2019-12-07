@@ -171,6 +171,7 @@
     <Compile Include="Models\Ganador.cs" />
     <Compile Include="Models\Inscripciones.cs" />
     <Compile Include="Models\MvcModel.cs" />
+    <Compile Include="Models\Notificacion.cs" />
     <Compile Include="Models\Plataforma.cs" />
     <Compile Include="Models\Provincia.cs" />
     <Compile Include="Models\Sorteo.cs" />

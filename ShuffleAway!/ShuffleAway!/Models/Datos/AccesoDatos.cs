@@ -151,6 +151,10 @@ namespace ShuffleAway_.Models.Datos
 				string sql = "SELECT idUsuario, nombreUsuario, idTipoUsuario, nombre, apellido, email, idProvincia, fechaNacimiento " +
 					"FROM Usuarios WHERE email = @em";
 
+				string sqlNotificaciones = "SELECT n.id 'id', n.detalle 'detalle', un.fechaNotificacion 'fechaNotificacion', " +
+					"un.estado 'estado' FROM Notificaciones n, UsuariosXnotificacion un WHERE n.id = un.idNotificacion " +
+					"AND un.idUsuario = @idU ";
+
 				//obtengo la contraseña y el valor 1 para verificar que exista el usuario
 				var row = (IDictionary<string, object>)conect.Query(verificar, new { em = u.email }).FirstOrDefault();
 
@@ -169,6 +173,7 @@ namespace ShuffleAway_.Models.Datos
 							u = conect.Query<Usuario>(sql, new { em = u.email }).FirstOrDefault();
 							u.strFechaNac = new Conversor().fechaATxt(u.fechaNacimiento);
 							u.logueado = true;
+							u.lstNotificaciones = conect.Query<Notificacion>(sqlNotificaciones, new { idU = u.idUsuario }).ToList();
 						}
 					}
 				}
@@ -314,6 +319,34 @@ namespace ShuffleAway_.Models.Datos
 			return lst;
 		}
 
+		public List<Ganador> getListaUsuariosMasGanadoresFiltrado(int filtro)
+		{
+			List<Ganador> lst = new List<Ganador>();
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string fil = "";
+				switch (filtro)
+				{
+					case 1:
+						fil = "AND MONTH(g.fechaGanador) = MONTH(NOW())";
+						break;
+
+					default:
+						break;
+				}
+
+				string sql = "SELECT nombreUsuario, COUNT(g.idUsuario) AS sorteosGanados " +
+					"FROM Ganadores g, Usuarios u WHERE g.idUsuario =  u.idUsuario " +
+					fil +
+					" GROUP BY nombreUsuario ORDER BY sorteosGanados desc LIMIT 10";
+
+				lst = conect.Query<Ganador>(sql).ToList(); //se llena la lista automaticamente con todos los ganadores
+
+			}
+
+			return lst;
+		}
+
 
 
 		public List<Inscripciones> getListaUsuariosMasParticipativos()
@@ -322,7 +355,35 @@ namespace ShuffleAway_.Models.Datos
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 				string sql = "SELECT nombreUsuario, count(idInscripcion) as cantidadInscripciones " +
-					"FROM Inscripciones i, Usuarios u WHERE i.idUsuario = u.idUsuario and i.estado <> 3 GROUP BY nombreUsuario ORDER BY cantidadInscripciones desc";
+					"FROM Inscripciones i, Usuarios u WHERE i.idUsuario = u.idUsuario and i.estado <> 3 " +
+					"GROUP BY nombreUsuario ORDER BY cantidadInscripciones desc LIMIT 10";
+
+				lst = conect.Query<Inscripciones>(sql).ToList(); //se llena la lista automaticamente con todos los inscriptos
+
+			}
+
+			return lst;
+		}
+
+		public List<Inscripciones> getListaUsuariosMasParticipativosFiltrado(int filtro)
+		{
+			List<Inscripciones> lst = new List<Inscripciones>();
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string fil = "";
+				switch (filtro)
+				{
+					case 1:
+						fil = "AND MONTH(i.fechaInscripcion) = MONTH(NOW())";
+						break;
+						
+					default:
+						break;
+				}
+				string sql = "SELECT nombreUsuario, count(idInscripcion) as cantidadInscripciones " +
+					"FROM Inscripciones i, Usuarios u WHERE i.idUsuario = u.idUsuario and i.estado <> 3 " +
+					 fil +
+					" GROUP BY nombreUsuario ORDER BY cantidadInscripciones desc";
 
 				lst = conect.Query<Inscripciones>(sql).ToList(); //se llena la lista automaticamente con todos los inscriptos
 
@@ -375,10 +436,15 @@ namespace ShuffleAway_.Models.Datos
 							"ORDER BY RAND() " +
 							"LIMIT @limit; ";
 
-				string sqlGanadores = "INSERT INTO Ganadores (idUsuario, idSorteo) VALUES (@idU, @idS)";
+				string sqlGanadores = "INSERT INTO Ganadores (idUsuario, idSorteo, fechaGanador) VALUES (@idU, @idS, @fec)";
 
 				string sqlCambiarEstadoSorteo = "UPDATE Sorteos SET estado = 2 WHERE idSorteo = @idS";
 
+				string sqlNombreSorteo = "SELECT nombreSorteo FROM sorteos s WHERE s.idSorteo = @idS";
+				string sqlNotificacion = "INSERT INTO Notificaciones (detalle) VALUES (@det); SELECT LAST_INSERT_ID();";
+				string sqlNotificacionUsuario = "INSERT INTO UsuariosXnotificacion (idUsuario, idNotificacion, fechaNotificacion, estado) " +
+					"VALUES (@idU, @idN, @fec, @est)";
+				
 				lstGanadores = conect.Query<Ganador>(sql, new { idS = idSorteo, limit = limit }).ToList();
 
 				// hace los insert de los ganadores en la tabla Ganadores
@@ -387,7 +453,17 @@ namespace ShuffleAway_.Models.Datos
 				foreach (var g in lstGanadores)
 				{
 					//hace el insert
-					conect.Query<bool>(sqlGanadores, new { idU = g.idUsuario, idS = idSorteo }).FirstOrDefault();
+					g.fechaGanador = DateTime.Now;
+					conect.Query<bool>(sqlGanadores, new { idU = g.idUsuario, idS = idSorteo, fec = g.fechaGanador }).FirstOrDefault();
+					var nombreSorteo = conect.Query<string>(sqlNombreSorteo, new { idSorteo }).FirstOrDefault();
+					var detalle = "Felicitaciones! Ganaste el sorteo " + nombreSorteo;
+					var idNotificacion = conect.Query<long>(sqlNotificacion, new { det = detalle }).FirstOrDefault();
+					conect.Query<bool>(sqlNotificacionUsuario, new {
+						idU = g.idUsuario,
+						idN = idNotificacion,
+						fec = DateTime.Now,
+						est = 0
+					}).FirstOrDefault();
 					c++;
 				}
 

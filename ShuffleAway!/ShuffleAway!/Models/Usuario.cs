@@ -27,5 +27,7 @@ namespace ShuffleAway_.Models
 		public bool logueado { get; set; }
 		public string strFechaNac { get; set; }
 
+		public List<Notificacion> lstNotificaciones { get; set; }
+
     }
 }

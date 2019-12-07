@@ -13,6 +13,7 @@ namespace ShuffleAway_.Models
 		public Sorteo sorteo { get; set; }
 		public Inscripciones inscripcion { get; set; }
 		public Plataforma plataforma { get; set; }
+		public Notificacion notificacion { get; set; }
 		public List<Provincia> lstProvincias { get; set; }
 		public List<TiposDeUsuarios> lstTipoUsuario { get; set; }
 		public List<string> lstErrores { get; set; }
@@ -23,6 +24,7 @@ namespace ShuffleAway_.Models
 		public List<Inscripciones> lstInscripciones { get; set; }
 		public List<Inscripciones> lstInscripcionesHistorial { get; set; }
 		public List<Ganador> lstGanadores { get; set; }
+		public List<Notificacion> lstNotificacion { get; set; }
 		public EstadosEnum estados { get;set; }
 		
 	}

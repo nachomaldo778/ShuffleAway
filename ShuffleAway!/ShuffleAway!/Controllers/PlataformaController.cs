@@ -206,7 +206,7 @@ namespace ShuffleAway_.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		public ActionResult UsuariosMasGanadores()
+		public ActionResult UsuariosMasGanadores(int filtro = 0)
 		{
 			MvcModel mvc = new MvcModel();
 			mvc.usuario = (Usuario)Session["usuario"];
@@ -215,7 +215,9 @@ namespace ShuffleAway_.Controllers
 			{
 				//se llenan las listas para rellenar los combos
 				AccesoDatos datos = new AccesoDatos();
-				mvc.lstGanadores = datos.getListaUsuariosMasGanadores();
+				// evalua si el filtro tiene un numero mayor a 0, guarda la lista filtrada sino la lista historica 
+				mvc.lstGanadores = (filtro == 0) ? datos.getListaUsuariosMasGanadores() : datos.getListaUsuariosMasGanadoresFiltrado(filtro);
+
 
 				return View(mvc);
 			}
@@ -223,7 +225,7 @@ namespace ShuffleAway_.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		public ActionResult UsuariosMasParticipativos()
+		public ActionResult UsuariosMasParticipativos(int filtro = 0)
 		{
 			MvcModel mvc = new MvcModel();
 			mvc.usuario = (Usuario)Session["usuario"];
@@ -232,13 +234,16 @@ namespace ShuffleAway_.Controllers
 			{
 				//se llenan las listas para rellenar los combos
 				AccesoDatos datos = new AccesoDatos();
-				mvc.lstInscripciones = datos.getListaUsuariosMasParticipativos();
+
+				// evalua si el filtro tiene un numero mayor a 0, guarda la lista filtrada sino la lista historica 
+				mvc.lstInscripciones = (filtro == 0) ? datos.getListaUsuariosMasParticipativos() : datos.getListaUsuariosMasParticipativosFiltrado(filtro);
 
 				return View(mvc);
 			}
 
 			return RedirectToAction("Index", "Home");
 		}
+		
 
 		public ActionResult InscripcionSorteo(long idSorteo, int edadMinima)
 		{
