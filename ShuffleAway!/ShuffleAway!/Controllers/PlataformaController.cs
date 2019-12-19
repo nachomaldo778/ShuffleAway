@@ -376,13 +376,13 @@ namespace ShuffleAway_.Controllers
 			return View("MisInscripciones", mvc);
 		}
 
-		public ActionResult CambiarEstadoInscripcion(long id)
+		public ActionResult CambiarEstadoInscripcion(long id, long estado)
 		{
 			MvcModel mvc = new MvcModel();
 			AccesoDatos datos = new AccesoDatos();
 			mvc.usuario = (Usuario)Session["usuario"];
 
-			if (datos.EliminarInscripcionActiva(id))
+			if (datos.EliminarInscripcionActiva(id, (EstadosEnum)estado))
 			{
 				mvc.lstInscripcionesHistorial = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.Cancelado, EstadosEnum.Finalizado);
 				TempData["exitoEliminarInscripcion"] = "exito";
@@ -406,7 +406,8 @@ namespace ShuffleAway_.Controllers
 			if (cantidadGanadores > 0)
 			{
 				mvc.lstGanadores = (List<Ganador>)datos.sortearGanadores(idSorteo, cantidadGanadores)[0];
-
+				var idInscripcion = datos.GetIdInscripcion(idSorteo);
+				datos.EliminarInscripcionActiva(idInscripcion, EstadosEnum.Finalizado);
 				TempData["exito-sorteo"] = "ok";
 			}
 			else

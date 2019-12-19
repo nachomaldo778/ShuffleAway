@@ -404,20 +404,31 @@ namespace ShuffleAway_.Models.Datos
 
 
 
-		public bool EliminarInscripcionActiva(long id)
+		public bool EliminarInscripcionActiva(long idInscripcion, EstadosEnum estado)
 		{
 			bool cargado = false;
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
-				string sql = "UPDATE Inscripciones SET estado = 3 WHERE idInscripcion=@id";
+				string sql = "UPDATE Inscripciones SET estado = @es WHERE idInscripcion=@id";
 
-				if (conect.Execute(sql, new { id = id }) > 0)
+				if (conect.Execute(sql, new { id = idInscripcion, es = (long)estado }) > 0)
 				{
 					cargado = true;
 				}
 
 			}
 			return cargado;
+		}
+
+		public long GetIdInscripcion(long idSorteo)
+		{
+			long idInscripcion = -1;
+			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
+			{
+				string sql = "SELECT idInscripcion FROM Inscripciones WHERE idSorteo=@idS";
+				idInscripcion = conect.Query<long>(sql, new { idS = idSorteo }).FirstOrDefault();
+			}
+			return idInscripcion;
 		}
 
 		public int obtenerCantidadGanadores(long idSorteo)

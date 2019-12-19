@@ -42,7 +42,7 @@
 					<p class="list-group-item list-group-item-primary text-center blue-gradient" style="color:aliceblue;">Cancelar</p>
 					@foreach (var item in Model.lstInscripciones)
 					{
-						<a class="list-group-item list-group-item" href="@Url.Action("CambiarEstadoInscripcion", "Plataforma", new { id = item.idInscripcion })"><i class="fas fa-times"></i></a>
+						<a class="list-group-item list-group-item" href="@Url.Action("CambiarEstadoInscripcion", "Plataforma", new { id = item.idInscripcion, estado = 3 })"><i class="fas fa-times"></i></a>
 					}
 				</div>
 			</div>
