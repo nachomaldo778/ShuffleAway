@@ -371,6 +371,7 @@ namespace ShuffleAway_.Controllers
 			mvc.lstProvincias = datos.getListaProvincias();
 			mvc.lstEntradas = datos.getListaEntradas();
 			mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.En_Curso, 0); // 1 es estado En Curso
+			mvc.lstInscripcionesHistorial = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.Cancelado, EstadosEnum.Finalizado);
 
 			return View("MisInscripciones", mvc);
 		}
