@@ -63,6 +63,22 @@ textarea {
     background-clip: text;
 }
 
+.dropdown-notif {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-size: 16px !important;
+    color: black;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
 .dropdown-item:hover {
     background-image: linear-gradient(to right, #9CECFB 0%, #65C7F7 25%, #0052D4 95%) !important;
     -webkit-background-clip: text;

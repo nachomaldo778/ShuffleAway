@@ -67,8 +67,9 @@ namespace ShuffleAway_.Models.Datos
 				conect.Execute(sql, obj);
 
 			}
+            u = getLoginUsuario(u, false);
 
-			return u;
+            return u;
 		}
 
 		public List<Provincia> getListaProvincias()
@@ -143,7 +144,7 @@ namespace ShuffleAway_.Models.Datos
 		}
 
 
-		public Usuario getLoginUsuario(Usuario u)
+		public Usuario getLoginUsuario(Usuario u, bool login)
 		{
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
@@ -155,6 +156,13 @@ namespace ShuffleAway_.Models.Datos
 					"un.estado 'estado' FROM Notificaciones n, UsuariosXnotificacion un WHERE n.id = un.idNotificacion " +
 					"AND un.idUsuario = @idU ";
 
+                if (!login)
+                {
+                    u = conect.Query<Usuario>(sql, new { em = u.email }).FirstOrDefault();
+                    u.logueado = true;
+                    u.lstNotificaciones = conect.Query<Notificacion>(sqlNotificaciones, new { idU = u.idUsuario }).ToList();
+                    return u;
+                }
 				//obtengo la contraseña y el valor 1 para verificar que exista el usuario
 				var row = (IDictionary<string, object>)conect.Query(verificar, new { em = u.email }).FirstOrDefault();
 
@@ -289,14 +297,16 @@ namespace ShuffleAway_.Models.Datos
 			return cargado;
 		}
 
-		public List<Inscripciones> getListaInscripcionesUsuario(long idUsuario, EstadosEnum estado)
+		public List<Inscripciones> getListaInscripcionesUsuario(long idUsuario, EstadosEnum estado1, EstadosEnum estado2)
 		{
 			List<Inscripciones> lst = new List<Inscripciones>();
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
-				string sql = "SELECT i.idInscripcion as idInscripcion, nombreSorteo, fechaFin, fechaInscripcion, i.estado FROM Sorteos s, Inscripciones i WHERE s.idSorteo =  i.idSorteo AND i.idUsuario = @idU AND i.estado = @e";
+				string sql = "SELECT i.idInscripcion as idInscripcion, nombreSorteo, fechaFin, fechaInscripcion, i.estado " +
+                    "FROM Sorteos s, Inscripciones i WHERE s.idSorteo =  i.idSorteo AND i.idUsuario = @idU AND " +
+                    "(i.estado = @e or i.estado = @e2)";
 				
-				lst = conect.Query<Inscripciones>(sql, new { idU = idUsuario, e = (int)estado }).ToList(); //se llena la lista automaticamente con todos las inscripciones
+				lst = conect.Query<Inscripciones>(sql, new { idU = idUsuario, e = (int)estado1, e2 = (int)estado2 }).ToList(); //se llena la lista automaticamente con todos las inscripciones
 				
 			}
 
@@ -310,7 +320,7 @@ namespace ShuffleAway_.Models.Datos
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
 				string sql = "SELECT nombreUsuario, COUNT(g.idUsuario) AS sorteosGanados " +
-					"FROM Ganadores g, Usuarios u WHERE g.idUsuario =  u.idUsuario GROUP BY nombreUsuario ORDER BY sorteosGanados desc";
+					"FROM Ganadores g, Usuarios u WHERE g.idUsuario =  u.idUsuario GROUP BY nombreUsuario ORDER BY sorteosGanados desc LIMIT 10";
 
 				lst = conect.Query<Ganador>(sql).ToList(); //se llena la lista automaticamente con todos los ganadores
 
@@ -383,7 +393,7 @@ namespace ShuffleAway_.Models.Datos
 				string sql = "SELECT nombreUsuario, count(idInscripcion) as cantidadInscripciones " +
 					"FROM Inscripciones i, Usuarios u WHERE i.idUsuario = u.idUsuario and i.estado <> 3 " +
 					 fil +
-					" GROUP BY nombreUsuario ORDER BY cantidadInscripciones desc";
+					" GROUP BY nombreUsuario ORDER BY cantidadInscripciones desc LIMIT 10";
 
 				lst = conect.Query<Inscripciones>(sql).ToList(); //se llena la lista automaticamente con todos los inscriptos
 

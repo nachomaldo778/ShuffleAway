@@ -74,13 +74,14 @@ namespace ShuffleAway_.Controllers
 			//objeto para traer datos de la BD
 			AccesoDatos datos = new AccesoDatos();
 			//guardo el usuario de la base de datos
-			mvc.usuario = datos.getLoginUsuario(mvc.usuario);
+			mvc.usuario = datos.getLoginUsuario(mvc.usuario, true);
 			//pregunto si esta logueado para redireccionarlo a la plataforma
 			if (mvc.usuario.logueado)
 			{
 				//guardo el usuario en la sesión
 				mvc.lstProvincias = datos.getListaProvincias();
 				Session["usuario"] = mvc.usuario;
+                TempData["login"] = "ok";
 				//se guarda el usuario en las cookies
 				FormsAuthentication.SetAuthCookie(mvc.usuario.email, false);
 				return RedirectToAction("Index", "Home", new { mvc = mvc });

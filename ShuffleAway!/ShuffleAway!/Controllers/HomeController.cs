@@ -13,13 +13,17 @@ namespace ShuffleAway_.Controllers
 		{
 			return datos.getListaProvincias();
 		}
-		public ActionResult Index()
+		public ActionResult Index(Usuario u)
 		{
 			MvcModel mvc = new MvcModel();
-			if (Session["usuario"] != null)
+			if (TempData["login"] != null)
 			{
-				mvc.usuario = (Usuario)Session["usuario"];
-			}
+                mvc.usuario = Session["usuario"] as Usuario;
+            }
+            else
+            {
+                mvc.usuario = u;
+            }
 			mvc.lstProvincias = getListProvincias();
 			return View(mvc);
 		}

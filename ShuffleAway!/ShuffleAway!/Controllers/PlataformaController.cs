@@ -29,6 +29,13 @@ namespace ShuffleAway_.Controllers
 				mvc.lstSorteos = datos.getListaSorteosActivos(0, EstadosEnum.En_Curso); // 0 porque no se requiere un filtro
 				Session["lstSorteos"] = mvc.lstSorteos;
 
+                if (string.IsNullOrEmpty(mvc.usuario.nombre) && 
+                    string.IsNullOrEmpty(mvc.usuario.apellido) &&
+                    string.IsNullOrEmpty(mvc.usuario.nombreUsuario))
+                {
+                    TempData["usuarioIncompleto"] = "error";
+                }
+
 				return View(mvc);
 			}
 
@@ -145,9 +152,9 @@ namespace ShuffleAway_.Controllers
 				m.usuario = datos.ActualizarUsuario(m.usuario);
 				if (m.usuario != null)
 				{
-					Session["usuario"] = m.usuario;
-					TempData["ok-upd-ajustes"] = "ok";
-					//return RedirectToAction("/Views/Plataforma/Ajustes.cshtml", mvc);
+                    //m.usuario.logueado = true;
+                    Session["usuario"] = m.usuario;
+                    TempData["ok-upd-ajustes"] = "ok";
 					return View(m);
 				}
 				TempData["error"] = "error";
@@ -198,9 +205,10 @@ namespace ShuffleAway_.Controllers
 				mvc.lstPlataformas = datos.getListaPlataformas();
 				mvc.lstProvincias = datos.getListaProvincias();
 				mvc.lstEntradas = datos.getListaEntradas();
-				mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.En_Curso);
+				mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.En_Curso, 0);
+                mvc.lstInscripcionesHistorial = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.Cancelado, EstadosEnum.Finalizado);
 
-				return View(mvc);
+                return View(mvc);
 			}
 
 			return RedirectToAction("Index", "Home");
@@ -362,7 +370,7 @@ namespace ShuffleAway_.Controllers
 			mvc.lstPlataformas = datos.getListaPlataformas();
 			mvc.lstProvincias = datos.getListaProvincias();
 			mvc.lstEntradas = datos.getListaEntradas();
-			mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.En_Curso); // 1 es estado En Curso
+			mvc.lstInscripciones = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.En_Curso, 0); // 1 es estado En Curso
 
 			return View("MisInscripciones", mvc);
 		}
@@ -375,7 +383,7 @@ namespace ShuffleAway_.Controllers
 
 			if (datos.EliminarInscripcionActiva(id))
 			{
-				mvc.lstInscripcionesHistorial = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.Cancelado);
+				mvc.lstInscripcionesHistorial = datos.getListaInscripcionesUsuario(mvc.usuario.idUsuario, EstadosEnum.Cancelado, EstadosEnum.Finalizado);
 				TempData["exitoEliminarInscripcion"] = "exito";
 			}
 			else
@@ -410,6 +418,13 @@ namespace ShuffleAway_.Controllers
 
 			return View("MisSorteosActivos", mvc);
 		}
+
+        public ActionResult Redirigir(string accion, string controlador)
+        {
+            var usrSession = Session["usuario"] as Usuario;
+            Usuario u = new AccesoDatos().getLoginUsuario(usrSession, false);
+            return RedirectToAction(accion, controlador, u);
+        }
 
 
 	}

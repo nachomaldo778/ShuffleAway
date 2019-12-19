@@ -92,11 +92,11 @@
 										<span class="badge badge-danger ml-2">@Model.usuario.lstNotificaciones.Count</span>
 										<i class="fas fa-bell"></i>
 									</a>
-									<div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-5">
+									<div class="dropdown-menu dropdown-menu-lg-left" aria-labelledby="navbarDropdownMenuLink-5">
 										@foreach (var not in Model.usuario.lstNotificaciones)
 										{
-											<div class="dropdown-item">
-												<p class="note note-light">@not.detalle</p>
+											<div class="dropdown-notif">
+												<p class="note note-info">@not.detalle</p>
 											</div>
 										}
 									</div>
