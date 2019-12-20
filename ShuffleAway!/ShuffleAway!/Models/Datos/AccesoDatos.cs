@@ -77,7 +77,7 @@ namespace ShuffleAway_.Models.Datos
 			List<Provincia> lst = new List<Provincia>();
 			using (var conect = new MySqlConnection(ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString))
 			{
-				string sql = "SELECT * FROM Provincias";
+				string sql = "SELECT * FROM Provincias ORDER BY nombreProvincia ASC";
 
 				lst = conect.Query<Provincia>(sql).ToList(); //se llena la lista automaticamente con todas las provincias
 			}
