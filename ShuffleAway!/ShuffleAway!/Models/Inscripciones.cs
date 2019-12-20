@@ -16,7 +16,10 @@ namespace ShuffleAway_.Models
 		public long cantidadInscripciones { get; set; }
 		public string nombreUsuario { get; set; }
 		public int estado { get; set; }
-
+		public string DevolverEstado()
+		{
+			return Enum.GetName(typeof(EstadosEnum), estado).Replace("_", " ");
+		}
 
 	}
 }

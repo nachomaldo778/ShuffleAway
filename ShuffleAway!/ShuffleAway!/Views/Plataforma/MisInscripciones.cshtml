@@ -78,16 +78,18 @@
 												<th scope="col">Sorteo</th>
 												<th scope="col">Fecha inscripción</th>
 												<th scope="col">Fecha finalización</th>
+												<th scope="col">Estado inscripción</th>
 											</tr>
 										</thead>
 										<tbody>
 											@foreach (var item in Model.lstInscripcionesHistorial)
 											{
-												<tr>
-													<td>@item.nombreSorteo</td>
-													<td>@item.fechaInscripcion</td>
-													<td>@item.fechaFin</td>
-												</tr>
+											<tr>
+												<td>@item.nombreSorteo</td>
+												<td>@item.fechaInscripcion</td>
+												<td>@item.fechaFin</td>
+												<td>@item.DevolverEstado()</td>
+											</tr>
 											}
 										</tbody>
 									</table>
